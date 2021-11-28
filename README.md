@@ -50,7 +50,7 @@ https://github.com/chuangcaleb/theme-classification
 
 ## Roadmap
 
-See the [kanban](https://github.com/chuangcaleb/theme-classification/projects/1) for active tasks.
+See the [kanban](https://github.com/chuangcaleb/theme-classification/projects/1?fullscreen=true) for active tasks.
 
 ## License
 
