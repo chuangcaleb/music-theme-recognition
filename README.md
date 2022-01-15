@@ -43,14 +43,14 @@ use pip for python 2 & pip3 for python 3
 Clone the repo
 
 ```sh
-https://github.com/chuangcaleb/theme-classification
+https://github.com/chuangcaleb/music-theme-recognition
 ```
 
 ## Usage
 
 ## Roadmap
 
-See the [kanban](https://github.com/chuangcaleb/theme-classification/projects/1?fullscreen=true) for active tasks.
+See the [kanban](https://github.com/chuangcaleb/music-theme-recognition/projects/1?fullscreen=true) for active tasks.
 
 ## License
 
