@@ -6,7 +6,7 @@ import pandas as pd
 """
 
 root_path = '../1_scraping_midi/bin'
-samples_database_path = './samples_database.csv'
+samples_database_path = './samples_database.xlsx'
 main_df = pd.DataFrame()
 
 # Get list of directories/sources
@@ -16,6 +16,8 @@ directories_data = [x for x in os.walk(root_path) if x[0] != root_path]
 
 # For each source/directory
 for i, directory_data in enumerate(directories_data):
+
+    print(directory_names[i])
 
     # Sort this source's samples alphabetically
     directory_data[2].sort()
@@ -34,4 +36,4 @@ for i, directory_data in enumerate(directories_data):
 print(main_df)
 
 # Write to output csv file
-main_df.to_csv(samples_database_path, index=False)
+main_df.to_excel(samples_database_path, index=False)
