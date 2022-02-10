@@ -6,7 +6,7 @@ import pandas as pd
 """
 
 root_path = '../1_scraping_midi/bin'
-samples_database_path = './samples_database.xlsx'
+song_theme_database_path = './song_theme_database.xlsx'
 main_df = pd.DataFrame()
 
 # Get list of directories/sources
@@ -25,8 +25,8 @@ for i, directory_data in enumerate(directories_data):
     # Create a partial dataframe
     current_df = pd.DataFrame(
         {
-            "source": directory_names[i],
-            "sample": directory_data[2]
+            "sample": directory_data[2],
+            "source": directory_names[i]
         }
     )
     # Append to main dataframe
@@ -36,4 +36,4 @@ for i, directory_data in enumerate(directories_data):
 print(main_df)
 
 # Write to output csv file
-main_df.to_excel(samples_database_path, index=False)
+main_df.to_excel(song_theme_database_path, index=False)
