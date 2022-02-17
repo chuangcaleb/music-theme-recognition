@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 collecting_data/1_scraping_midi/bin
+collecting_data/1_scraping_midi/corrupted-midi
