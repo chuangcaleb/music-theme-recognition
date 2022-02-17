@@ -1,11 +1,12 @@
 import pandas as pd
-import process_db
+from process_db import *
 
 song_theme_database_path = './song_theme_database.xlsx'
-main_df = pd.read_excel(song_theme_database_path)
 
 # Convert all p's to 1's
-process_db.convert(song_theme_database_path)
+p_to_1_convert(song_theme_database_path)
+
+main_df = pd.read_excel(song_theme_database_path)
 
 # * Aux methods
 
@@ -32,11 +33,13 @@ processed_count = main_df.recognizable.count()
 perc_processed = "(" + \
     str(percentage(processed_count, total_count)) + "%)"
 
+unprocessed_count = total_count - processed_count
+
 perc_recog_procs = "(" + \
     str(percentage(recognizable_count, processed_count)) + "%)"
 
 # * Count label values
-label_stats_df = main_df.iloc[:, 4:28].apply(pd.value_counts).T
+label_stats_df = main_df.iloc[:, 5:21].apply(pd.value_counts).T
 
 # Casting as integer
 label_stats_df = label_stats_df.astype("Int64")
@@ -59,11 +62,12 @@ print("Total number of samples:", total_count)
 print("Recognizable samples:",
       recognizable_count, perc_recognizable)
 print("Processed samples:", processed_count, perc_processed)
+print("-> Unprocessed samples:", unprocessed_count)
 print("Recognized / Processed samples:", perc_recog_procs)
 
 print()
 
-print("Label Statistics")
+print("> Label Statistics")
 print(label_stats_df)
 
 print()

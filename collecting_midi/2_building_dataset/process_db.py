@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def convert(song_theme_database_path):
+def p_to_1_convert(song_theme_database_path):
 
     main_df = pd.read_excel(song_theme_database_path)
 
@@ -14,7 +14,6 @@ def convert(song_theme_database_path):
     # Write back to excel
     main_df.to_excel(song_theme_database_path, index=False,
                      header=True, freeze_panes=(1, 1))
-
 
 # song_theme_database_path = './song_theme_database.xlsx'
 # convert(song_theme_database_path)
