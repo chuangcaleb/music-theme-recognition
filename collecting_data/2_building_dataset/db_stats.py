@@ -1,10 +1,13 @@
+from cProfile import label
+from turtle import width
 import pandas as pd
 from process_db import *
+import matplotlib.pyplot as plt
 
 song_theme_database_path = './song_theme_database.xlsx'
 
 # Convert all p's to 1's
-p_to_1_convert(song_theme_database_path)
+# p_to_1_convert(song_theme_database_path)
 
 main_df = pd.read_excel(song_theme_database_path)
 
@@ -74,3 +77,7 @@ print("\n> Sorted Label Statistics")
 print(sorted_label_stats_df)
 
 print()
+
+sorted_label_stats_df.plot(kind='bar', y=1.0, xlabel='Labels',
+                           ylabel='Frequency', legend=False, title='Theme Label Frequencies in Samples Dataset')
+plt.show()
