@@ -11,13 +11,13 @@ main_df = pd.read_excel(song_theme_database_path)
 # * Aux methods
 
 
-def percentage(positive, negative):
-    return round(((positive / (positive + negative)) * 100), 1)
+def percentage(positive, total):
+    return round(((positive / total) * 100), 1)
 
 
 # * Count overall statistics
 
-""" 
+"""
 Recognized/total = (countif recognizable == 1) / total
 Processed = (countif recognizable != NaN) / total
 Recog/Processed = (countif recognizable == 1) / (countif recognizable != NaN)
@@ -53,6 +53,7 @@ label_stats_df['%'] = label_stats_df[1.0] / \
 # Convert to percentage
 label_stats_df['%'] = (label_stats_df['%'] * 100).round(1)
 
+sorted_label_stats_df = label_stats_df.sort_values(by='%', ascending=False)
 
 # * PRINT
 
@@ -69,5 +70,7 @@ print()
 
 print("> Label Statistics")
 print(label_stats_df)
+print("\n> Sorted Label Statistics")
+print(sorted_label_stats_df)
 
 print()
