@@ -3,10 +3,11 @@ import pandas as pd
 
 """
 ! WARNING: Overwrites the csv! OR: in a non-overwriting way? Compares key index(es), compile & sort unique set, then overwrite
+Nah not enough time. If accidentally overwritten, just restore from last git commit.
 """
 
-root_path = '../1_scraping_midi/bin'
-song_theme_database_path = './song_theme_database.xlsx'
+root_path = 'collecting_data/1_scraping_midi/bin'
+song_theme_database_path = 'collecting_data/2_building_dataset/song_theme_database.xlsx'
 main_df = pd.DataFrame()
 
 # Get list of directories/sources

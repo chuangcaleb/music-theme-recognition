@@ -7,7 +7,7 @@ import time
 source = 'bitmidi'
 domain = "http://www." + source + ".com"
 
-download_path = 'bin/' + source
+download_path = 'collecting_data/1_scraping_midi/bin/' + source
 if not os.path.exists(download_path):
     os.makedirs(download_path)
 

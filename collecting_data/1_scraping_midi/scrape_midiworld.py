@@ -7,7 +7,8 @@ source = 'midiworld'
 domain = "http://www.midiworld.com"
 category = 'movie%20themes'  # CHANGE THIS
 
-download_path = 'bin/' + source + "/" + re.sub(r'%20', "-", category)
+download_path = 'collecting_data/1_scraping_midi/bin/' + \
+    source + "/" + re.sub(r'%20', "-", category)
 if not os.path.exists(download_path):
     os.makedirs(download_path)
 
