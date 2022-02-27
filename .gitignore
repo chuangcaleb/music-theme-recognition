@@ -128,5 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Project's gitignore
 collecting_data/1_scraping_midi/bin
 collecting_data/1_scraping_midi/corrupted-midi
+calculating_dataset/extract_jsymbolic_features.sh

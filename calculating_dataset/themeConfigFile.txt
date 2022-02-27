@@ -1,136 +1,386 @@
 <jSymbolic_options>
-convert_to_arff=False
-convert_to_csv=True
+window_size=0.0
+window_overlap=0.0
+save_features_for_each_window=false
+save_overall_recording_features=true
+convert_to_arff=false
+convert_to_csv=true
+<features_to_extract>
+Basic Pitch Histogram
+Pitch Class Histogram
+Folded Fifths Pitch Class Histogram
+Number of Pitches
+Number of Pitch Classes
+Number of Common Pitches
+Number of Common Pitch Classes
+Range
+Importance of Bass Register
+Importance of Middle Register
+Importance of High Register
+Dominant Spread
+Strong Tonal Centres
+Mean Pitch
+Mean Pitch Class
+Most Common Pitch
+Most Common Pitch Class
+Prevalence of Most Common Pitch
+Prevalence of Most Common Pitch Class
+Relative Prevalence of Top Pitches
+Relative Prevalence of Top Pitch Classes
+Interval Between Most Prevalent Pitches
+Interval Between Most Prevalent Pitch Classes
+Pitch Variability
+Pitch Class Variability
+Pitch Class Variability After Folding
+Pitch Skewness
+Pitch Class Skewness
+Pitch Class Skewness After Folding
+Pitch Kurtosis
+Pitch Class Kurtosis
+Pitch Class Kurtosis After Folding
+Major or Minor
+First Pitch
+First Pitch Class
+Last Pitch
+Last Pitch Class
+Glissando Prevalence
+Average Range of Glissandos
+Vibrato Prevalence
+Microtone Prevalence
+Melodic Interval Histogram
+Most Common Melodic Interval
+Mean Melodic Interval
+Number of Common Melodic Intervals
+Distance Between Most Prevalent Melodic Intervals
+Prevalence of Most Common Melodic Interval
+Relative Prevalence of Most Common Melodic Intervals
+Amount of Arpeggiation
+Repeated Notes
+Chromatic Motion
+Stepwise Motion
+Melodic Thirds
+Melodic Perfect Fourths
+Melodic Tritones
+Melodic Perfect Fifths
+Melodic Sixths
+Melodic Sevenths
+Melodic Octaves
+Melodic Large Intervals
+Minor Major Melodic Third Ratio
+Melodic Embellishments
+Direction of Melodic Motion
+Average Length of Melodic Arcs
+Average Interval Spanned by Melodic Arcs
+Melodic Pitch Variety
+Vertical Interval Histogram
+Wrapped Vertical Interval Histogram
+Chord Type Histogram
+Average Number of Simultaneous Pitch Classes
+Variability of Number of Simultaneous Pitch Classes
+Average Number of Simultaneous Pitches
+Variability of Number of Simultaneous Pitches
+Most Common Vertical Interval
+Second Most Common Vertical Interval
+Distance Between Two Most Common Vertical Intervals
+Prevalence of Most Common Vertical Interval
+Prevalence of Second Most Common Vertical Interval
+Prevalence Ratio of Two Most Common Vertical Intervals
+Vertical Unisons
+Vertical Minor Seconds
+Vertical Thirds
+Vertical Tritones
+Vertical Perfect Fourths
+Vertical Perfect Fifths
+Vertical Sixths
+Vertical Sevenths
+Vertical Octaves
+Perfect Vertical Intervals
+Vertical Dissonance Ratio
+Vertical Minor Third Prevalence
+Vertical Major Third Prevalence
+Chord Duration
+Partial Chords
+Standard Triads
+Diminished and Augmented Triads
+Dominant Seventh Chords
+Seventh Chords
+Non-Standard Chords
+Complex Chords
+Minor Major Triad Ratio
+Initial Time Signature
+Simple Initial Meter
+Compound Initial Meter
+Complex Initial Meter
+Duple Initial Meter
+Triple Initial Meter
+Quadruple Initial Meter
+Metrical Diversity
+Total Number of Notes
+Note Density per Quarter Note
+Note Density per Quarter Note per Voice
+Note Density per Quarter Note Variability
+Rhythmic Value Histogram
+Range of Rhythmic Values
+Number of Different Rhythmic Values Present
+Number of Common Rhythmic Values Present
+Prevalence of Very Short Rhythmic Values
+Prevalence of Short Rhythmic Values
+Prevalence of Medium Rhythmic Values
+Prevalence of Long Rhythmic Values
+Prevalence of Very Long Rhythmic Values
+Prevalence of Dotted Notes
+Shortest Rhythmic Value
+Longest Rhythmic Value
+Mean Rhythmic Value
+Most Common Rhythmic Value
+Prevalence of Most Common Rhythmic Value
+Relative Prevalence of Most Common Rhythmic Values
+Difference Between Most Common Rhythmic Values
+Rhythmic Value Variability
+Rhythmic Value Skewness
+Rhythmic Value Kurtosis
+Rhythmic Value Median Run Lengths Histogram
+Mean Rhythmic Value Run Length
+Median Rhythmic Value Run Length
+Variability in Rhythmic Value Run Lengths
+Rhythmic Value Variability in Run Lengths Histogram
+Mean Rhythmic Value Offset
+Median Rhythmic Value Offset
+Variability of Rhythmic Value Offsets
+Complete Rests Fraction
+Partial Rests Fraction
+Average Rest Fraction Across Voices
+Longest Complete Rest
+Longest Partial Rest
+Mean Complete Rest Duration
+Mean Partial Rest Duration
+Median Complete Rest Duration
+Median Partial Rest Duration
+Variability of Complete Rest Durations
+Variability of Partial Rest Durations
+Variability Across Voices of Combined Rests
+Beat Histogram Tempo Standardized
+Number of Strong Rhythmic Pulses - Tempo Standardized
+Number of Moderate Rhythmic Pulses - Tempo Standardized
+Number of Relatively Strong Rhythmic Pulses - Tempo Standardized
+Strongest Rhythmic Pulse - Tempo Standardized
+Second Strongest Rhythmic Pulse - Tempo Standardized
+Harmonicity of Two Strongest Rhythmic Pulses - Tempo Standardized
+Strength of Strongest Rhythmic Pulse - Tempo Standardized
+Strength of Second Strongest Rhythmic Pulse - Tempo Standardized
+Strength Ratio of Two Strongest Rhythmic Pulses - Tempo Standardized
+Combined Strength of Two Strongest Rhythmic Pulses - Tempo Standardized
+Rhythmic Variability - Tempo Standardized
+Rhythmic Looseness - Tempo Standardized
+Polyrhythms - Tempo Standardized
+Initial Tempo
+Mean Tempo
+Tempo Variability
+Duration in Seconds
+Note Density
+Note Density Variability
+Average Time Between Attacks
+Average Time Between Attacks for Each Voice
+Variability of Time Between Attacks
+Average Variability of Time Between Attacks for Each Voice
+Minimum Note Duration
+Maximum Note Duration
+Average Note Duration
+Variability of Note Durations
+Amount of Staccato
+Beat Histogram
+Number of Strong Rhythmic Pulses
+Number of Moderate Rhythmic Pulses
+Number of Relatively Strong Rhythmic Pulses
+Strongest Rhythmic Pulse
+Second Strongest Rhythmic Pulse
+Harmonicity of Two Strongest Rhythmic Pulses
+Strength of Strongest Rhythmic Pulse
+Strength of Second Strongest Rhythmic Pulse
+Strength Ratio of Two Strongest Rhythmic Pulses
+Combined Strength of Two Strongest Rhythmic Pulses
+Rhythmic Variability
+Rhythmic Looseness
+Polyrhythms
+Pitched Instruments Present
+Unpitched Instruments Present
+Note Prevalence of Pitched Instruments
+Note Prevalence of Unpitched Instruments
+Time Prevalence of Pitched Instruments
+Variability of Note Prevalence of Pitched Instruments
+Variability of Note Prevalence of Unpitched Instruments
+Number of Pitched Instruments
+Number of Unpitched Instruments
+Unpitched Percussion Instrument Prevalence
+String Keyboard Prevalence
+Acoustic Guitar Prevalence
+Electric Guitar Prevalence
+Violin Prevalence
+Saxophone Prevalence
+Brass Prevalence
+Woodwinds Prevalence
+Orchestral Strings Prevalence
+String Ensemble Prevalence
+Electric Instrument Prevalence
+Maximum Number of Independent Voices
+Average Number of Independent Voices
+Variability of Number of Independent Voices
+Voice Equality - Number of Notes
+Voice Equality - Note Duration
+Voice Equality - Dynamics
+Voice Equality - Melodic Leaps
+Voice Equality - Range
+Importance of Loudest Voice
+Relative Range of Loudest Voice
+Relative Range Isolation of Loudest Voice
+Relative Range of Highest Line
+Relative Note Density of Highest Line
+Relative Note Durations of Lowest Line
+Relative Size of Melodic Intervals in Lowest Line
+Voice Overlap
+Voice Separation
+Variability of Voice Separation
+Parallel Motion
+Similar Motion
+Contrary Motion
+Oblique Motion
+Parallel Fifths
+Parallel Octaves
+Dynamic Range
+Variation of Dynamics
+Variation of Dynamics In Each Voice
+Average Note to Note Change in Dynamics
 <input_files>
-bitmidi/A-Midsummer-Night-Dream-(Ouverture)_bitmidi.mid
-bitmidi/A-Thousand-Hours_bitmidi.mid
-bitmidi/A-Whole-New-World-(Theme-From-'Aladdin')_bitmidi.mid
-bitmidi/abba-dancing_queen_bitmidi.mid
-bitmidi/Abba-money_bitmidi.mid
-bitmidi/ABBA.Angel Eyes K_bitmidi.mid
-bitmidi/ABBA.Chiquitita K_bitmidi.mid
-bitmidi/ABBA.Dancing queen K_bitmidi.mid
-bitmidi/ABBA.Happy new year_bitmidi.mid
-bitmidi/ABBA.Mamma Mia K_bitmidi.mid
-bitmidi/ABBA.Take a chance on me K_bitmidi.mid
-bitmidi/ABBA.The winner takes it all K_bitmidi.mid
-bitmidi/adele-rolling_in_the_deep_bitmidi.mid
-bitmidi/adele-skyfall_bitmidi.mid
-bitmidi/adele-someone_like_you_bitmidi.mid
-bitmidi/Ain't-No-Mountain-High-Enough_bitmidi.mid
-bitmidi/Ain't-No-Sunshine_bitmidi.mid
-bitmidi/Aladdin(AFriendLikeMe)_bitmidi.mid
-bitmidi/Aladdin(ArabianNights)_bitmidi.mid
-bitmidi/Aladdin(PrinceAli)_bitmidi.mid
-bitmidi/All-I-Ask-Of-You-(From-'The-Phantom-Of-The-Opera')_bitmidi.mid
-bitmidi/allstar_bitmidi.mid
-bitmidi/amazing-grace-piano_bitmidi.mid
-bitmidi/AMRINGER.Can't help falling in love_bitmidi.mid
-bitmidi/Andrew Lloyd Webber - Phantom of the Opera_bitmidi.mid
-bitmidi/Another-One-Bites-The-Dust-1_bitmidi.mid
-bitmidi/Aqua - Barbie Girl_bitmidi.mid
-bitmidi/Assassin's Creed: Rogue - Main Theme_bitmidi.mid
-bitmidi/Auld-Lang-Syne_bitmidi.mid
-bitmidi/Avatar: The Last Airbender - Leaves From The Vine_bitmidi.mid
-bitmidi/Avengers: Age of Ultron - Heroes_bitmidi.mid
-bitmidi/avicii-hey_brother_bitmidi.mid
-bitmidi/avicii-wake_me_up_bitmidi.mid
-bitmidi/B.HELMS.Jingle bell rock K_bitmidi.mid
-bitmidi/B.TYLER.HoldinG out for hero K_bitmidi.mid
-bitmidi/Backstreet Boys - I Want It That Way_bitmidi.mid
-bitmidi/bastille-pompeii_bitmidi.mid
-bitmidi/Batman_bitmidi.mid
-bitmidi/batman-movie-theme_en_bitmidi.mid
-bitmidi/Batman: Arkham Origins - Arkham Origins Suite_bitmidi.mid
-bitmidi/Beauty-and-the-Beast_bitmidi.mid
-bitmidi/BEN.E.KING.Stand by me K_bitmidi.mid
-bitmidi/BENSON.Nothing's gonna change my love for you_bitmidi.mid
-bitmidi/beyonce-halo_bitmidi.mid
-bitmidi/billie_bitmidi.mid
-bitmidi/Billy Joel - Piano Man_bitmidi.mid
-bitmidi/Billy Joel - Uptown Girl_bitmidi.mid
-bitmidi/Blackbird-1_bitmidi.mid
-bitmidi/Bon Jovi - Living on a Prayer_bitmidi.mid
-bitmidi/Bonnie Tyler - Total Eclipse of the Heart_bitmidi.mid
-bitmidi/boss-battle_bitmidi.mid
-bitmidi/brahms-lullaby-wiegenlied-piano_bitmidi.mid
-bitmidi/braveheart_bitmidi.mid
-bitmidi/Bridal-March-(Wedding-March)_bitmidi.mid
-bitmidi/BRITNEY SPEARS.Baby one more time K_bitmidi.mid
-bitmidi/BRITNEY SPEARS.Oops I Did It Again k_bitmidi.mid
-bitmidi/BRITNEY SPEARS.Toxic.MID_bitmidi.mid
-bitmidi/C.DOUGLAS.Kung fu fighting K_bitmidi.mid
-bitmidi/Can't help falling in love with you L_bitmidi.mid
-bitmidi/Can't-Help-Falling-In-Love-1_bitmidi.mid
-bitmidi/cantina-3_bitmidi.mid
-bitmidi/CARELESS.MID_bitmidi.mid
-bitmidi/carol-of-the-bells-clarinet-and-piano_bitmidi.mid
-bitmidi/CATS.Memory k_bitmidi.mid
-bitmidi/Celine Dion - Because You Loved Me_bitmidi.mid
-bitmidi/coldplay-a_sky_full_of_stars_bitmidi.mid
-bitmidi/coldplay-paradise_bitmidi.mid
-bitmidi/Cyndi Lauper - True Colors_bitmidi.mid
-bitmidi/D.BYAS.Over the rainbow_bitmidi.mid
-bitmidi/DION.My heart will go on K_bitmidi.mid
-bitmidi/disney_bitmidi.mid
-bitmidi/Don't-Worry-Be-Happy-2_bitmidi.mid
-bitmidi/Dream-A-Little-Dream-Of-Me_bitmidi.mid
-bitmidi/ELO - Mr Blue Sky_bitmidi.mid
-bitmidi/EUROPE.The final countdown K_bitmidi.mid
-bitmidi/EURYTHMICS.Sweet dreams K_bitmidi.mid
-bitmidi/Every breath you take_bitmidi.mid
-bitmidi/Finale-StarWars_bitmidi.mid
-bitmidi/FIVE.We will rock you K.MID_bitmidi.mid
-bitmidi/Fly-Me-To-The-Moon_bitmidi.mid
-bitmidi/FOOL'S GARDEN.Lemon tree_bitmidi.mid
-bitmidi/Foreigner - I Want To Know What Love Is_bitmidi.mid
-bitmidi/funeral-march_bitmidi.mid
-bitmidi/G.MICHAE-QUEEN.Somebody to love_bitmidi.mid
-bitmidi/go-tell-it-on-the-mountain-guitar-glenn-jarrett_bitmidi.mid
-bitmidi/God-Save-The-Queen-2_bitmidi.mid
-bitmidi/GREENDAY.Boulevard of broken K.MID_bitmidi.mid
-bitmidi/Hans Zimmer - At World's End_bitmidi.mid
-bitmidi/Happy-Birthday-2_bitmidi.mid
-bitmidi/Heal-The-World-1_bitmidi.mid
-bitmidi/How-Great-Thou-Art_bitmidi.mid
-bitmidi/I Just Can't Wait To Be King.BSO The Lion King_bitmidi.mid
-bitmidi/Imagine dragons - Radioactive_bitmidi.mid
-bitmidi/imagine_dragons-demons_bitmidi.mid
-bitmidi/imperial_bitmidi.mid
-bitmidi/impossiblei_bitmidi.mid
-labean/bells.mid
-labean/court.mid
-labean/Godhelpt.mid
-labean/Hellfire.mid
-labean/Outthere.mid
-labean/topsy.mid
-midisfree/Tangled - I See the Light___WWW.MIDISFREE.COM.mid
-midiworld/Disney Themes_Can You Feel The Love Tonight_midiworld.mid
-midiworld/Disney Themes_Circle Of Life_midiworld.mid
-midiworld/Disney Themes_Colors Of The Wind_midiworld.mid
-midiworld/Disney Themes_Gravity Falls Theme_midiworld.mid
-midiworld/Disney Themes_Hakuna Matata_midiworld.mid
-midiworld/Disney Themes_Kiss The Girl_midiworld.mid
-midiworld/Disney Themes_Reflection_midiworld.mid
-midiworld/Disney Themes_The Bear Necessities_midiworld.mid
-midiworld/Disney Themes_Under The Sea_midiworld.mid
-midiworld/Disney Themes_You've Got A Friend_midiworld.mid
-midiworld/John williams_Star Wars Cello Bass Duet_midiworld.mid
-midiworld/Movie Themes_Chariots of Fire - by Vangelis_midiworld.mid
-midiworld/Movie Themes_James Bond_midiworld.mid
-midiworld/Movie Themes_Star Trek First Contact_midiworld.mid
-midiworld/Movie Themes_Star Wars - Duel of the Fates_midiworld.mid
-midiworld/Movie Themes_Superman_midiworld.mid
-midiworld/Movie Themes_The Wizard of Oz - Over the Rainbow_midiworld.mid
-midiworld/National Anthems_Malaysia_midiworld.mid
-midiworld/Tegan and Sara_Everything is Awesome_midiworld.mid
-midiworld/TV Themes_Hawaii 50_midiworld.mid
-midiworld/TV Themes_Pokemon_midiworld.mid
-nonstop2k/John-Williams-Indiana-Jones-Theme-Anonymous-20190203094356-nonstop2k.com.mid
-nonstop2k/Klaus-Badelt-Hans-Zimmer-Tiesto-He-s-a-pirate-Pirates-of-the-Caribbean-Anonymous-20200922214702-nonstop2k.com.mid
-nonstop2k/Mark-Northam-Married-Life-From-Up-Anonymous-20211201102105-nonstop2k.com.mid
-nonstop2k/Phil-Collins-No-Way-Out-Theme-from-Disney-s-Brother-Bear-Anonymous-20191222174921-nonstop2k.com.mid
-pandatooth/For the first time in forever - split track.mid
-pandatooth/Romantic_Flight Finale.mid
+collecting_data/1_scraping_midi/bin/bitmidi/A-Midsummer-Night-Dream-(Ouverture)_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/A-Thousand-Hours_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/A-Whole-New-World-(Theme-From-'Aladdin')_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/abba-dancing_queen_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Abba-money_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ABBA.Angel Eyes K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ABBA.Chiquitita K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ABBA.Dancing queen K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ABBA.Happy new year_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ABBA.Mamma Mia K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ABBA.Take a chance on me K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ABBA.The winner takes it all K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/adele-rolling_in_the_deep_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/adele-skyfall_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/adele-someone_like_you_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Ain't-No-Mountain-High-Enough_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Ain't-No-Sunshine_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Aladdin(AFriendLikeMe)_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Aladdin(ArabianNights)_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Aladdin(PrinceAli)_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/All-I-Ask-Of-You-(From-'The-Phantom-Of-The-Opera')_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/allstar_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/amazing-grace-piano_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/AMRINGER.Can't help falling in love_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Andrew Lloyd Webber - Phantom of the Opera_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Another-One-Bites-The-Dust-1_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Aqua - Barbie Girl_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Assassin's Creed: Rogue - Main Theme_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Auld-Lang-Syne_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Avatar: The Last Airbender - Leaves From The Vine_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Avengers: Age of Ultron - Heroes_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/avicii-hey_brother_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/avicii-wake_me_up_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/B.HELMS.Jingle bell rock K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/B.TYLER.HoldinG out for hero K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Backstreet Boys - I Want It That Way_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/bastille-pompeii_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Batman_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/batman-movie-theme_en_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Batman: Arkham Origins - Arkham Origins Suite_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Beauty-and-the-Beast_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/BEN.E.KING.Stand by me K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/BENSON.Nothing's gonna change my love for you_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/beyonce-halo_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/billie_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Billy Joel - Piano Man_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Billy Joel - Uptown Girl_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Blackbird-1_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Bon Jovi - Living on a Prayer_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Bonnie Tyler - Total Eclipse of the Heart_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/boss-battle_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/brahms-lullaby-wiegenlied-piano_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/braveheart_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Bridal-March-(Wedding-March)_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/BRITNEY SPEARS.Baby one more time K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/BRITNEY SPEARS.Oops I Did It Again k_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/BRITNEY SPEARS.Toxic.MID_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/C.DOUGLAS.Kung fu fighting K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Can't help falling in love with you L_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Can't-Help-Falling-In-Love-1_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/cantina-3_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/CARELESS.MID_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/carol-of-the-bells-clarinet-and-piano_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/CATS.Memory k_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Celine Dion - Because You Loved Me_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/coldplay-a_sky_full_of_stars_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/coldplay-paradise_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Cyndi Lauper - True Colors_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/D.BYAS.Over the rainbow_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/DION.My heart will go on K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/disney_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Don't-Worry-Be-Happy-2_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Dream-A-Little-Dream-Of-Me_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/ELO - Mr Blue Sky_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/EUROPE.The final countdown K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/EURYTHMICS.Sweet dreams K_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Every breath you take_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Finale-StarWars_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/FIVE.We will rock you K.MID_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Fly-Me-To-The-Moon_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/FOOL'S GARDEN.Lemon tree_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Foreigner - I Want To Know What Love Is_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/funeral-march_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/G.MICHAE-QUEEN.Somebody to love_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/go-tell-it-on-the-mountain-guitar-glenn-jarrett_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/God-Save-The-Queen-2_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/GREENDAY.Boulevard of broken K.MID_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Hans Zimmer - At World's End_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Happy-Birthday-2_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Heal-The-World-1_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/How-Great-Thou-Art_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/I Just Can't Wait To Be King.BSO The Lion King_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/Imagine dragons - Radioactive_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/imagine_dragons-demons_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/imperial_bitmidi.mid
+collecting_data/1_scraping_midi/bin/bitmidi/impossiblei_bitmidi.mid
+collecting_data/1_scraping_midi/bin/labean/bells.mid
+collecting_data/1_scraping_midi/bin/labean/court.mid
+collecting_data/1_scraping_midi/bin/labean/Godhelpt.mid
+collecting_data/1_scraping_midi/bin/labean/Hellfire.mid
+collecting_data/1_scraping_midi/bin/labean/Outthere.mid
+collecting_data/1_scraping_midi/bin/labean/topsy.mid
+collecting_data/1_scraping_midi/bin/midisfree/Tangled - I See the Light___WWW.MIDISFREE.COM.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Can You Feel The Love Tonight_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Circle Of Life_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Colors Of The Wind_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Gravity Falls Theme_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Hakuna Matata_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Kiss The Girl_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Reflection_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_The Bear Necessities_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_Under The Sea_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Disney Themes_You've Got A Friend_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/John williams_Star Wars Cello Bass Duet_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Movie Themes_Chariots of Fire - by Vangelis_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Movie Themes_James Bond_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Movie Themes_Star Trek First Contact_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Movie Themes_Star Wars - Duel of the Fates_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Movie Themes_Superman_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Movie Themes_The Wizard of Oz - Over the Rainbow_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/National Anthems_Malaysia_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/Tegan and Sara_Everything is Awesome_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/TV Themes_Hawaii 50_midiworld.mid
+collecting_data/1_scraping_midi/bin/midiworld/TV Themes_Pokemon_midiworld.mid
+collecting_data/1_scraping_midi/bin/nonstop2k/John-Williams-Indiana-Jones-Theme-Anonymous-20190203094356-nonstop2k.com.mid
+collecting_data/1_scraping_midi/bin/nonstop2k/Klaus-Badelt-Hans-Zimmer-Tiesto-He-s-a-pirate-Pirates-of-the-Caribbean-Anonymous-20200922214702-nonstop2k.com.mid
+collecting_data/1_scraping_midi/bin/nonstop2k/Mark-Northam-Married-Life-From-Up-Anonymous-20211201102105-nonstop2k.com.mid
+collecting_data/1_scraping_midi/bin/nonstop2k/Phil-Collins-No-Way-Out-Theme-from-Disney-s-Brother-Bear-Anonymous-20191222174921-nonstop2k.com.mid
+collecting_data/1_scraping_midi/bin/pandatooth/For the first time in forever - split track.mid
+collecting_data/1_scraping_midi/bin/pandatooth/Romantic_Flight Finale.mid
 <output_files>
-calculating_dataset/
+feature_values_save_path=calculating_dataset/song_theme_features_database.xml
+feature_definitions_save_path=calculating_dataset/song_theme_definitions_database.xml
