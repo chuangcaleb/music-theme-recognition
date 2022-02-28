@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # Project's gitignore
-collecting_data/1_scraping_midi/bin
-collecting_data/1_scraping_midi/corrupted-midi
+data/bin
+data/corrupted-midi
 calculating_dataset/extract_jsymbolic_features.sh

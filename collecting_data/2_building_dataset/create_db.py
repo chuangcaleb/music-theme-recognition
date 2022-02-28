@@ -6,8 +6,8 @@ import pandas as pd
 Nah not enough time. If accidentally overwritten, just restore from last git commit.
 """
 
-root_path = 'collecting_data/1_scraping_midi/bin'
-song_theme_database_path = 'collecting_data/2_building_dataset/song_theme_database.xlsx'
+root_path = 'data/bin'
+song_theme_database_path = 'data/song_theme_labels_database.xlsx'
 main_df = pd.DataFrame()
 
 # Get list of directories/sources
@@ -18,7 +18,7 @@ directories_data = [x for x in os.walk(root_path) if x[0] != root_path]
 # For each source/directory
 for i, directory_data in enumerate(directories_data):
 
-    print(directory_names[i])
+    print(i, directory_names[i])
 
     # Sort this source's samples alphabetically
     directory_data[2].sort()

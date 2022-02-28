@@ -9,11 +9,11 @@ def config_write(string):
 # * Other paths ----------------------------------------------------------------
 
 # Input midi bin's root path
-bin_root_path = 'collecting_data/1_scraping_midi/bin/'
+bin_root_path = 'data/bin/'
 
 # Output path
-feat_output_path = 'calculating_dataset/data/song_theme_features_database.xml'
-def_output_path = 'calculating_dataset/data/song_theme_definitions_database.xml'
+feat_output_path = 'data/features/song_theme_features_database.xml'
+def_output_path = 'data/features/song_theme_definitions_database.xml'
 
 # Features list
 all_midi_features_pkl = open('calculating_dataset/all_midi_features.pkl', 'rb')
@@ -27,7 +27,7 @@ config_file = open('calculating_dataset/themeConfigFile.txt', 'wb')
 # * Database -------------------------------------------------------------------
 
 # Access song_theme_database db
-song_theme_database_path = 'collecting_data/2_building_dataset/song_theme_database.xlsx'
+song_theme_database_path = 'data/song_theme_labels_database.xlsx'
 main_df = pd.read_excel(song_theme_database_path)
 
 # Get recognizable midi paths from database
