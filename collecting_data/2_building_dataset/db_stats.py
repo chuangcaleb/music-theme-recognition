@@ -2,12 +2,12 @@ import pandas as pd
 from process_db import *
 import matplotlib.pyplot as plt
 
-song_theme_database_path = 'data/song_theme_labels_database.xlsx'
+song_theme_label_database_path = 'data/song_theme_label_database.xlsx'
 
 # Convert all p's to 1's
-p_to_1_convert(song_theme_database_path)
+p_to_1_convert(song_theme_label_database_path)
 
-main_df = pd.read_excel(song_theme_database_path)
+label_df = pd.read_excel(song_theme_label_database_path)
 
 # * Aux methods
 
@@ -24,13 +24,13 @@ Processed = (countif recognizable != NaN) / total
 Recog/Processed = (countif recognizable == 1) / (countif recognizable != NaN)
  """
 
-total_count = len(main_df.index)
+total_count = len(label_df.index)
 
-recognizable_count = len(main_df[main_df.recognizable == 1])
+recognizable_count = len(label_df[label_df.recognizable == 1])
 perc_recognizable = "(" + \
     str(percentage(recognizable_count, total_count)) + "%)"
 
-processed_count = main_df.recognizable.count()
+processed_count = label_df.recognizable.count()
 perc_processed = "(" + \
     str(percentage(processed_count, total_count)) + "%)"
 
@@ -40,7 +40,7 @@ perc_recog_procs = "(" + \
     str(percentage(recognizable_count, processed_count)) + "%)"
 
 # * Count label values
-label_stats_df = main_df.iloc[:, 5:20].apply(pd.value_counts).T
+label_stats_df = label_df.iloc[:, 5:20].apply(pd.value_counts).T
 
 # Casting as integer
 label_stats_df = label_stats_df.astype("Int64")

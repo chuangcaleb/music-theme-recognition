@@ -382,5 +382,5 @@ data/bin/nonstop2k/Phil-Collins-No-Way-Out-Theme-from-Disney-s-Brother-Bear-Anon
 data/bin/pandatooth/For the first time in forever - split track.mid
 data/bin/pandatooth/Romantic_Flight Finale.mid
 <output_files>
-feature_values_save_path=data/features/song_theme_features_database.xml
-feature_definitions_save_path=data/features/song_theme_definitions_database.xml
+feature_values_save_path=data/features/song_theme_feature_database.xml
+feature_definitions_save_path=data/features/song_theme_feature_definitions.xml

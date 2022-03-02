@@ -7,8 +7,8 @@ Nah not enough time. If accidentally overwritten, just restore from last git com
 """
 
 root_path = 'data/bin'
-song_theme_database_path = 'data/song_theme_labels_database.xlsx'
-main_df = pd.DataFrame()
+song_theme_database_path = 'data/song_theme_label_database.xlsx'
+label_df = pd.DataFrame()
 
 # Get list of directories/sources
 directory_names = os.listdir(root_path)
@@ -31,10 +31,10 @@ for i, directory_data in enumerate(directories_data):
         }
     )
     # Append to main dataframe
-    main_df = main_df.append(current_df, ignore_index=True)
+    label_df = label_df.append(current_df, ignore_index=True)
 
 # Display in console
-print(main_df)
+print(label_df)
 
 # Write to output csv file
-main_df.to_excel(song_theme_database_path, index=False)
+label_df.to_excel(song_theme_database_path, index=False)

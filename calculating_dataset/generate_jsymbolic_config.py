@@ -12,8 +12,8 @@ def config_write(string):
 bin_root_path = 'data/bin/'
 
 # Output path
-feat_output_path = 'data/features/song_theme_features_database.xml'
-def_output_path = 'data/features/song_theme_definitions_database.xml'
+feat_output_path = 'data/features/song_theme_feature_database.xml'
+def_output_path = 'data/features/song_theme_feature_definitions.xml'
 
 # Features list
 all_midi_features_pkl = open('calculating_dataset/all_midi_features.pkl', 'rb')
@@ -26,12 +26,12 @@ config_file = open('calculating_dataset/themeConfigFile.txt', 'wb')
 
 # * Database -------------------------------------------------------------------
 
-# Access song_theme_database db
-song_theme_database_path = 'data/song_theme_labels_database.xlsx'
-main_df = pd.read_excel(song_theme_database_path)
+# Access song_theme_label_database db
+song_theme_label_database_path = 'data/song_theme_label_database.xlsx'
+label_df = pd.read_excel(song_theme_label_database_path)
 
 # Get recognizable midi paths from database
-paths_recognizable_df = main_df[main_df.recognizable == 1].iloc[:, 0:2]
+paths_recognizable_df = label_df[label_df.recognizable == 1].iloc[:, 0:2]
 # Generate a Series of all recognizable midi paths
 paths_list = bin_root_path + paths_recognizable_df['source'] + \
     '/' + paths_recognizable_df['sample']
