@@ -40,7 +40,7 @@ perc_recog_procs = "(" + \
     str(percentage(recognizable_count, processed_count)) + "%)"
 
 # * Count label values
-label_stats_df = label_df.iloc[:, 5:20].apply(pd.value_counts).T
+label_stats_df = label_df.iloc[:, 4:19].apply(pd.value_counts).T
 
 # Casting as integer
 label_stats_df = label_stats_df.astype("Int64")
