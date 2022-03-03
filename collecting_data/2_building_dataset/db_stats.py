@@ -1,3 +1,4 @@
+from cProfile import label
 import pandas as pd
 from process_db import *
 import matplotlib.pyplot as plt
@@ -7,6 +8,7 @@ song_theme_label_database_path = 'data/song_theme_label_database.xlsx'
 # Convert all p's to 1's
 p_to_1_convert(song_theme_label_database_path)
 
+# Import data
 label_df = pd.read_excel(song_theme_label_database_path)
 
 # * Aux methods
@@ -39,7 +41,12 @@ unprocessed_count = total_count - processed_count
 perc_recog_procs = "(" + \
     str(percentage(recognizable_count, processed_count)) + "%)"
 
-# * Count label values
+# * Count label occurrences
+
+# Drop all un-recognizable samples from the df, from here onwards
+label_df = label_df[label_df.recognizable == 1]
+
+# Count label occurrences
 label_stats_df = label_df.iloc[:, 4:19].apply(pd.value_counts).T
 
 # Casting as integer
