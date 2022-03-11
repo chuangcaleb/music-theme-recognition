@@ -307,7 +307,6 @@ data/bin/bitmidi/braveheart_bitmidi.mid
 data/bin/bitmidi/Bridal-March-(Wedding-March)_bitmidi.mid
 data/bin/bitmidi/BRITNEY SPEARS.Baby one more time K_bitmidi.mid
 data/bin/bitmidi/BRITNEY SPEARS.Oops I Did It Again k_bitmidi.mid
-data/bin/bitmidi/BRITNEY SPEARS.Toxic.MID_bitmidi.mid
 data/bin/bitmidi/C.DOUGLAS.Kung fu fighting K_bitmidi.mid
 data/bin/bitmidi/Can't help falling in love with you L_bitmidi.mid
 data/bin/bitmidi/Can't-Help-Falling-In-Love-1_bitmidi.mid
@@ -347,6 +346,7 @@ data/bin/bitmidi/Imagine dragons - Radioactive_bitmidi.mid
 data/bin/bitmidi/imagine_dragons-demons_bitmidi.mid
 data/bin/bitmidi/imperial_bitmidi.mid
 data/bin/bitmidi/impossiblei_bitmidi.mid
+data/bin/bitmidi/Isn't-She-Lovely-1_bitmidi.mid
 data/bin/labean/bells.mid
 data/bin/labean/court.mid
 data/bin/labean/Godhelpt.mid
