@@ -7,6 +7,6 @@ features_df = pd.read_csv(song_theme_feature_database_path)
 
 features_df.rename(columns={'Unnamed: 0': 'sample'}, inplace=True)
 features_df.iloc[:, 0] = features_df.iloc[:, 0].apply(
-    lambda x: re.sub(r'(data\/.+?(?:\/))(.*)', r'\2', x))
+    lambda x: re.sub(r'(data\/bin\/.+?(?:\/))(.*)', r'\2', x))
 
 features_df.to_csv(song_theme_feature_database_path, index=False)
