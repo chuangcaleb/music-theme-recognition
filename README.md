@@ -29,11 +29,14 @@ This project is for my individual dissertation of my Bachelor's.
 - numpy
 - jupyter
 - scikit-learn
+- scikit-multilearn[^1]
+
+[^1]: There was a major issue with the MLkNN class, see [here](https://github.com/scikit-multilearn/scikit-multilearn/issues/224#) on how to fix it.
 
 Python related dependencies can be installed using:
 
 ```python
-  pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 use pip for python 2 & pip3 for python 3
