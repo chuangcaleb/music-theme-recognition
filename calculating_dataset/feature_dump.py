@@ -1,5 +1,3 @@
-import pickle
-
 midi_feature_list = [
     'Basic Pitch Histogram',
     'Pitch Class Histogram',
@@ -246,7 +244,3 @@ midi_feature_list = [
     'Variation of Dynamics In Each Voice',
     'Average Note to Note Change in Dynamics'
 ]
-
-all_midi_features_pkl = open('calculating_dataset/all_midi_features.pkl', 'wb')
-pickle.dump(midi_feature_list, all_midi_features_pkl)
-all_midi_features_pkl.close()

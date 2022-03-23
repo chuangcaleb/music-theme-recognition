@@ -1,5 +1,5 @@
 import pandas as pd
-import pickle
+import feature_dump
 
 
 def config_write(string):
@@ -15,10 +15,7 @@ bin_root_path = 'data/bin/'
 feat_output_path = 'data/features/song_theme_feature_database.xml'
 def_output_path = 'data/features/song_theme_feature_definitions.xml'
 
-# Features list
-all_midi_features_pkl = open('calculating_dataset/all_midi_features.pkl', 'rb')
-all_midi_features_list = pickle.load(all_midi_features_pkl)
-all_midi_features_pkl.close()
+all_midi_features_list = feature_dump.midi_feature_list
 
 # Access our custom config file
 config_file = open('calculating_dataset/themeConfigFile.txt', 'wb')
