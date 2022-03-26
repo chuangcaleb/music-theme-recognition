@@ -15,8 +15,6 @@ bin_root_path = 'data/bin/'
 feat_output_path = 'data/features/song_theme_feature_database.xml'
 def_output_path = 'data/features/song_theme_feature_definitions.xml'
 
-# all_midi_features_list = feature_dump_list
-
 # Access our custom config file
 config_file = open('calculating_dataset/themeConfigFile.txt', 'wb')
 
