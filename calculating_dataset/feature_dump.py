@@ -1,4 +1,4 @@
-midi_feature_list = [
+all_midi_features_list = [
     'Basic Pitch Histogram',
     'Pitch Class Histogram',
     'Folded Fifths Pitch Class Histogram',

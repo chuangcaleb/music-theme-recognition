@@ -1,5 +1,5 @@
 import pandas as pd
-import feature_dump
+import feature_dump as feature_dump_list
 
 
 def config_write(string):
@@ -15,7 +15,7 @@ bin_root_path = 'data/bin/'
 feat_output_path = 'data/features/song_theme_feature_database.xml'
 def_output_path = 'data/features/song_theme_feature_definitions.xml'
 
-all_midi_features_list = feature_dump.midi_feature_list
+# all_midi_features_list = feature_dump_list
 
 # Access our custom config file
 config_file = open('calculating_dataset/themeConfigFile.txt', 'wb')
@@ -52,7 +52,7 @@ config_write(b'convert_to_csv=true')
 
 # Features to Extract
 config_write(b'<features_to_extract>')
-for feature in all_midi_features_list:
+for feature in feature_dump_list.all_midi_features_list:
     config_write(feature.encode('utf-8'))
 
 # Input Files
