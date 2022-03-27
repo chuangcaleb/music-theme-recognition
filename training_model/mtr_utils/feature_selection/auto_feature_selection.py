@@ -1,0 +1,24 @@
+from sklearn.feature_selection import VarianceThreshold
+
+
+def filterVarianceThreshold(df, threshold_val):
+
+    constant_filter = VarianceThreshold(threshold=threshold_val)
+    constant_filter.fit(df)
+
+    constant_columns = [column for column in df.columns
+                        if column not in
+                        df.columns[constant_filter.get_support()]]
+    var_feature_np = constant_filter.transform(df)
+    # x_test = constant_filter.transform(label_df)
+    # for column in constant_columns:
+    #     print("Removed ", column)
+
+    print(f"\nStarted with {df.shape[1]} features.")
+    print(
+        f"Removed {len(constant_columns)} feature(s) that having variance of {threshold_val}.")
+    print(f"There are {(var_feature_np.shape[1])} features left.")
+
+    variant_features = [x for x in df.columns if not x in constant_columns]
+
+    return df[variant_features]
