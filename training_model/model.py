@@ -12,7 +12,7 @@ from mtr_utils.label_dataset_selection import extractLabelDataset
 
 # * Extract data from label dataset
 
-label_df = extractLabelDataset(raw_label_df, cfg.selected_label_columns)
+label_df = extractLabelDataset(raw_label_df, cfg.selected_labels)
 
 # * Feature Selection
 
