@@ -1,3 +1,3 @@
 from mtr_utils import config as cfg
-
-print(cfg.k_value)
+from mtr_utils import import_dataset as raw_dataset
+from manual_feature_preselection.load_feature_set import preselected_feature_list

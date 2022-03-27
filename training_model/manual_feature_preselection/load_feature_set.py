@@ -1,13 +1,13 @@
 import json
 
+# Path is relative to training_model instead of root, because the model.ipynb is run relative to itself and not root.
+# json_file_path = 'manual_feature_preselection/feature_set.json'
+# output_file_path = 'manual_feature_preselection/manually_preselected_features.txt'
+json_file_path = 'training_model/manual_feature_preselection/feature_set.json'
+output_file_path = 'training_model/manual_feature_preselection/manually_preselected_features.txt'
 
-def load_presel_features():
 
-    # Path is relative to training_model instead of root, because the model.ipynb is run relative to itself and not root.
-    json_file_path = 'manual_feature_preselection/feature_set.json'
-    output_file_path = 'manual_feature_preselection/manually_preselected_features.txt'
-    # json_file_path = 'training_model/manual_feature_preselection/feature_set.json'
-    # output_file_path = 'training_model/manual_feature_preselection/manually_preselected_features.txt'
+def load_presel_features(json_file_path, output_file_path):
 
     features_file = json.loads(
         open(json_file_path).read()
@@ -54,3 +54,7 @@ def load_presel_features():
           output_file_path + '\n')
 
     return(preselected_feature_list)
+
+
+preselected_feature_list = load_presel_features(
+    json_file_path, output_file_path)
