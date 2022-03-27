@@ -9,3 +9,7 @@ threshold_val = 0
 max_leaf_nodes = 10
 
 rand_state = 15
+
+selected_label_columns = [
+    'sample', 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom',
+]
