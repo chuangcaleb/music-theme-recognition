@@ -11,4 +11,5 @@ def extractLabelDataset(label_df, selected_labels_columns):
     rec_label_df = label_df[label_df.recognizable == 1]
 
     # Only take the selected columns
-    return rec_label_df[['sample'] + selected_labels_columns]
+    # return rec_label_df[['sample'] + selected_labels_columns]
+    return rec_label_df[selected_labels_columns]
