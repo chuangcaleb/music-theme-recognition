@@ -24,4 +24,4 @@ def filterVarianceThreshold(df, threshold_val):
 
     variant_features = [x for x in df.columns if not x in constant_columns]
 
-    return df[variant_features]
+    return df[variant_features], variant_features
