@@ -1,9 +1,14 @@
 
+def extractLabelDataset(label_df, selected_labels_columns):
+    """ Extract only relevant data from the label database. 
 
-def extractLabelDataset(label_df, selected_columns):
-    # print(selected_columns)
+    1. Select only recognizable samples rows
+    2. Select only specified label columns
+
+    """
 
     # Filter for only recognized samples in labels_df
     rec_label_df = label_df[label_df.recognizable == 1]
 
-    return rec_label_df[['sample'] + selected_columns]
+    # Only take the selected columns
+    return rec_label_df[['sample'] + selected_labels_columns]

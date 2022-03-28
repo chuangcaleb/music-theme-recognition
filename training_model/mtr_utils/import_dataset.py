@@ -13,8 +13,8 @@ try:
     # Access song_theme_labels_database
     raw_label_df = pd.read_excel(song_theme_label_database_path)
 
-    print('Sucessfully imported music theme recognition dataset.')
+    print('\nSucessfully imported music theme recognition dataset.')
 
 except:
 
-    print('There was an error in importing the datasets.')
+    print('\nThere was an error in importing the datasets.')

@@ -1,3 +1,5 @@
+""" Loads the list of manually shortlisted features """
+
 import json
 
 # Path is relative to training_model instead of root, because the model.ipynb is run relative to itself and not root.
@@ -8,6 +10,8 @@ output_file_path = 'training_model/mtr_utils/feature_selection/manually_preselec
 
 
 def load_presel_features(json_file_path, output_file_path):
+    """ Loads and parses the json preselected feature set and returns it a list
+     of strings """
 
     features_file = json.loads(
         open(json_file_path).read()

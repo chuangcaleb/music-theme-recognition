@@ -1,3 +1,6 @@
+""" Configuration settings for the running the MTR model """
+
+
 target_label = 'risk'
 # feature_start = 'Vertical_Unisons'
 # feature_end = 'Minor_Major_Triad_Ratio'
