@@ -21,19 +21,19 @@ from mtr_utils.plot import plotDecisionTree
 
 # * Extract data from label dataset
 
-label_df = extractLabelDataset(raw_label_df, cfg.selected_labels)
+label_df = extractLabelDataset(raw_label_df, cfg.SELECTED_LABELS)
 
 # * Feature Selection
 
 manual_feature_df = raw_feature_df[preselected_feature_list]
 
 selected_feature_np, feature_names = filterVarianceThreshold(
-    manual_feature_df, cfg.threshold_val)
+    manual_feature_df, cfg.THRESHOLD_VAL)
 
 
 # * Iterate for each label
 
-for current_label in cfg.selected_labels:
+for current_label in cfg.SELECTED_LABELS:
 
     print(f'\nBuilding model for {current_label}...')
 
@@ -51,18 +51,18 @@ for current_label in cfg.selected_labels:
     # * Splitting Dataset
 
     (x_train, x_test, y_train, y_test) = train_test_split(
-        feature_np, label_np, test_size=0.2, random_state=cfg.rand_state)
+        feature_np, label_np, test_size=0.2, random_state=cfg.RAND_STATE)
 
     # * Sampling
 
-    x_resampled, y_resampled = smote(x_train, y_train, cfg.rand_state)
+    x_resampled, y_resampled = smote(x_train, y_train, cfg.RAND_STATE)
     # print(sorted(Counter(y_resampled).items()))
 
     # * Tuning
 
-    dt_classifier = DecisionTreeClassifier(random_state=cfg.rand_state)
+    dt_classifier = DecisionTreeClassifier(random_state=cfg.RAND_STATE)
     dt_gscv = tuneClassifer(dt_classifier,
-                            feature_np, label_np, cfg.dt_parameters, cfg.cv, cfg.score, cfg.rand_state)
+                            feature_np, label_np, cfg.DT_PARAMETERS, cfg.CV, cfg.SCORE, cfg.RAND_STATE)
 
     best_estimator = dt_gscv.best_estimator_
     best_max_leaf_nodes = dt_gscv.best_params_['max_leaf_nodes']
@@ -76,6 +76,6 @@ for current_label in cfg.selected_labels:
     # * Plotting
 
     plotDecisionTree(best_estimator, feature_names,
-                     current_label, best_max_leaf_nodes, cfg.rand_state)
+                     current_label, best_max_leaf_nodes, cfg.RAND_STATE)
 
     # ? Comparing and printing results
