@@ -24,12 +24,11 @@ for i, directory_data in enumerate(directories_data):
     directory_data[2].sort()
 
     # Create a partial dataframe
-    current_df = pd.DataFrame(
-        {
-            "sample": directory_data[2],
-            "source": directory_names[i]
-        }
-    )
+    current_df = pd.DataFrame({
+        "id": directory_data[2],
+        "source": directory_names[i]
+    })
+
     # Append to main dataframe
     label_df = label_df.append(current_df, ignore_index=True)
 

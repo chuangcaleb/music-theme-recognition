@@ -29,7 +29,7 @@ label_df = pd.read_excel(song_theme_label_database_path)
 paths_recognizable_df = label_df[label_df.recognizable == 1].iloc[:, 0:2]
 # Generate a Series of all recognizable midi paths
 paths_list = bin_root_path + paths_recognizable_df['source'] + \
-    '/' + paths_recognizable_df['sample']
+    '/' + paths_recognizable_df['id']
 
 # Concatenate Series of strings into one string object
 paths_list_string = '\n'.join(paths_list)
