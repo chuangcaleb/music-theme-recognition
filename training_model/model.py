@@ -1,6 +1,3 @@
-
-# *  Import Dataset
-
 from collections import Counter
 
 from sklearn.model_selection import train_test_split
@@ -21,6 +18,7 @@ from mtr_utils.model_tuning import tuneClassifer
 
 from mtr_utils.plot import plotDecisionTree
 
+
 # * Extract data from label dataset
 
 label_df = extractLabelDataset(raw_label_df, cfg.selected_labels)
@@ -38,6 +36,12 @@ selected_feature_np, feature_names = filterVarianceThreshold(
 for current_label in cfg.selected_labels:
 
     print(f'\nBuilding model for {current_label}...')
+
+    # ? For loop for current classifier model
+
+    # ? For loop for current rand_num iteration
+
+    # ? Further feature selection
 
     # * Converting Dataset
 
@@ -67,9 +71,11 @@ for current_label in cfg.selected_labels:
 
     best_estimator.fit(x_resampled, y_resampled)
     best_score = best_estimator.score(x_test, y_test)
-    print(f"F1-Score for {best_score}")
+    print(f"F1-Score: {best_score}")
 
     # * Plotting
 
     plotDecisionTree(best_estimator, feature_names,
                      current_label, best_max_leaf_nodes, cfg.rand_state)
+
+    # ? Comparing and printing results

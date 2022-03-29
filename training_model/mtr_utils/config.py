@@ -1,6 +1,6 @@
 """ Configuration settings for the running the MTR model """
 
-rand_state = 15
+rand_state = 2
 
 target_label = 'risk'
 # feature_start = 'Vertical_Unisons'
@@ -9,7 +9,7 @@ target_label = 'risk'
 k_value = 3
 
 selected_labels = [
-    'love'
+    'risk'
     # 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
 ]
 
