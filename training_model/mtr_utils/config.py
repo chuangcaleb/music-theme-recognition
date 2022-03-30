@@ -9,7 +9,7 @@ TARGET_LABEL = 'risk'
 K_VALUE = 3
 
 SELECTED_LABELS = [
-    'risk'
+    'risk', 'contentment'
     # 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
 ]
 
@@ -29,6 +29,12 @@ DT_PARAMETERS = {
     'criterion': ["gini", "entropy"]
 }
 MAX_LEAF_NODES = 10
+
+# * SVM
+
+SV_PARAMETERS = {'C': [0.1, 1, 10, 100, 1000],
+                 'gamma': [1, 0.1, 0.01, 0.001, 0.0001],
+                 'kernel': ['linear', 'rbf']}
 
 # * kNN
 

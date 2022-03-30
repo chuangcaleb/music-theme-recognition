@@ -60,9 +60,16 @@ for current_label in cfg.SELECTED_LABELS:
 
     # * Tuning
 
-    dt_classifier = DecisionTreeClassifier(random_state=cfg.RAND_STATE)
-    dt_gscv = tuneClassifer(dt_classifier,
-                            feature_np, label_np, cfg.DT_PARAMETERS, cfg.CV, cfg.SCORE, cfg.RAND_STATE)
+    # dt_classifier = DecisionTreeClassifier(random_state=cfg.RAND_STATE)
+    # dt_gscv = tuneClassifer(dt_classifier,
+    #                         feature_np, label_np, cfg.DT_PARAMETERS, cfg.CV, cfg.SCORE, cfg.RAND_STATE)
+
+    # best_estimator = dt_gscv.best_estimator_
+    # best_max_leaf_nodes = dt_gscv.best_params_['max_leaf_nodes']
+
+    sv_classifier = svm.SVC(random_state=cfg.RAND_STATE)
+    sv_gscv = tuneClassifer(sv_classifier,
+                            feature_np, label_np, cfg.SV_PARAMETERS, cfg.CV, cfg.SCORE, cfg.RAND_STATE)
 
     best_estimator = dt_gscv.best_estimator_
     best_max_leaf_nodes = dt_gscv.best_params_['max_leaf_nodes']
