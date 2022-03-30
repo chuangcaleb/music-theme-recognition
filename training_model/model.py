@@ -1,11 +1,9 @@
-from collections import Counter
-
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
 
 from mtr_utils import config as cfg
 
 from mtr_utils.import_dataset import raw_feature_df, raw_label_df
+
 
 from mtr_utils.label_dataset_selection import extractLabelDataset
 
@@ -15,8 +13,6 @@ from mtr_utils.feature_selection.auto_feature_selection import filterVarianceThr
 from mtr_utils.sampling import undersample, oversample, smote
 
 from mtr_utils.model_tuning import tuneClassifer
-
-from mtr_utils.plot import plotDecisionTree
 
 
 # * Extract data from label dataset
@@ -30,14 +26,15 @@ manual_feature_df = raw_feature_df[preselected_feature_list]
 selected_feature_np, feature_names = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
+# ? FEATURE ENGINEERING
 
-# * Iterate for each label
+# ?
+
+# * FOR EACH LABEL -------------------------------------------------------------
 
 for current_label in cfg.SELECTED_LABELS:
 
     print(f'\nBuilding model for {current_label}...')
-
-    # ? For loop for current classifier model
 
     # ? For loop for current rand_num iteration
 
@@ -46,7 +43,7 @@ for current_label in cfg.SELECTED_LABELS:
     # * Converting Dataset
 
     feature_np = selected_feature_np
-    label_np = label_df[[current_label]].to_numpy().astype(int)
+    label_np = label_df[[current_label]].to_numpy().astype(int).ravel()
 
     # * Splitting Dataset
 
@@ -58,31 +55,32 @@ for current_label in cfg.SELECTED_LABELS:
     x_resampled, y_resampled = smote(x_train, y_train, cfg.RAND_STATE)
     # print(sorted(Counter(y_resampled).items()))
 
-    # * Tuning
+    # * FOR EACH CLASSIFIER MODEL ----------------------------------------------
 
-    # dt_classifier = DecisionTreeClassifier(random_state=cfg.RAND_STATE)
-    # dt_gscv = tuneClassifer(dt_classifier,
-    #                         feature_np, label_np, cfg.DT_PARAMETERS, cfg.CV, cfg.SCORE, cfg.RAND_STATE)
+    for clf in cfg.classifiers:
 
-    # best_estimator = dt_gscv.best_estimator_
-    # best_max_leaf_nodes = dt_gscv.best_params_['max_leaf_nodes']
+        print(f"\n{current_label}: {clf['name']}")
 
-    sv_classifier = svm.SVC(random_state=cfg.RAND_STATE)
-    sv_gscv = tuneClassifer(sv_classifier,
-                            feature_np, label_np, cfg.SV_PARAMETERS, cfg.CV, cfg.SCORE, cfg.RAND_STATE)
+        # * Tuning
 
-    best_estimator = dt_gscv.best_estimator_
-    best_max_leaf_nodes = dt_gscv.best_params_['max_leaf_nodes']
+        grid = tuneClassifer(clf['model'],
+                             feature_np, label_np, clf['param'], cfg.CV, cfg.SCORE, cfg.RAND_STATE)
 
-    # * Training
+        best_estimator = grid.best_estimator_
 
-    best_estimator.fit(x_resampled, y_resampled)
-    best_score = best_estimator.score(x_test, y_test)
-    print(f"F1-Score: {best_score}")
+        # * Training
 
-    # * Plotting
+        best_estimator.fit(x_resampled, y_resampled)
+        best_score = best_estimator.score(x_test, y_test)
+        print(f"F1-Score: {best_score}")
+        print(grid.best_params_)
 
-    plotDecisionTree(best_estimator, feature_names,
-                     current_label, best_max_leaf_nodes, cfg.RAND_STATE)
+        # * Plotting
 
-    # ? Comparing and printing results
+        # if clf['name'] == 'Decision Tree':
+
+        #     best_max_leaf_nodes = grid.best_params_['max_leaf_nodes']
+        #     plotDecisionTree(best_estimator, feature_names,
+        #                      current_label, best_max_leaf_nodes, cfg.RAND_STATE)
+
+        # ? Comparing and printing results

@@ -14,6 +14,7 @@ def tuneClassifer(classifier, feature_np, label_np, param_grid, cv, score, rand_
         scoring=score,
         error_score='raise'
     )
+
     # Fit with entire dataset
     gscv.fit(feature_np, label_np)
 
