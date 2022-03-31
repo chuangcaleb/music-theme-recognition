@@ -9,8 +9,6 @@ from sklearn.tree import DecisionTreeClassifier
 RAND_STATE = 2
 
 TARGET_LABEL = 'risk'
-# feature_start = 'Vertical_Unisons'
-# feature_end = 'Minor_Major_Triad_Ratio'
 
 K_VALUE = 3
 
@@ -26,13 +24,20 @@ THRESHOLD_VAL = 0
 # * Cross-Validation Tuning
 
 CV = 5
-SCORE = ['f1_macro', 'precision', 'recall']
+# SCORE = ['f1_macro', 'precision', 'recall']
+SCORE = 'f1_macro'
 
 # * kNN
 
 # KNN_PARAMETERS = {'k': range(3, 5), 's': [0.5, 0.7, 1.0]}
-k_range = list(range(1, 31))
-KNN_PARAMETERS = dict(n_neighbors=k_range)
+# k_range = list(range(1, 31))
+# KNN_PARAMETERS = dict(n_neighbors=k_range)
+
+KNN_PARAMETERS = {
+    'n_neighbors': list(range(1, 10)),
+    'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
+    'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
+}
 
 # * Decision Tree
 
@@ -53,7 +58,7 @@ RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
     'n_estimators': [200, 500],
     'max_features': ['auto', 'sqrt', 'log2'],
-    'max_depth': [4, 5, 6, 7, 8],
+    'max_depth': [4, 6, 8],
     'criterion': ['gini', 'entropy']
 }
 
@@ -74,10 +79,10 @@ classifiers = [
         'name': 'SVM',
         'model': SVC(),
         'param': SV_PARAMETERS
-    },
-    {
-        'name': 'Random Forest',
-        'model': RandomForestClassifier(),
-        'param': RF_PARAMETERS
-    },
+    }
+    # {
+    #     'name': 'Random Forest',
+    #     'model': RandomForestClassifier(),
+    #     'param': RF_PARAMETERS
+    # },
 ]
