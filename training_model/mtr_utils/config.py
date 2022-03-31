@@ -16,8 +16,8 @@ TARGET_LABEL = 'risk'
 K_VALUE = 3
 
 SELECTED_LABELS = [
-    # 'risk', 'contentment'
-    'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
+    'risk', 'contentment'
+    # 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
 ]
 
 # * Feature Selection
@@ -79,11 +79,11 @@ classifiers = [
     #     'model': KNeighborsClassifier(),
     #     'param': KNN_PARAMETERS
     # },
-    # {
-    #     'name': 'Decision Tree',
-    #     'model': DecisionTreeClassifier(),
-    #     'param': DT_PARAMETERS
-    # },
+    {
+        'name': 'Decision Tree',
+        'model': DecisionTreeClassifier(),
+        'param': DT_PARAMETERS
+    },
     {
         'name': 'SVM',
         'model': SVC(),

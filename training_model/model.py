@@ -1,3 +1,4 @@
+import pickle
 from sklearn.model_selection import cross_validate, train_test_split
 
 from mtr_utils import config as cfg
@@ -14,6 +15,9 @@ from mtr_utils.sampling import undersample, oversample, smote
 from mtr_utils.model_tuning import tuneClassifer
 
 from mtr_utils.scoring import get_scoring, round_scores
+
+output_dict = {}
+
 
 # * Extract data from label dataset
 
@@ -36,6 +40,8 @@ for current_label in cfg.SELECTED_LABELS:
 
     print(
         f'\nBuilding model for \033[92m{current_label}\033[0m...')
+
+    output_dict[current_label] = {}
 
     # ? For loop for current rand_num iteration
 
@@ -84,6 +90,10 @@ for current_label in cfg.SELECTED_LABELS:
         scores = get_scoring(best_estimator, x_test, y_test)
         print(round_scores(scores, 3))
 
+        # output_dict[current_label][clf['model']] = scores
+        output_dict[current_label][clf['name']] = scores
+        output_dict[current_label][clf['name']]['model'] = best_estimator
+
         # * Plotting
 
         # if clf['name'] == 'Decision Tree':
@@ -93,3 +103,8 @@ for current_label in cfg.SELECTED_LABELS:
         #                      current_label, best_max_leaf_nuodes, cfg.RAND_STATE)
 
         # ? Comparing and printing results
+
+
+pickle.dump(
+    output_dict,
+    open("data/output/output_models.pickle", "wb"))
