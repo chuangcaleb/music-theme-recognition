@@ -13,7 +13,7 @@ from mtr_utils.sampling import undersample, oversample, smote
 
 from mtr_utils.model_tuning import tuneClassifer
 
-from mtr_utils.scoring import get_scoring
+from mtr_utils.scoring import get_scoring, round_scores
 
 # * Extract data from label dataset
 
@@ -66,7 +66,6 @@ for current_label in cfg.SELECTED_LABELS:
 
         gscv = tuneClassifer(clf['model'], feature_np,
                              label_np, clf['param'], cfg.CV, cfg.SCORING)
-        # print(gscv.best_params_)
 
         best_estimator = gscv.best_estimator_
 
@@ -74,18 +73,16 @@ for current_label in cfg.SELECTED_LABELS:
 
         best_estimator.fit(x_resampled, y_resampled)
         best_score = best_estimator.score(x_test, y_test)
-        # print(f"F1-Score: {best_score}")
-        # print(best_score)
 
         # scoring = ['accuracy', 'precision', 'recall']
         # scores = cross_validate(
-        #     # best_estimator, x_test, y_test, scoring=scoring)
+        #     best_estimator, x_test, y_test, scoring=scoring)
         #     best_estimator, x_resampled, y_resampled, scoring=scoring)
 
         # print(scores['accuracy'])
 
         scores = get_scoring(best_estimator, x_test, y_test)
-        print(scores)
+        print(round_scores(scores, 3))
 
         # * Plotting
 

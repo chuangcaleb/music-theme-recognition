@@ -2,10 +2,12 @@
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, make_scorer
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-
+import numpy as np
 
 RAND_STATE = 2
 
@@ -59,27 +61,48 @@ RF_PARAMETERS = {
     'criterion': ['gini', 'entropy']
 }
 
+# NN_PARAMETERS = {
+#     'solver': ['lbfgs'],
+#     'max_iter': [1500, 1600, 1700, 1800, 1900, 2000],
+#     'alpha': 10.0 ** -np.arange(1, 10),
+#     'hidden_layer_sizes': np.arange(10, 15), }
+
+NB_PARAMETERS = {
+    'var_smoothing': np.logspace(0, -9, num=100)
+}
+
 # * classifiers object
 
 classifiers = [
-    {
-        'name': 'kNN',
-        'model': KNeighborsClassifier(),
-        'param': KNN_PARAMETERS
-    },
-    {
-        'name': 'Decision Tree',
-        'model': DecisionTreeClassifier(),
-        'param': DT_PARAMETERS
-    },
+    # {
+    #     'name': 'kNN',
+    #     'model': KNeighborsClassifier(),
+    #     'param': KNN_PARAMETERS
+    # },
+    # {
+    #     'name': 'Decision Tree',
+    #     'model': DecisionTreeClassifier(),
+    #     'param': DT_PARAMETERS
+    # },
     {
         'name': 'SVM',
         'model': SVC(),
         'param': SV_PARAMETERS
     },
+    # {
+    #     'name': 'Random Forest',
+    #     'model': RandomForestClassifier(),
+    #     'param': RF_PARAMETERS
+    # },
+    # {
+    #     'name': 'Neural Network',
+    #     'model': MLPClassifier(),
+    #     'param': NN_PARAMETERS
+    # },
     {
-        'name': 'Random Forest',
-        'model': RandomForestClassifier(),
-        'param': RF_PARAMETERS
+        'name': 'Naive Bayes',
+        'model':  GaussianNB(),
+        'param': NB_PARAMETERS
     },
+
 ]
