@@ -3,7 +3,7 @@
 from sklearn.model_selection import GridSearchCV
 
 
-def tuneClassifer(classifier, feature_np, label_np, param_grid, cv, score):
+def tuneClassifer(classifier, feature_np, label_np, param_grid, cv, scoring):
     """ Tunes a model-agnostic classifier """
 
     gscv = GridSearchCV(
@@ -11,7 +11,7 @@ def tuneClassifer(classifier, feature_np, label_np, param_grid, cv, score):
         param_grid=param_grid,
         refit=True,
         cv=cv,
-        scoring=score,
+        scoring=scoring,
         error_score='raise'
     )
 

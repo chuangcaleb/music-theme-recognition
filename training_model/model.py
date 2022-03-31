@@ -1,4 +1,4 @@
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_validate, train_test_split
 
 from mtr_utils import config as cfg
 
@@ -13,6 +13,7 @@ from mtr_utils.sampling import undersample, oversample, smote
 
 from mtr_utils.model_tuning import tuneClassifer
 
+from mtr_utils.scoring import get_scoring
 
 # * Extract data from label dataset
 
@@ -33,7 +34,8 @@ selected_feature_np, feature_names = filterVarianceThreshold(
 
 for current_label in cfg.SELECTED_LABELS:
 
-    print(f'\nBuilding model for {current_label}...')
+    print(
+        f'\nBuilding model for \033[92m{current_label}\033[0m...')
 
     # ? For loop for current rand_num iteration
 
@@ -52,27 +54,38 @@ for current_label in cfg.SELECTED_LABELS:
     # * Sampling
 
     x_resampled, y_resampled = smote(x_train, y_train, cfg.RAND_STATE)
-    # print(sorted(Counter(y_resampled).items()))
 
     # * FOR EACH CLASSIFIER MODEL ----------------------------------------------
 
     for clf in cfg.classifiers:
 
-        print(f"\n{current_label}: {clf['name']}")
+        print(
+            f"\n{current_label}: {clf['name']}")
 
         # * Tuning
 
-        grid = tuneClassifer(clf['model'],
-                             feature_np, label_np, clf['param'], cfg.CV, cfg.SCORE)
+        gscv = tuneClassifer(clf['model'], feature_np,
+                             label_np, clf['param'], cfg.CV, cfg.SCORING)
+        # print(gscv.best_params_)
 
-        best_estimator = grid.best_estimator_
+        best_estimator = gscv.best_estimator_
 
-        # * Training
+        # * Training & Testing
 
         best_estimator.fit(x_resampled, y_resampled)
         best_score = best_estimator.score(x_test, y_test)
-        print(f"F1-Score: {best_score}")
-        print(grid.best_params_)
+        # print(f"F1-Score: {best_score}")
+        # print(best_score)
+
+        # scoring = ['accuracy', 'precision', 'recall']
+        # scores = cross_validate(
+        #     # best_estimator, x_test, y_test, scoring=scoring)
+        #     best_estimator, x_resampled, y_resampled, scoring=scoring)
+
+        # print(scores['accuracy'])
+
+        scores = get_scoring(best_estimator, x_test, y_test)
+        print(scores)
 
         # * Plotting
 
@@ -80,6 +93,6 @@ for current_label in cfg.SELECTED_LABELS:
 
         #     best_max_leaf_nodes = grid.best_params_['max_leaf_nodes']
         #     plotDecisionTree(best_estimator, feature_names,
-        #                      current_label, best_max_leaf_nodes, cfg.RAND_STATE)
+        #                      current_label, best_max_leaf_nuodes, cfg.RAND_STATE)
 
         # ? Comparing and printing results

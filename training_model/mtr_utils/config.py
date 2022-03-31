@@ -1,6 +1,7 @@
 """ Configuration settings for the running the MTR model """
 
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, make_scorer
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
@@ -24,14 +25,10 @@ THRESHOLD_VAL = 0
 # * Cross-Validation Tuning
 
 CV = 5
-# SCORE = ['f1_macro', 'precision', 'recall']
-SCORE = 'f1_macro'
+
+SCORING = 'f1_weighted'
 
 # * kNN
-
-# KNN_PARAMETERS = {'k': range(3, 5), 's': [0.5, 0.7, 1.0]}
-# k_range = list(range(1, 31))
-# KNN_PARAMETERS = dict(n_neighbors=k_range)
 
 KNN_PARAMETERS = {
     'n_neighbors': list(range(1, 10)),
@@ -79,10 +76,10 @@ classifiers = [
         'name': 'SVM',
         'model': SVC(),
         'param': SV_PARAMETERS
-    }
-    # {
-    #     'name': 'Random Forest',
-    #     'model': RandomForestClassifier(),
-    #     'param': RF_PARAMETERS
-    # },
+    },
+    {
+        'name': 'Random Forest',
+        'model': RandomForestClassifier(),
+        'param': RF_PARAMETERS
+    },
 ]
