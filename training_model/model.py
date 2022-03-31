@@ -63,7 +63,7 @@ for current_label in cfg.SELECTED_LABELS:
         # * Tuning
 
         grid = tuneClassifer(clf['model'],
-                             feature_np, label_np, clf['param'], cfg.CV, cfg.SCORE, cfg.RAND_STATE)
+                             feature_np, label_np, clf['param'], cfg.CV, cfg.SCORE)
 
         best_estimator = grid.best_estimator_
 
