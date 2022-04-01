@@ -19,6 +19,7 @@ from export_results import latextab_per_label, models_dump, results_dump, tables
 output_models_dict = {}
 output_results_dict = {}
 output_latex_tables = {}
+output_md_tables = {}
 
 # * Extract data from label dataset
 
@@ -39,7 +40,7 @@ selected_feature_np, feature_names = filterVarianceThreshold(
 
 for current_label in cfg.SELECTED_LABELS:
 
-    print(f'\nBuilding model for \033[92m{current_label}\033[0m...\n')
+    print(f'\n\n> Building model for \033[92m{current_label}\033[0m...\n')
 
     output_models_dict[current_label] = {}
     output_results_dict[current_label] = {}
@@ -98,14 +99,14 @@ for current_label in cfg.SELECTED_LABELS:
 
     # * Display as Latex tables
 
-    output_latex_tables[current_label] = latextab_per_label(
+    output_latex_tables[current_label], output_md_tables[current_label] = latextab_per_label(
         output_results_dict[current_label], current_label)
 
 # * Export Models and Results
 
 models_dump(output_models_dict)
 results_dump(output_results_dict)
-tables_dump(output_latex_tables)
+tables_dump(output_latex_tables, output_md_tables)
 
 # for current_label in output_dict:
 #     for clf in output_dict[current_label]:
