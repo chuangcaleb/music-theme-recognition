@@ -1,6 +1,3 @@
-import json
-import pickle
-import pandas as pd
 from sklearn.model_selection import cross_validate, train_test_split
 
 from mtr_utils import config as cfg
@@ -17,7 +14,7 @@ from mtr_utils.sampling import undersample, oversample, smote
 from mtr_utils.model_tuning import tuneClassifer
 
 from mtr_utils.scoring import get_scoring, round_scores
-from export_results import latextab_per_label
+from export_results import latextab_per_label, models_dump, results_dump
 
 output_models_dict = {}
 output_results_dict = {}
@@ -85,6 +82,8 @@ for current_label in cfg.SELECTED_LABELS:
         best_estimator.fit(x_resampled, y_resampled)
         best_score = best_estimator.score(x_test, y_test)
 
+        # Export results
+
         scores = get_scoring(best_estimator, x_test, y_test)
         print(round_scores(scores, 3))
 
@@ -99,22 +98,15 @@ for current_label in cfg.SELECTED_LABELS:
         #     plotDecisionTree(best_estimator, feature_names,
         #                      current_label, best_max_leaf_nuodes, cfg.RAND_STATE)
 
-        # ? Comparing and printing results
-
     # * Display as Latex tables
 
     latextab_per_label(output_results_dict[current_label], current_label)
 
+# * Export Models and Results
 
-pickle.dump(
-    output_models_dict,
-    open("data/output/output_models.pickle", "wb")
-)
+models_dump(output_models_dict)
+results_dump(output_results_dict)
 
 # for current_label in output_dict:
 #     for clf in output_dict[current_label]:
 #         output_dict[current_label][clf].pop('model')
-
-with open("data/output/output_results.json", "w") as file:
-    json.dump(output_results_dict, file)
-output_df = pd.DataFrame.from_dict(output_results_dict)

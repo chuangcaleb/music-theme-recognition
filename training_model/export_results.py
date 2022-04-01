@@ -1,18 +1,12 @@
+import json
+import pickle
 from tabulate import tabulate
 
-
-# custom_headers = ['metric', 'value']
-
-# def latextab_per_label_per_cls(dict):
-
-#     rows = [[key, value] for key, value in dict.items()]
-#     table = tabulate(rows, headers=custom_headers, tablefmt='latex')
-
-#     return table
-
+# * LATEX
 
 LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
 LATEX_TABLE_END = '\n\\end{table}'
+OUTPUT_PATH = 'data/output/'
 
 
 def latextab_per_label(dict, label):
@@ -33,3 +27,20 @@ def build_latex_table(table, label):
 
 def build_latex_caption(label):
     return f'\n\caption{{\\label{{tab: {label}}} Model performances for \'{label}\'.}}'
+
+
+# * Dump
+
+
+def models_dump(output_models_dict):
+    pickle.dump(
+        output_models_dict,
+        open(OUTPUT_PATH + "output_models.pickle", "wb")
+    )
+
+
+def results_dump(output_results_dict):
+    json.dump(
+        output_results_dict,
+        open(OUTPUT_PATH + "output_results.json", "w")
+    )
