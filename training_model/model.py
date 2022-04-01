@@ -14,11 +14,11 @@ from mtr_utils.sampling import undersample, oversample, smote
 from mtr_utils.model_tuning import tuneClassifer
 
 from mtr_utils.scoring import get_scoring, round_scores
-from export_results import latextab_per_label, models_dump, results_dump
+from export_results import latextab_per_label, models_dump, results_dump, tables_dump
 
 output_models_dict = {}
 output_results_dict = {}
-
+output_latex_tables = {}
 
 # * Extract data from label dataset
 
@@ -39,8 +39,7 @@ selected_feature_np, feature_names = filterVarianceThreshold(
 
 for current_label in cfg.SELECTED_LABELS:
 
-    print(
-        f'\nBuilding model for \033[92m{current_label}\033[0m...')
+    print(f'\nBuilding model for \033[92m{current_label}\033[0m...\n')
 
     output_models_dict[current_label] = {}
     output_results_dict[current_label] = {}
@@ -67,8 +66,7 @@ for current_label in cfg.SELECTED_LABELS:
 
     for clf in cfg.classifiers:
 
-        print(
-            f"\n{current_label}: {clf['name']}")
+        print(f"Running {current_label}: {clf['name']}...")
 
         # * Tuning
 
@@ -85,7 +83,7 @@ for current_label in cfg.SELECTED_LABELS:
         # Export results
 
         scores = get_scoring(best_estimator, x_test, y_test)
-        print(round_scores(scores, 3))
+        # print(round_scores(scores, 3))
 
         output_results_dict[current_label][clf['name']] = scores
         output_models_dict[current_label][clf['name']] = best_estimator
@@ -100,12 +98,14 @@ for current_label in cfg.SELECTED_LABELS:
 
     # * Display as Latex tables
 
-    latextab_per_label(output_results_dict[current_label], current_label)
+    output_latex_tables[current_label] = latextab_per_label(
+        output_results_dict[current_label], current_label)
 
 # * Export Models and Results
 
 models_dump(output_models_dict)
 results_dump(output_results_dict)
+tables_dump(output_latex_tables)
 
 # for current_label in output_dict:
 #     for clf in output_dict[current_label]:

@@ -26,7 +26,7 @@ def build_latex_table(table, label):
 
 
 def build_latex_caption(label):
-    return f'\n\caption{{\\label{{tab: {label}}} Model performances for \'{label}\'.}}'
+    return f'\n\caption{{\\label{{tab: results-{label}}} Model performances for \'{label}\'.}}'
 
 
 # * Dump
@@ -44,3 +44,13 @@ def results_dump(output_results_dict):
         output_results_dict,
         open(OUTPUT_PATH + "output_results.json", "w")
     )
+
+
+def tables_dump(output_latex_tables):
+    with open(OUTPUT_PATH + "latex_tables.txt", "w") as f:
+
+        for tableId in output_latex_tables:
+
+            f.write('\n\n\n' + tableId + '\n\n' + output_latex_tables[tableId])
+
+        f.close()
