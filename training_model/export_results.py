@@ -61,6 +61,6 @@ def tables_dump(output_latex_tables, output_md_tables):
 
         for tableId in output_md_tables:
 
-            f.write('\n\n\n' + tableId + '\n\n' + output_md_tables[tableId])
+            f.write(tableId + '\n\n' + output_md_tables[tableId] + '\n\n\n')
 
         f.close()
