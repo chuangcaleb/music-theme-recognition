@@ -131,4 +131,5 @@ dmypy.json
 # Project's gitignore
 data/bin
 data/corrupted_midi
+data/output/
 calculating_dataset/extract_jsymbolic_features.sh
