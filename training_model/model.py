@@ -1,4 +1,6 @@
+import json
 import pickle
+import pandas as pd
 from sklearn.model_selection import cross_validate, train_test_split
 
 from mtr_utils import config as cfg
@@ -15,8 +17,10 @@ from mtr_utils.sampling import undersample, oversample, smote
 from mtr_utils.model_tuning import tuneClassifer
 
 from mtr_utils.scoring import get_scoring, round_scores
+from export_results import latextab_per_label
 
-output_dict = {}
+output_models_dict = {}
+output_results_dict = {}
 
 
 # * Extract data from label dataset
@@ -41,7 +45,8 @@ for current_label in cfg.SELECTED_LABELS:
     print(
         f'\nBuilding model for \033[92m{current_label}\033[0m...')
 
-    output_dict[current_label] = {}
+    output_models_dict[current_label] = {}
+    output_results_dict[current_label] = {}
 
     # ? For loop for current rand_num iteration
 
@@ -80,19 +85,11 @@ for current_label in cfg.SELECTED_LABELS:
         best_estimator.fit(x_resampled, y_resampled)
         best_score = best_estimator.score(x_test, y_test)
 
-        # scoring = ['accuracy', 'precision', 'recall']
-        # scores = cross_validate(
-        #     best_estimator, x_test, y_test, scoring=scoring)
-        #     best_estimator, x_resampled, y_resampled, scoring=scoring)
-
-        # print(scores['accuracy'])
-
         scores = get_scoring(best_estimator, x_test, y_test)
         print(round_scores(scores, 3))
 
-        # output_dict[current_label][clf['model']] = scores
-        output_dict[current_label][clf['name']] = scores
-        output_dict[current_label][clf['name']]['model'] = best_estimator
+        output_results_dict[current_label][clf['name']] = scores
+        output_models_dict[current_label][clf['name']] = best_estimator
 
         # * Plotting
 
@@ -104,7 +101,20 @@ for current_label in cfg.SELECTED_LABELS:
 
         # ? Comparing and printing results
 
+    # * Display as Latex tables
+
+    latextab_per_label(output_results_dict[current_label], current_label)
+
 
 pickle.dump(
-    output_dict,
-    open("data/output/output_models.pickle", "wb"))
+    output_models_dict,
+    open("data/output/output_models.pickle", "wb")
+)
+
+# for current_label in output_dict:
+#     for clf in output_dict[current_label]:
+#         output_dict[current_label][clf].pop('model')
+
+with open("data/output/output_results.json", "w") as file:
+    json.dump(output_results_dict, file)
+output_df = pd.DataFrame.from_dict(output_results_dict)

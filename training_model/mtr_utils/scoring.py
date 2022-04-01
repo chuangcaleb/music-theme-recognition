@@ -3,9 +3,15 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 
 def get_scoring(estimator, x_test, y_test):
 
-    f1 = f1_score(
+    f1sc = f1_score(
         y_true=y_test,
         y_pred=estimator.predict(x_test)
+    )
+    f1scw = f1_score(
+        y_true=y_test,
+        y_pred=estimator.predict(x_test),
+        average='weighted'
+
     )
     accuracy = accuracy_score(
         y_true=y_test,
@@ -23,9 +29,10 @@ def get_scoring(estimator, x_test, y_test):
     )
 
     scores = {
-        'f1': f1,
-        'accuracy': accuracy,
-        'precision': precision,
+        'f1-sc': f1sc,
+        'f1-scw': f1scw,
+        'accura': accuracy,
+        'precis': precision,
         'recall': recall,
     }
 

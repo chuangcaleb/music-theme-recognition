@@ -16,7 +16,7 @@ TARGET_LABEL = 'risk'
 K_VALUE = 3
 
 SELECTED_LABELS = [
-    'risk', 'contentment'
+    'risk', 'contentment', 'desire'
     # 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
 ]
 
@@ -33,9 +33,9 @@ SCORING = 'f1_weighted'
 # * kNN
 
 KNN_PARAMETERS = {
-    'n_neighbors': list(range(1, 10)),
-    'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
-    'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
+    # 'n_neighbors': list(range(1, 10)),
+    # 'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
+    # 'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
 }
 
 # * Decision Tree
@@ -74,11 +74,11 @@ NB_PARAMETERS = {
 # * classifiers object
 
 classifiers = [
-    # {
-    #     'name': 'kNN',
-    #     'model': KNeighborsClassifier(),
-    #     'param': KNN_PARAMETERS
-    # },
+    {
+        'name': 'kNN',
+        'model': KNeighborsClassifier(),
+        'param': KNN_PARAMETERS
+    },
     {
         'name': 'Decision Tree',
         'model': DecisionTreeClassifier(),
