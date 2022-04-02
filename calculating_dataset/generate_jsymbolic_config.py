@@ -22,7 +22,7 @@ config_file = open('calculating_dataset/themeConfigFile.txt', 'wb')
 # * Database -------------------------------------------------------------------
 
 # Access song_theme_label_database db
-song_theme_label_database_path = 'data/song_theme_label_database.xlsx'
+song_theme_label_database_path = 'data/labels/song_theme_label_database.xlsx'
 label_df = pd.read_excel(song_theme_label_database_path)
 
 # Get recognizable midi paths from database

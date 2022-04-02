@@ -2,7 +2,7 @@ import pandas as pd
 from process_db import *
 import matplotlib.pyplot as plt
 
-song_theme_label_database_path = 'data/song_theme_label_database.xlsx'
+song_theme_label_database_path = 'data/labels/song_theme_label_database.xlsx'
 
 # Convert all p's to 1's
 p_to_1_convert(song_theme_label_database_path)

@@ -7,7 +7,7 @@ Nah not enough time. If accidentally overwritten, just restore from last git com
 """
 
 root_path = 'data/bin'
-song_theme_database_path = 'data/song_theme_label_database.xlsx'
+song_theme_database_path = 'data/labels/song_theme_label_database.xlsx'
 label_df = pd.DataFrame()
 
 # Get list of directories/sources
