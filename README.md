@@ -85,7 +85,7 @@ java -Xmx3072m -jar [PATH_TO_YOUR_JSYMBOLIC]/jSymbolic2.jar -configrun calculati
 python3 calculating_dataset/clean_db.py
 ```
 
-### 3. [training_model](training_model)
+### 3. [building_model](building_model)
 
 From here, it is mostly automated.
 

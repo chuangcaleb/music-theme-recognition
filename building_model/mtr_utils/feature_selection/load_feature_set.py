@@ -2,11 +2,11 @@
 
 import json
 
-# Path is relative to training_model instead of root, because the model.ipynb is run relative to itself and not root.
+# Path is relative to building_model instead of root, because the model.ipynb is run relative to itself and not root.
 # json_file_path = 'feature_selection/feature_set.json'
 # output_file_path = 'feature_selection/manually_preselected_features.txt'
-json_file_path = 'training_model/mtr_utils/feature_selection/feature_set.json'
-output_file_path = 'training_model/mtr_utils/feature_selection/manually_preselected_features.txt'
+json_file_path = 'building_model/mtr_utils/feature_selection/feature_set.json'
+output_file_path = 'building_model/mtr_utils/feature_selection/manually_preselected_features.txt'
 
 
 def load_presel_features(json_file_path, output_file_path):
