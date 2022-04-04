@@ -14,7 +14,7 @@ from mtr_utils.sampling import undersample, oversample, smote
 from mtr_utils.model_tuning import tuneClassifer
 
 from mtr_utils.scoring import get_scoring, round_scores
-from export_results import latextab_per_label, models_dump, results_dump, tables_dump
+from mtr_utils.export_results import latextab_per_label, models_dump, results_dump, tables_dump
 
 output_models_dict = {}
 output_results_dict = {}
