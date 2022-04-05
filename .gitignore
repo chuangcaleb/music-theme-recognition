@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 
 # Project's gitignore
+.vscode/
 data/bin
 data/corrupted_midi
 data/output/
