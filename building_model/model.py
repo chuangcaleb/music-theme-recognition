@@ -71,8 +71,8 @@ for current_label in cfg.SELECTED_LABELS:
 
         # * Tuning
 
-        gscv = tuneClassifer(clf['model'], feature_np,
-                             label_np, clf['param'], cfg.CV, cfg.SCORING)
+        gscv = tuneClassifer(clf['model'], x_resampled,
+                             y_resampled, clf['param'], cfg.CV, cfg.SCORING)
 
         best_estimator = gscv.best_estimator_
 
