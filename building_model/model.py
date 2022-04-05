@@ -1,20 +1,17 @@
 from sklearn.model_selection import cross_validate, train_test_split
 
 from mtr_utils import config as cfg
-
+from mtr_utils.export_results import (latextab_per_label, models_dump,
+                                      results_dump, tables_dump)
+from mtr_utils.feature_selection.auto_feature_selection import \
+    filterVarianceThreshold
+from mtr_utils.feature_selection.load_feature_set import \
+    preselected_feature_list
 from mtr_utils.import_dataset import raw_feature_df, raw_label_df
-
 from mtr_utils.label_dataset_selection import extractLabelDataset
-
-from mtr_utils.feature_selection.load_feature_set import preselected_feature_list
-from mtr_utils.feature_selection.auto_feature_selection import filterVarianceThreshold
-
-from mtr_utils.sampling import undersample, oversample, smote
-
 from mtr_utils.model_tuning import tuneClassifer
-
+from mtr_utils.sampling import oversample, smote, undersample
 from mtr_utils.scoring import get_scoring, round_scores
-from mtr_utils.export_results import latextab_per_label, models_dump, results_dump, tables_dump
 
 output_models_dict = {}
 output_results_dict = {}
@@ -79,9 +76,10 @@ for current_label in cfg.SELECTED_LABELS:
         # * Training & Testing
 
         best_estimator.fit(x_resampled, y_resampled)
-        best_score = best_estimator.score(x_test, y_test)
+        # ! DEPRECATE
+        # best_score = best_estimator.score(x_test, y_test)
 
-        # Export results
+        # > Export results
 
         scores = get_scoring(best_estimator, x_test, y_test)
         # print(round_scores(scores, 3))
