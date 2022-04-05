@@ -1,6 +1,7 @@
 from sklearn.model_selection import cross_validate, train_test_split
 
 from mtr_utils import config as cfg
+from mtr_utils.config import initDictStructure
 from mtr_utils.export_results import (latextab_per_label, models_dump,
                                       results_dump, tables_dump)
 from mtr_utils.feature_selection.auto_feature_selection import \
@@ -13,8 +14,9 @@ from mtr_utils.model_tuning import tuneClassifer
 from mtr_utils.sampling import oversample, smote, undersample
 from mtr_utils.scoring import get_scoring, round_scores
 
-output_models_dict = {}
-output_results_dict = {}
+output_models_dict = initDictStructure()
+output_results_dict = initDictStructure()
+
 output_latex_tables = {}
 output_md_tables = {}
 
@@ -37,75 +39,73 @@ selected_feature_np, feature_names = filterVarianceThreshold(
 
 for current_label in cfg.SELECTED_LABELS:
 
-    print(f'\n\n> Building model for \033[92m{current_label}\033[0m...\n')
+    print(f'\n\n> Building model for \033[92m{current_label}\033[0m...')
 
-    output_models_dict[current_label] = {}
-    output_results_dict[current_label] = {}
+    # * FOR EACH RAND_SEED -----------------------------------------------------
 
-    # ? For loop for current rand_num iteration
+    for SEED in cfg.RAND_STATE_LIST:
 
-    # ? Further feature selection
+        print(f"\nWith random.seed({SEED})\n")
 
-    # * Converting Dataset
+        # ? Further feature selection
 
-    feature_np = selected_feature_np
-    label_np = label_df[[current_label]].to_numpy().astype(int).ravel()
+        # * Converting Dataset Type
 
-    # * Splitting Dataset
+        feature_np = selected_feature_np
+        label_np = label_df[[current_label]].to_numpy().astype(int).ravel()
 
-    (x_train, x_test, y_train, y_test) = train_test_split(
-        feature_np, label_np, test_size=0.2, random_state=cfg.RAND_STATE)
+        # * Splitting Dataset
 
-    # * Sampling
+        (x_train, x_test, y_train, y_test) = train_test_split(
+            feature_np, label_np, test_size=0.2, random_state=SEED)
 
-    x_resampled, y_resampled = smote(x_train, y_train, cfg.RAND_STATE)
+        # * Sampling
 
-    # * FOR EACH CLASSIFIER MODEL ----------------------------------------------
+        x_resampled, y_resampled = smote(x_train, y_train, SEED)
 
-    for clf in cfg.classifiers:
+        # * FOR EACH CLASSIFIER MODEL ------------------------------------------
 
-        print(f"Running {current_label}: {clf['name']}...")
+        for clf in cfg.classifiers:
 
-        # * Tuning
+            print(f"Building {current_label}: {clf['name']}...")
 
-        gscv = tuneClassifer(clf['model'], x_resampled,
-                             y_resampled, clf['param'], cfg.CV, cfg.SCORING)
+            # * Tuning
 
-        best_estimator = gscv.best_estimator_
+            gscv = tuneClassifer(clf['model'], x_resampled,
+                                 y_resampled, clf['param'], cfg.CV, cfg.SCORING)
 
-        # * Training & Testing
+            best_estimator = gscv.best_estimator_
 
-        best_estimator.fit(x_resampled, y_resampled)
-        # ! DEPRECATE
-        # best_score = best_estimator.score(x_test, y_test)
+            # * Training & Testing
 
-        # > Export results
+            best_estimator.fit(x_resampled, y_resampled)
 
-        scores = get_scoring(best_estimator, x_test, y_test)
-        # print(round_scores(scores, 3))
+            scores = get_scoring(best_estimator, x_test, y_test)
+            # print(round_scores(scores, 3))
 
-        output_results_dict[current_label][clf['name']] = scores
-        output_models_dict[current_label][clf['name']] = best_estimator
+            # > Export results
 
-        # * Plotting
+            output_results_dict[current_label][clf['name']][SEED] = scores
+            output_models_dict[current_label][clf['name']
+                                              ][SEED] = best_estimator
 
-        # if clf['name'] == 'Decision Tree':
+            # * Plotting
 
-        #     best_max_leaf_nodes = grid.best_params_['max_leaf_nodes']
-        #     plotDecisionTree(best_estimator, feature_names,
-        #                      current_label, best_max_leaf_nuodes, cfg.RAND_STATE)
+            # if clf['name'] == 'Decision Tree':
+
+            #     best_max_leaf_nodes = grid.best_params_['max_leaf_nodes']
+            #     plotDecisionTree(best_estimator, feature_names,
+            #                      current_label, best_max_leaf_nuodes, SEED)
 
     # * Display as Latex tables
 
-    output_latex_tables[current_label], output_md_tables[current_label] = latextab_per_label(
-        output_results_dict[current_label], current_label)
+    # output_latex_tables[current_label], output_md_tables[current_label] = latextab_per_label(
+    #     output_results_dict[current_label], current_label)
 
 # * Export Models and Results
 
 models_dump(output_models_dict)
 results_dump(output_results_dict)
-tables_dump(output_latex_tables, output_md_tables)
+# tables_dump(output_latex_tables, output_md_tables)
 
-# for current_label in output_dict:
-#     for clf in output_dict[current_label]:
-#         output_dict[current_label][clf].pop('model')
+print("\n\033[92mDone!\033[0m\n")

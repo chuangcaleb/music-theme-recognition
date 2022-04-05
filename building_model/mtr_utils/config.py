@@ -1,7 +1,7 @@
 """ Configuration settings for the running the MTR model """
 
+import random
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, make_scorer
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
@@ -9,11 +9,21 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 import numpy as np
 
-RAND_STATE = 2
+# * MODEL PARAMS ---------------------------------------------------------------
+
+# * Random Seed
+
+RAND_SEED = 89
+NUM_OF_RAND_STATES = 4
+
+# List of random seeds
+random.seed(RAND_SEED)
+RAND_STATE_LIST = random.sample(range(1, 999999), NUM_OF_RAND_STATES)
+# print(RAND_STATE_RANGE)
+
+# * Label Selection
 
 TARGET_LABEL = 'risk'
-
-K_VALUE = 3
 
 SELECTED_LABELS = [
     'risk', 'contentment',
@@ -29,6 +39,8 @@ THRESHOLD_VAL = 0
 CV = 5
 
 SCORING = 'f1_weighted'
+
+# * CLASSIFIERS ----------------------------------------------------------------
 
 # * kNN
 
@@ -106,3 +118,18 @@ classifiers = [
     },
 
 ]
+
+# * MISC -----------------------------------------------------------------------
+
+# * Init Dictionary Structure
+
+
+def initDictStructure():
+
+    dictionary = {}
+
+    [dictionary.setdefault(l, {}) for l in SELECTED_LABELS]
+    [dictionary[l].setdefault(
+        c['name'], {}) for l in SELECTED_LABELS for c in classifiers]
+
+    return dictionary
