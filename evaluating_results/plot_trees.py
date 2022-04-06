@@ -3,10 +3,10 @@ from sklearn import tree
 import json
 import pickle
 
-models_pickle = pickle.load(
-    open("data/output/output_best_models.pickle", "rb"))
-feature_names = json.load(
-    open("data/output/final_feature_names.json", "r"))
+from eval_utils.load_data import load_json, load_pickle
+
+models_pickle = load_pickle("data/output/output_best_models.pickle")
+feature_names = load_json("data/output/final_feature_names.json")
 
 
 def plotDecisionTree(estimator, feature_names, target_label):
