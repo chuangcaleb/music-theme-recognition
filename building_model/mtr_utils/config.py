@@ -14,7 +14,7 @@ import numpy as np
 # * Random Seed
 
 RAND_SEED = 899
-NUM_OF_RAND_SEEDS = 5
+NUM_OF_RAND_SEEDS = 2
 
 # List of random seeds
 random.seed(RAND_SEED)

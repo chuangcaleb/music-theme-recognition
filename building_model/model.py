@@ -15,11 +15,8 @@ from mtr_utils.save_best_models import save_best_models
 from mtr_utils.scoring import get_scoring, round_scores
 
 output_best_models_dict = {}
-output_all_results_dict = {}
+output_results_dict = {}
 output_best_results_dict = {}
-
-output_latex_tables = {}
-output_md_tables = {}
 
 # * Extract data from label dataset
 
@@ -32,9 +29,7 @@ manual_feature_df = raw_feature_df[preselected_feature_list]
 selected_feature_np, feature_names = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
-# ? FEATURE ENGINEERING
-
-# ?
+# ? FEATURE ENGINEERING - merging labels?
 
 # * FOR EACH LABEL -------------------------------------------------------------
 
@@ -90,7 +85,7 @@ for current_label in cfg.SELECTED_LABELS:
             scores = get_scoring(best_estimator, x_test, y_test)
             # print(round_scores(scores, 3))
 
-            # * Export results
+            # * Export results per classifier
 
             clf_results_dict[clf['name']] = scores
             clf_models_dict[clf['name']] = best_estimator
@@ -103,29 +98,25 @@ for current_label in cfg.SELECTED_LABELS:
             #     plotDecisionTree(best_estimator, feature_names,
             #                      current_label, best_max_leaf_nuodes, SEED)
 
+        # * Update results for classifiers per seed
+
         label_results_dict.update({current_seed: clf_results_dict})
         label_models_dict.update({current_seed: clf_models_dict})
 
-    # * Save the best models
+    # * Save only the best seeded models and results for the current label
 
     label_best_results_dict, label_best_models_dict = save_best_models(
         label_results_dict, label_models_dict)
 
-    print(label_best_results_dict)
+    # * Update results per current label
 
-    # * Display as Latex tables
-
-    # output_latex_tables[current_label], output_md_tables[current_label] = latextab_per_label(
-    #     output_results_dict[current_label], current_label)
-
-    output_all_results_dict.update({current_label: label_results_dict})
+    output_results_dict.update({current_label: label_results_dict})
     output_best_results_dict.update({current_label: label_best_results_dict})
     output_best_models_dict.update({current_label: label_best_models_dict})
 
-# * Export Models and Results
+# * Export models and results
 
 models_dump(output_best_models_dict)
-results_dump(output_all_results_dict, output_best_results_dict)
-# tables_dump(output_latex_tables, output_md_tables)
+results_dump(output_results_dict, output_best_results_dict)
 
 print("\n\033[92mDone!\033[0m\n")

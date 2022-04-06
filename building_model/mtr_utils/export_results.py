@@ -1,8 +1,9 @@
 import json
 import pickle
+from numpy import outer
 from tabulate import tabulate
 
-# * LATEX
+# * LATEX ----------------------------------------------------------------------
 
 LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
 LATEX_TABLE_END = '\n\\end{table}'
@@ -17,7 +18,7 @@ def latextab_per_label(dict, label):
     latex_table = tabulate(rows, headers=headers, tablefmt='latex')
     markdown_table_output = tabulate(rows, headers=headers, tablefmt='github')
 
-    print('\n' + markdown_table_output)
+    print(f'\n{label}\n' + markdown_table_output)
     latex_table_output = build_latex_table(latex_table, label)
 
     return latex_table_output, markdown_table_output
@@ -31,7 +32,7 @@ def build_latex_caption(label):
     return f'\n\caption{{\\label{{tab: results-{label}}} Model performances for \'{label}\'.}}'
 
 
-# * Dump
+# * Dump -----------------------------------------------------------------------
 
 
 def models_dump(output_models_dict):
@@ -41,30 +42,34 @@ def models_dump(output_models_dict):
     )
 
 
-def results_dump(output_all_results_dict, output_best_results_dict):
+def results_dump(output_results_dict, output_best_results_dict):
+
     json.dump(
-        output_all_results_dict,
-        open(OUTPUT_PATH + "output_all_results.json", "w")
+        output_results_dict,
+        open(OUTPUT_PATH + "output_results.json", "w")
     )
     json.dump(
         output_best_results_dict,
         open(OUTPUT_PATH + "output_best_results.json", "w")
     )
 
+    output_latex_tables = {}
+    output_md_tables = {}
 
-def tables_dump(output_latex_tables, output_md_tables):
-    with open(OUTPUT_PATH + "latex_tables.txt", "w") as f:
+    for current_label in output_best_results_dict:
 
-        for tableId in output_latex_tables:
+        output_latex_tables[current_label], output_md_tables[current_label] = latextab_per_label(
+            output_best_results_dict[current_label], current_label)
 
-            f.write('\n\n\n' + tableId + '\n\n' + output_latex_tables[tableId])
+    tables_dump(output_latex_tables, 'latex_tables')
+    tables_dump(output_md_tables, 'md_tables')
 
-        f.close()
 
-    with open(OUTPUT_PATH + "md_tables.txt", "w") as f:
+def tables_dump(output_tables, filename):
+    with open(OUTPUT_PATH + filename + ".txt", "w") as f:
 
-        for tableId in output_md_tables:
+        for tableId in output_tables:
 
-            f.write(tableId + '\n\n' + output_md_tables[tableId] + '\n\n\n')
+            f.write('\n\n\n' + tableId + '\n\n' + output_tables[tableId])
 
         f.close()
