@@ -90,14 +90,6 @@ for current_label in cfg.SELECTED_LABELS:
             clf_results_dict[clf['name']] = scores
             clf_models_dict[clf['name']] = best_estimator
 
-            # * Plotting
-
-            # if clf['name'] == 'Decision Tree':
-
-            #     best_max_leaf_nodes = grid.best_params_['max_leaf_nodes']
-            #     plotDecisionTree(best_estimator, feature_names,
-            #                      current_label, best_max_leaf_nuodes, SEED)
-
         # * Update results for classifiers per seed
 
         label_results_dict.update({current_seed: clf_results_dict})
@@ -116,6 +108,7 @@ for current_label in cfg.SELECTED_LABELS:
 
 # * Export models and results
 
+json_dump(feature_names, 'final_feature_names')
 pickle_dump(output_best_models_dict, 'output_best_models')
 json_dump(output_results_dict, 'output_results')
 json_dump(output_best_results_dict, 'output_best_results')

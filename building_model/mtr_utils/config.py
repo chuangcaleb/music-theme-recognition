@@ -14,7 +14,7 @@ import numpy as np
 # * Random Seed
 
 RAND_SEED = 899
-NUM_OF_RAND_SEEDS = 2
+NUM_OF_RAND_SEEDS = 3
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -47,7 +47,7 @@ CV_SCORING = 'f1_macro'
 # * kNN
 
 KNN_PARAMETERS = {
-    # 'n_neighbors': list(range(1, 10)),
+    'n_neighbors': list(range(1, 10)),
     # 'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
     # 'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
 }
@@ -69,17 +69,24 @@ SV_PARAMETERS = {'C': [0.1, 1, 10, 100, 1000],
 
 RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
-    'n_estimators': [200, 500],
+    'n_estimators': [200, 350],
     'max_features': ['auto', 'sqrt', 'log2'],
     'max_depth': [4, 6, 8],
     'criterion': ['gini', 'entropy']
 }
 
-# NN_PARAMETERS = {
-#     'solver': ['lbfgs'],
-#     'max_iter': [1500, 1600, 1700, 1800, 1900, 2000],
-#     'alpha': 10.0 ** -np.arange(1, 10),
-#     'hidden_layer_sizes': np.arange(10, 15), }
+# * Neural Network
+
+NN_PARAMETERS = {
+    # 'solver': ['lbfgs'],
+    'max_iter': [1500, 1750, 2000],
+    'activation': ['identity', 'logistic', 'tanh', 'relu'],
+    'solver': ['lbfgs', 'sgd', 'adam'],
+    'alpha': 10.0 ** -np.arange(1, 10),
+    'hidden_layer_sizes': np.arange(10, 15),
+}
+
+# * Naive Bayes
 
 NB_PARAMETERS = {
     'var_smoothing': np.logspace(0, -9, num=100)
@@ -94,7 +101,7 @@ classifiers = [
         'param': KNN_PARAMETERS
     },
     {
-        'name': 'Decision Tree',
+        'name': 'DecisionTree',
         'model': DecisionTreeClassifier(),
         'param': DT_PARAMETERS
     },
@@ -104,17 +111,17 @@ classifiers = [
         'param': SV_PARAMETERS
     },
     # {
-    #     'name': 'Random Forest',
+    #     'name': 'RandomForest',
     #     'model': RandomForestClassifier(),
     #     'param': RF_PARAMETERS
     # },
     # {
-    #     'name': 'Neural Network',
+    #     'name': 'NeuralNetwork',
     #     'model': MLPClassifier(),
     #     'param': NN_PARAMETERS
     # },
     # {
-    #     'name': 'Naive Bayes',
+    #     'name': 'NaiveBayes',
     #     'model':  GaussianNB(),
     #     'param': NB_PARAMETERS
     # },
