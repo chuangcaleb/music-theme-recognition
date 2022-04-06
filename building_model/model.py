@@ -125,7 +125,7 @@ for current_label in cfg.SELECTED_LABELS:
 # * Export Models and Results
 
 models_dump(output_best_models_dict)
-results_dump(output_all_results_dict)  # TODO
+results_dump(output_all_results_dict, output_best_results_dict)
 # tables_dump(output_latex_tables, output_md_tables)
 
 print("\n\033[92mDone!\033[0m\n")

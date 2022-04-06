@@ -41,10 +41,14 @@ def models_dump(output_models_dict):
     )
 
 
-def results_dump(output_results_dict):
+def results_dump(output_all_results_dict, output_best_results_dict):
     json.dump(
-        output_results_dict,
-        open(OUTPUT_PATH + "output_results.json", "w")
+        output_all_results_dict,
+        open(OUTPUT_PATH + "output_all_results.json", "w")
+    )
+    json.dump(
+        output_best_results_dict,
+        open(OUTPUT_PATH + "output_best_results.json", "w")
     )
 
 
