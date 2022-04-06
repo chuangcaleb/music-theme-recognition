@@ -1,8 +1,8 @@
 from sklearn.model_selection import train_test_split
 
 from mtr_utils import config as cfg
-from mtr_utils.export_results import (latextab_per_label, models_dump,
-                                      results_dump, tables_dump)
+from mtr_utils.export_results import (
+    pickle_dump, json_dump, best_results_table_dump)
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
 from mtr_utils.feature_selection.load_feature_set import \
@@ -116,7 +116,9 @@ for current_label in cfg.SELECTED_LABELS:
 
 # * Export models and results
 
-models_dump(output_best_models_dict)
-results_dump(output_results_dict, output_best_results_dict)
+pickle_dump(output_best_models_dict, 'output_best_models')
+json_dump(output_results_dict, 'output_results')
+json_dump(output_best_results_dict, 'output_best_results')
+best_results_table_dump(output_best_results_dict)
 
 print("\n\033[92mDone!\033[0m\n")
