@@ -13,13 +13,15 @@ import numpy as np
 
 # * Random Seed
 
-RAND_SEED = 89
-NUM_OF_RAND_STATES = 4
+RAND_SEED = 899
+NUM_OF_RAND_SEEDS = 5
 
 # List of random seeds
 random.seed(RAND_SEED)
-RAND_STATE_LIST = random.sample(range(1, 999999), NUM_OF_RAND_STATES)
+RAND_SEEDS_LIST = random.sample(range(1, 999999), NUM_OF_RAND_SEEDS)
 # print(RAND_STATE_RANGE)
+
+BEST_SEED_SCORING = 'f1-sc'
 
 # * Label Selection
 
@@ -38,7 +40,7 @@ THRESHOLD_VAL = 0
 
 CV = 5
 
-SCORING = 'f1_weighted'
+CV_SCORING = 'f1_macro'
 
 # * CLASSIFIERS ----------------------------------------------------------------
 
@@ -111,25 +113,10 @@ classifiers = [
     #     'model': MLPClassifier(),
     #     'param': NN_PARAMETERS
     # },
-    {
-        'name': 'Naive Bayes',
-        'model':  GaussianNB(),
-        'param': NB_PARAMETERS
-    },
+    # {
+    #     'name': 'Naive Bayes',
+    #     'model':  GaussianNB(),
+    #     'param': NB_PARAMETERS
+    # },
 
 ]
-
-# * MISC -----------------------------------------------------------------------
-
-# * Init Dictionary Structure
-
-
-def initDictStructure():
-
-    dictionary = {}
-
-    [dictionary.setdefault(l, {}) for l in SELECTED_LABELS]
-    [dictionary[l].setdefault(
-        c['name'], {}) for l in SELECTED_LABELS for c in classifiers]
-
-    return dictionary

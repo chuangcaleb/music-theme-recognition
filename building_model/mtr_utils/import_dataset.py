@@ -1,10 +1,7 @@
 import pandas as pd
-import os
 
 song_theme_feature_database_path = 'data/features/song_theme_feature_database.csv'
 song_theme_label_database_path = 'data/labels/song_theme_label_database.xlsx'
-
-# print(os.getcwd())
 
 try:
     # Access song_theme_feature_database
