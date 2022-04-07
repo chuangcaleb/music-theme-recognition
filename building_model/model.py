@@ -35,7 +35,7 @@ selected_feature_np, feature_names = filterVarianceThreshold(
 
 for current_label in cfg.SELECTED_LABELS:
 
-    print(f'\n\n> Building model for \033[92m{current_label}\033[0m...')
+    print(f'\n\n> Building model for \033[93m{current_label}\033[0m...')
 
     label_results_dict = {}
     label_models_dict = {}

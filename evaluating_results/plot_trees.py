@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 from sklearn import tree
-import json
-import pickle
 
 from eval_utils.load_data import load_json, load_pickle
 

@@ -48,8 +48,8 @@ CV_SCORING = 'f1_macro'
 
 KNN_PARAMETERS = {
     'n_neighbors': list(range(1, 10)),
-    # 'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
-    # 'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
+    'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
+    'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
 }
 
 # * Decision Tree
@@ -69,7 +69,7 @@ SV_PARAMETERS = {'C': [0.1, 1, 10, 100, 1000],
 
 RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
-    'n_estimators': [200, 350],
+    'n_estimators': [100, 200, 400],
     'max_features': ['auto', 'sqrt', 'log2'],
     'max_depth': [4, 6, 8],
     'criterion': ['gini', 'entropy']
@@ -79,9 +79,9 @@ RF_PARAMETERS = {
 
 NN_PARAMETERS = {
     # 'solver': ['lbfgs'],
+    'solver': ['lbfgs', 'sgd', 'adam'],
     'max_iter': [1500, 1750, 2000],
     'activation': ['identity', 'logistic', 'tanh', 'relu'],
-    'solver': ['lbfgs', 'sgd', 'adam'],
     'alpha': 10.0 ** -np.arange(1, 10),
     'hidden_layer_sizes': np.arange(10, 15),
 }
@@ -110,20 +110,20 @@ classifiers = [
         'model': SVC(),
         'param': SV_PARAMETERS
     },
-    # {
-    #     'name': 'RandomForest',
-    #     'model': RandomForestClassifier(),
-    #     'param': RF_PARAMETERS
-    # },
+    {
+        'name': 'RandomForest',
+        'model': RandomForestClassifier(),
+        'param': RF_PARAMETERS
+    },
     # {
     #     'name': 'NeuralNetwork',
     #     'model': MLPClassifier(),
     #     'param': NN_PARAMETERS
     # },
-    # {
-    #     'name': 'NaiveBayes',
-    #     'model':  GaussianNB(),
-    #     'param': NB_PARAMETERS
-    # },
+    {
+        'name': 'NaiveBayes',
+        'model':  GaussianNB(),
+        'param': NB_PARAMETERS
+    },
 
 ]
