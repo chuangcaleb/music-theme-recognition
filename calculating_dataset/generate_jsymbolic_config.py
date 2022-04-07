@@ -3,7 +3,7 @@ import feature_dump as feature_dump_list
 
 
 def config_write(string):
-    config_file.write(string + b'\n')
+    config_file.write((string + '\n').encode('utf-8'))
 
 
 # * Other paths ----------------------------------------------------------------
@@ -33,35 +33,31 @@ paths_list = bin_root_path + paths_recognizable_df['source'] + \
 
 # Concatenate Series of strings into one string object
 paths_list_string = '\n'.join(paths_list)
-# print('\n'.join(paths_list))
-# print(*paths_list, sep='\n')
 
 
 # * Writing --------------------------------------------------------------------
 
 # Options
-config_write(b'<jSymbolic_options>')
-config_write(b'window_size=0.0')
-config_write(b'window_overlap=0.0')
-config_write(b'save_features_for_each_window=false')
-config_write(b'save_overall_recording_features=true')
-config_write(b'convert_to_arff=false')
-config_write(b'convert_to_csv=true')
+config_write('<jSymbolic_options>')
+config_write('window_size=0.0')
+config_write('window_overlap=0.0')
+config_write('save_features_for_each_window=false')
+config_write('save_overall_recording_features=true')
+config_write('convert_to_arff=false')
+config_write('convert_to_csv=true')
 
 # Features to Extract
-config_write(b'<features_to_extract>')
+config_write('<features_to_extract>')
 for feature in feature_dump_list.all_midi_features_list:
-    config_write(feature.encode('utf-8'))
+    config_write(feature)
 
 # Input Files
-config_write(b'<input_files>')
-config_write(paths_list_string.encode('utf-8'))
+config_write('<input_files>')
+config_write(paths_list_string)
 
 # Output Files
-config_write(b'<output_files>')
-config_write(b'feature_values_save_path=' +
-             feat_output_path.encode('utf-8'))
-config_write(b'feature_definitions_save_path=' +
-             def_output_path.encode('utf-8'))
+config_write('<output_files>')
+config_write('feature_values_save_path=' + feat_output_path)
+config_write('feature_definitions_save_path=' + def_output_path)
 
 config_file.close()
