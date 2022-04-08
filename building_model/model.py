@@ -26,7 +26,7 @@ label_df = extractLabelDataset(raw_label_df, cfg.SELECTED_LABELS)
 
 manual_feature_df = raw_feature_df[preselected_feature_list]
 
-selected_feature_np, feature_names = filterVarianceThreshold(
+selected_features_df, feature_names = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
 # ? FEATURE ENGINEERING - merging labels?
@@ -53,13 +53,13 @@ for current_label in cfg.SELECTED_LABELS:
 
         # * Converting Dataset Type
 
-        feature_np = selected_feature_np
+        feature_df = selected_features_df
         label_np = label_df[[current_label]].to_numpy().astype(int).ravel()
 
         # * Splitting Dataset
 
         (x_train, x_test, y_train, y_test) = train_test_split(
-            feature_np, label_np, test_size=0.2, random_state=current_seed)
+            feature_df, label_np, test_size=0.2, random_state=current_seed)
 
         # * Sampling
 
@@ -113,5 +113,7 @@ pickle_dump(output_best_models_dict, 'output_best_models')
 json_dump(output_results_dict, 'output_results')
 json_dump(output_best_results_dict, 'output_best_results')
 best_results_table_dump(output_best_results_dict)
+
+# * Finish!
 
 print("\n\033[92mDone!\033[0m\n")

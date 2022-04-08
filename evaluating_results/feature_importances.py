@@ -42,4 +42,5 @@ def printFeatureImportances(models_pickle, feature_names):
 
     print()
 
-# printFeatureImportances(models_pickle, feature_names)
+
+printFeatureImportances(models_pickle, feature_names)
