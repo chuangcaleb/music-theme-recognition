@@ -14,31 +14,54 @@ import numpy as np
 
 # * Random Seed
 
+""" Random seed for the random generator """
 RAND_SEED = 899
-NUM_OF_RAND_SEEDS = 2
+""" Number of random seeds to generate """
+NUM_OF_RAND_SEEDS = 10
 
 # List of random seeds
 random.seed(RAND_SEED)
 RAND_SEEDS_LIST = random.sample(range(1, 999999), NUM_OF_RAND_SEEDS)
 # print(RAND_STATE_RANGE)
 
+""" 
+Scoring metric for selecting the best seed
+
+Refer to: building_model/mtr_utils/scoring.py
+"""
 BEST_SEED_SCORING = 'f1-bin'
 
 # * Label Selection
 
+""" 
+Specify labels to process or skip
+
+Full list: 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom' 
+"""
 SELECTED_LABELS = [
-    'risk', 'contentment',
-    # 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
+    # 'risk', 'contentment',
+    'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
 ]
 
 # * Feature Selection
 
+""" 
+Remove features with a variance below this value
+"""
 THRESHOLD_VAL = 0.005
 
 # * Cross-Validation Tuning
 
+""" 
+Number of folds to use during cross-validation
+"""
 CV = 5
 
+""" 
+Scoring metric for selecting the best fold in cross-validation
+
+Refer to: https://scikit-learn.org/stable/modules/model_evaluation.html
+"""
 BEST_CV_SCORING = 'f1'
 
 # * CLASSIFIERS ----------------------------------------------------------------
@@ -149,10 +172,10 @@ class defClf:
 classifiers = [
     defClf.zeroR,
     defClf.randomR,
-    # defClf.knn,
-    # defClf.decnTree,
-    # defClf.svm,
-    # defClf.randForest,
+    defClf.knn,
+    defClf.decnTree,
+    defClf.svm,
+    defClf.randForest,
     # defaultClassifier.neuralNet,
     defClf.naiveBayes
 ]
