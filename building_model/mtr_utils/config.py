@@ -22,13 +22,13 @@ random.seed(RAND_SEED)
 RAND_SEEDS_LIST = random.sample(range(1, 999999), NUM_OF_RAND_SEEDS)
 # print(RAND_STATE_RANGE)
 
-BEST_SEED_SCORING = 'f1-sc'
+BEST_SEED_SCORING = 'f1-bin'
 
 # * Label Selection
 
 SELECTED_LABELS = [
-    # 'risk', 'contentment',
-    'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
+    'risk', 'contentment',
+    # 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
 ]
 
 # * Feature Selection
@@ -139,7 +139,7 @@ class defClf:
     }
 
     naiveBayes = {
-        'name': 'NaiveBayes',
+        'name': 'GaussianNB',
         'model':  GaussianNB(),
         'param': NB_PARAMETERS
     }
@@ -149,10 +149,10 @@ class defClf:
 classifiers = [
     defClf.zeroR,
     defClf.randomR,
-    defClf.knn,
-    defClf.decnTree,
-    defClf.svm,
-    defClf.randForest,
+    # defClf.knn,
+    # defClf.decnTree,
+    # defClf.svm,
+    # defClf.randForest,
     # defaultClassifier.neuralNet,
     defClf.naiveBayes
 ]

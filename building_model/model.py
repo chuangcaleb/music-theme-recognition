@@ -13,10 +13,12 @@ from mtr_utils.model_tuning import tuneClassifer
 from mtr_utils.sampling import oversample, smote, undersample
 from mtr_utils.process_results import save_best_models, average_results
 from mtr_utils.scoring import get_scoring, round_scores
+from sklearn.dummy import DummyClassifier
 
-output_best_models_dict = {}
-output_results_dict = {}
+output_all_results_dict = {}
 output_best_results_dict = {}
+output_best_models_dict = {}
+output_best_params_dict = {}
 
 # * Extract data from label dataset
 
@@ -87,8 +89,11 @@ for current_label in cfg.SELECTED_LABELS:
 
             # * Export results per classifier
 
+            # Save performance scores
             clf_results_dict[clf['name']] = scores
-            clf_models_dict[clf['name']] = best_estimator
+            # Save model objects UNLESS is a DummyClassifier
+            if type(clf['model']) is not DummyClassifier:
+                clf_models_dict[clf['name']] = best_estimator
 
         # * Update results for classifiers per seed
 
@@ -97,18 +102,19 @@ for current_label in cfg.SELECTED_LABELS:
 
     # * Save only the best seeded models and results for the current label
 
-    label_best_results_dict, label_best_models_dict = save_best_models(
+    label_best_results_dict, label_best_models_dict, label_best_params_dict = save_best_models(
         label_results_dict, label_models_dict)
 
     # * Update results per current label
 
-    output_results_dict.update({current_label: label_results_dict})
+    output_all_results_dict.update({current_label: label_results_dict})
     output_best_results_dict.update({current_label: label_best_results_dict})
     output_best_models_dict.update({current_label: label_best_models_dict})
+    output_best_params_dict.update({current_label: label_best_params_dict})
 
 # * Get average results
 
-output_avg_results_dict = average_results(output_results_dict)
+output_avg_results_dict = average_results(output_all_results_dict)
 
 # * Export models and results
 
@@ -116,9 +122,10 @@ json_dump(feature_names, 'final_feature_names')
 
 pickle_dump(output_best_models_dict, 'output_best_models')
 
-json_dump(output_results_dict, 'output_all_results')
+json_dump(output_all_results_dict, 'output_all_results')
 json_dump(output_avg_results_dict, 'output_avg_results')
 json_dump(output_best_results_dict, 'output_best_results')
+json_dump(output_best_params_dict, 'output_best_params')
 
 results_table_dump(output_avg_results_dict, 'avg')
 results_table_dump(output_best_results_dict, 'best')

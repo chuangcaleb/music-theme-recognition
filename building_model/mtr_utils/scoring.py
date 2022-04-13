@@ -1,15 +1,15 @@
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 
 def get_scoring(estimator, x_test, y_test):
 
     y_predictions = estimator.predict(x_test)
 
-    f1sc = f1_score(
+    f1bin = f1_score(
         y_true=y_test,
         y_pred=y_predictions
     )
-    f1scm = f1_score(
+    f1mac = f1_score(
         y_true=y_test,
         y_pred=y_predictions,
         average='macro'
@@ -34,8 +34,8 @@ def get_scoring(estimator, x_test, y_test):
     # )
 
     scores = {
-        'f1-sc': f1sc,
-        'f1-scm': f1scm,
+        'f1-bin': f1bin,
+        'f1-mac': f1mac,
         'accura': accuracy,
         'precis': precision,
         'recall': recall

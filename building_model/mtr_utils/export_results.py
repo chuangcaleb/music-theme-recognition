@@ -41,6 +41,7 @@ def tables_dump(output_tables, filename):
 
 
 # * LATEX ----------------------------------------------------------------------
+
 LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
 LATEX_TABLE_END = '\n\\end{table}'
 OUTPUT_PATH = 'data/output/'
@@ -52,7 +53,8 @@ def latextab_per_label(dict, label):
     headers = list(dict[list(dict)[0]].keys())
 
     latex_table = tabulate(rows, headers=headers, tablefmt='latex')
-    markdown_table_output = tabulate(rows, headers=headers, tablefmt='github')
+    markdown_table_output = tabulate(
+        rows, headers=headers, tablefmt='github', numalign="left")
 
     print(f'\n{label}')
     print(markdown_table_output)
