@@ -15,7 +15,7 @@ def filterVarianceThreshold(df, threshold_val):
 
     print(f"\nStarted with {df.shape[1]} features.")
     print(
-        f"Removed {len(constant_columns)} feature(s) that having variance of {threshold_val}.")
+        f"Removed {len(constant_columns)} feature(s) that have a variance of less than {threshold_val}.")
 
     # for column in constant_columns:
     #     print("Removed:", column)

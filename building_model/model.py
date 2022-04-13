@@ -74,7 +74,7 @@ for current_label in cfg.SELECTED_LABELS:
             # * Tuning
 
             gscv = tuneClassifer(clf['model'], x_resampled,
-                                 y_resampled, clf['param'], cfg.CV, cfg.CV_SCORING)
+                                 y_resampled, clf['param'], cfg.CV, cfg.BEST_CV_SCORING)
 
             best_estimator = gscv.best_estimator_
 
@@ -117,11 +117,11 @@ json_dump(feature_names, 'final_feature_names')
 pickle_dump(output_best_models_dict, 'output_best_models')
 
 json_dump(output_results_dict, 'output_all_results')
-json_dump(output_best_results_dict, 'output_best_results')
 json_dump(output_avg_results_dict, 'output_avg_results')
+json_dump(output_best_results_dict, 'output_best_results')
 
-results_table_dump(output_best_results_dict, 'best')
 results_table_dump(output_avg_results_dict, 'avg')
+results_table_dump(output_best_results_dict, 'best')
 
 # * Finish!
 

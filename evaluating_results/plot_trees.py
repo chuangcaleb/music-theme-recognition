@@ -36,7 +36,7 @@ for current_label in models_pickle:
 
     for clf in models_pickle[current_label]:
 
-        if clf == 'DecisionTree':
+        if clf == 'DecnTree':
 
             model = models_pickle[current_label][clf]
             plotDecisionTree(model, feature_names, current_label)

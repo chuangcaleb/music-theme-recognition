@@ -1,6 +1,7 @@
 """ Configuration settings for the running the MTR model """
 
 import random
+from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
@@ -14,7 +15,7 @@ import numpy as np
 # * Random Seed
 
 RAND_SEED = 899
-NUM_OF_RAND_SEEDS = 3
+NUM_OF_RAND_SEEDS = 2
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -25,22 +26,20 @@ BEST_SEED_SCORING = 'f1-sc'
 
 # * Label Selection
 
-TARGET_LABEL = 'risk'
-
 SELECTED_LABELS = [
-    'risk', 'contentment',
-    # 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
+    # 'risk', 'contentment',
+    'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
 ]
 
 # * Feature Selection
 
-THRESHOLD_VAL = 0
+THRESHOLD_VAL = 0.005
 
 # * Cross-Validation Tuning
 
 CV = 5
 
-CV_SCORING = 'f1_macro'
+BEST_CV_SCORING = 'f1'
 
 # * CLASSIFIERS ----------------------------------------------------------------
 
@@ -94,36 +93,66 @@ NB_PARAMETERS = {
 
 # * classifiers object
 
-classifiers = [
-    {
+
+class defClf:
+
+    zeroR = {
+        'name': 'ZeroR',
+        'model': DummyClassifier(strategy='most_frequent'),
+        'param': {}
+    }
+
+    randomR = {
+        'name': 'RandomR',
+        'model': DummyClassifier(strategy='stratified'),
+        'param': {}
+    }
+
+    knn = {
         'name': 'kNN',
         'model': KNeighborsClassifier(),
         'param': KNN_PARAMETERS
-    },
-    {
-        'name': 'DecisionTree',
+    }
+
+    decnTree = {
+        'name': 'DecnTree',
         'model': DecisionTreeClassifier(),
         'param': DT_PARAMETERS
-    },
-    {
+    }
+
+    svm = {
         'name': 'SVM',
         'model': SVC(),
         'param': SV_PARAMETERS
-    },
-    {
-        'name': 'RandomForest',
+    }
+
+    randForest = {
+        'name': 'RandForest',
         'model': RandomForestClassifier(),
         'param': RF_PARAMETERS
-    },
-    # {
-    #     'name': 'NeuralNetwork',
-    #     'model': MLPClassifier(),
-    #     'param': NN_PARAMETERS
-    # },
-    {
+    }
+
+    neuralNet = {
+        'name': 'NeuralNet',
+        'model': MLPClassifier(),
+        'param': NN_PARAMETERS
+    }
+
+    naiveBayes = {
         'name': 'NaiveBayes',
         'model':  GaussianNB(),
         'param': NB_PARAMETERS
-    },
+    }
 
+
+# Comment out individual classifiers that you want to skip
+classifiers = [
+    defClf.zeroR,
+    defClf.randomR,
+    defClf.knn,
+    defClf.decnTree,
+    defClf.svm,
+    defClf.randForest,
+    # defaultClassifier.neuralNet,
+    defClf.naiveBayes
 ]

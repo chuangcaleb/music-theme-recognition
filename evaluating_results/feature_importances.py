@@ -15,7 +15,7 @@ def printFeatureImportances(models_pickle, feature_names):
 
         for clf in models_pickle[current_label]:
 
-            if clf == 'RandomForest':
+            if clf == 'RandForest':
 
                 print()
 
