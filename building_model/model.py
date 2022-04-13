@@ -2,7 +2,7 @@ from sklearn.model_selection import train_test_split
 
 from mtr_utils import config as cfg
 from mtr_utils.export_results import (
-    pickle_dump, json_dump, best_results_table_dump)
+    pickle_dump, json_dump, results_table_dump)
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
 from mtr_utils.feature_selection.load_feature_set import \
@@ -11,7 +11,7 @@ from mtr_utils.import_dataset import raw_feature_df, raw_label_df
 from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import tuneClassifer
 from mtr_utils.sampling import oversample, smote, undersample
-from mtr_utils.save_best_models import save_best_models
+from mtr_utils.process_results import save_best_models, average_results
 from mtr_utils.scoring import get_scoring, round_scores
 
 output_best_models_dict = {}
@@ -106,13 +106,22 @@ for current_label in cfg.SELECTED_LABELS:
     output_best_results_dict.update({current_label: label_best_results_dict})
     output_best_models_dict.update({current_label: label_best_models_dict})
 
+# * Get average results
+
+output_avg_results_dict = average_results(output_results_dict)
+
 # * Export models and results
 
 json_dump(feature_names, 'final_feature_names')
+
 pickle_dump(output_best_models_dict, 'output_best_models')
-json_dump(output_results_dict, 'output_results')
+
+json_dump(output_results_dict, 'output_all_results')
 json_dump(output_best_results_dict, 'output_best_results')
-best_results_table_dump(output_best_results_dict)
+json_dump(output_avg_results_dict, 'output_avg_results')
+
+results_table_dump(output_best_results_dict, 'best')
+results_table_dump(output_avg_results_dict, 'avg')
 
 # * Finish!
 

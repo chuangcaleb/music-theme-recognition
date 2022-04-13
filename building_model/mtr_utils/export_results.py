@@ -2,8 +2,8 @@ import json
 import pickle
 from tabulate import tabulate
 
-
 # * Dump -----------------------------------------------------------------------
+
 
 def pickle_dump(dict, filename):
     pickle.dump(dict, open(OUTPUT_PATH + filename + ".pickle", "wb"))
@@ -13,18 +13,18 @@ def json_dump(dict, filename):
     json.dump(dict, open(OUTPUT_PATH + filename + ".json", "w"))
 
 
-def best_results_table_dump(best_results_dict):
+def results_table_dump(results_dict, name):
 
     output_latex_tables = {}
     output_md_tables = {}
 
-    for current_label in best_results_dict:
+    for current_label in results_dict:
 
         output_latex_tables[current_label], output_md_tables[current_label] = latextab_per_label(
-            best_results_dict[current_label], current_label)
+            results_dict[current_label], current_label)
 
-    tables_dump(output_latex_tables, 'latex_tables')
-    tables_dump(output_md_tables, 'md_tables')
+    tables_dump(output_latex_tables, name + '_latex_tables')
+    tables_dump(output_md_tables, name + '_md_tables')
 
 
 def tables_dump(output_tables, filename):
@@ -39,7 +39,6 @@ def tables_dump(output_tables, filename):
 
 
 # * LATEX ----------------------------------------------------------------------
-
 LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
 LATEX_TABLE_END = '\n\\end{table}'
 OUTPUT_PATH = 'data/output/'

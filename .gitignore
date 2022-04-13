@@ -134,3 +134,4 @@ data/bin
 data/corrupted_midi
 data/output/
 calculating_dataset/extract_jsymbolic_features.sh
+building_model/dummy.py
