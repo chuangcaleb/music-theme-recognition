@@ -27,7 +27,7 @@ def get_scoring(estimator, x_test, y_test):
         y_true=y_test,
         y_pred=y_predictions,
         zero_division=0
-    ),
+    )
     # roc_auc = roc_auc_score(
     #     y_true=y_test,
     #     y_pred=y_predictions,
@@ -38,7 +38,7 @@ def get_scoring(estimator, x_test, y_test):
         'f1-scm': f1scm,
         'accura': accuracy,
         'precis': precision,
-        'recall': recall,
+        'recall': recall
         # 'roc-auc': roc_auc,
     }
 
