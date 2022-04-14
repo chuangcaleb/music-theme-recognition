@@ -10,7 +10,7 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 import numpy as np
 
-OUTPUT_PATH = 'data/output/temp/'
+OUTPUT_PATH = 'data/output/.temp/'
 
 # * MODEL PARAMS ---------------------------------------------------------------
 
@@ -180,6 +180,6 @@ classifiers = [
     # defClf.knn,
     # defClf.svm,
     defClf.decnTree,
-    # defClf.randForest
+    defClf.randForest
     # defaultClassifier.neuralNet,
 ]
