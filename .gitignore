@@ -130,6 +130,7 @@ dmypy.json
 
 # Project's gitignore
 .vscode/
+*.code-workspace
 data/bin
 data/corrupted_midi
 data/output/
