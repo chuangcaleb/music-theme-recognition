@@ -1,6 +1,8 @@
 """ Configuration settings for the running the MTR model """
 
 import random
+
+import numpy as np
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
@@ -8,7 +10,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-import numpy as np
 
 OUTPUT_PATH = 'data/output/.temp/'
 
@@ -180,6 +181,6 @@ classifiers = [
     # defClf.knn,
     # defClf.svm,
     defClf.decnTree,
-    defClf.randForest
+    # defClf.randForest
     # defaultClassifier.neuralNet,
 ]
