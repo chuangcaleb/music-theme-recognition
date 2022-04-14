@@ -28,7 +28,7 @@ label_df = extractLabelDataset(raw_label_df, cfg.SELECTED_LABELS)
 
 manual_feature_df = raw_feature_df[preselected_feature_list]
 
-selected_features_df, feature_names = filterVarianceThreshold(
+selected_features_df, feature_list = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
 # ? FEATURE ENGINEERING - merging labels?
@@ -118,7 +118,7 @@ output_avg_results_dict = average_results(output_all_results_dict)
 
 # * Export models and results
 
-json_dump(feature_names, 'final_feature_names')
+json_dump(feature_list, 'final_feature_list')
 
 pickle_dump(output_best_models_dict, 'output_best_models')
 

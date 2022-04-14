@@ -14,7 +14,7 @@ model = pickle_data['risk']['Naive Bayes']['model']
 
 manual_feature_df = raw_feature_df[preselected_feature_list]
 
-selected_feature_np, feature_names = filterVarianceThreshold(
+selected_feature_np, feature_list = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
 random_feature = selected_feature_np.iloc[92, ].values.reshape(1, -1)
