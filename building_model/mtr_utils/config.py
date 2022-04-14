@@ -21,7 +21,7 @@ OUTPUT_PATH = 'data/output/.temp/'
 RAND_SEED = 899
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 2
+NUM_OF_RAND_SEEDS = 10
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -43,8 +43,8 @@ Specify labels to process or skip
 Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
 """
 SELECTED_LABELS = [
-    'risk', 'contentment',
-    # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
+    # 'risk', 'contentment',
+    'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
 
 # * Feature Selection
@@ -66,7 +66,7 @@ Scoring metric for selecting the best fold in cross-validation
 
 Refer to: https://scikit-learn.org/stable/modules/model_evaluation.html
 """
-BEST_CV_SCORING = 'f1'
+BEST_CV_SCORING = 'f1_macro'
 
 # * CLASSIFIERS ----------------------------------------------------------------
 
@@ -177,10 +177,10 @@ class defClf:
 classifiers = [
     defClf.zeroRate,
     defClf.randomRate,
-    # defClf.naiveBayes,
-    # defClf.knn,
-    # defClf.svm,
+    defClf.naiveBayes,
+    defClf.knn,
+    defClf.svm,
     defClf.decnTree,
-    # defClf.randForest
-    # defaultClassifier.neuralNet,
+    defClf.randForest
+    # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]
