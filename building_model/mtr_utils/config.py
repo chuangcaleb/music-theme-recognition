@@ -10,14 +10,17 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 import numpy as np
 
+OUTPUT_PATH = 'data/output/temp/'
+
 # * MODEL PARAMS ---------------------------------------------------------------
 
 # * Random Seed
 
 """ Random seed for the random generator """
 RAND_SEED = 899
+
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 10
+NUM_OF_RAND_SEEDS = 2
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -36,11 +39,11 @@ BEST_SEED_SCORING = 'f1-bin'
 """ 
 Specify labels to process or skip
 
-Full list: 'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom' 
+Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
 """
 SELECTED_LABELS = [
-    # 'risk', 'contentment',
-    'love', 'contentment', 'desire', 'celebration', 'grief', 'unity', 'safety', 'risk', 'wonder', 'hope', 'jadedness', 'delusion', 'authority', 'powerlessness', 'freedom'
+    'risk', 'contentment',
+    # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
 
 # * Feature Selection
@@ -48,7 +51,7 @@ SELECTED_LABELS = [
 """ 
 Remove features with a variance below this value
 """
-THRESHOLD_VAL = 0.005
+THRESHOLD_VAL = 0
 
 # * Cross-Validation Tuning
 
@@ -91,9 +94,9 @@ SV_PARAMETERS = {'C': [0.1, 1, 10, 100, 1000],
 
 RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
-    'n_estimators': [100, 200, 400],
+    'n_estimators': [10, 50, 120, 200, 400],
     'max_features': ['auto', 'sqrt', 'log2'],
-    'max_depth': [4, 6, 8],
+    'max_depth': [4, 6, 8, 9],
     'criterion': ['gini', 'entropy']
 }
 
@@ -118,15 +121,16 @@ NB_PARAMETERS = {
 
 
 class defClf:
+    """ Class object to store all our classifiers neatly """
 
-    zeroR = {
-        'name': 'ZeroR',
+    zeroRate = {
+        'name': 'ZeroRate',
         'model': DummyClassifier(strategy='most_frequent'),
         'param': {}
     }
 
-    randomR = {
-        'name': 'RandomR',
+    randomRate = {
+        'name': 'RandomRate',
         'model': DummyClassifier(strategy='stratified'),
         'param': {}
     }
@@ -170,12 +174,12 @@ class defClf:
 
 # Comment out individual classifiers that you want to skip
 classifiers = [
-    defClf.zeroR,
-    defClf.randomR,
-    defClf.knn,
-    defClf.decnTree,
-    defClf.svm,
-    defClf.randForest,
+    defClf.zeroRate,
+    defClf.randomRate,
+    defClf.naiveBayes,
+    # defClf.knn,
+    # defClf.svm,
+    # defClf.decnTree,
+    # defClf.randForest
     # defaultClassifier.neuralNet,
-    defClf.naiveBayes
 ]

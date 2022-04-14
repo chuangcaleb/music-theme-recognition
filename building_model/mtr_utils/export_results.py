@@ -1,19 +1,29 @@
 import json
+import os
 import pickle
+
 from tabulate import tabulate
+
+from mtr_utils import config as cfg
+
+TABLES_OUTPUT_PATH = cfg.OUTPUT_PATH + 'tables/'
+
 
 # * Dump -----------------------------------------------------------------------
 
 
 def pickle_dump(dict, filename):
-    pickle.dump(dict, open(OUTPUT_PATH + filename + ".pickle", "wb"))
+    pickle.dump(dict, open(cfg.OUTPUT_PATH + filename + ".pickle", "wb"))
 
 
-def json_dump(dict, filename):
-    json.dump(dict, open(OUTPUT_PATH + filename + ".json", "w"))
+def json_dump(dict, filename, subdir=''):
+    filepath = cfg.OUTPUT_PATH + subdir + filename + ".json"
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    json.dump(dict, open(filepath, "w"))
 
 
-def results_table_dump(results_dict, name):
+def results_table_dump(results_dict, name, caption):
+    """ Main function to dump results in tables as text files """
 
     output_latex_tables = {}
     output_md_tables = {}
@@ -22,16 +32,22 @@ def results_table_dump(results_dict, name):
 
     for current_label in results_dict:
 
-        output_latex_tables[current_label], output_md_tables[current_label] = latextab_per_label(
-            results_dict[current_label], current_label)
+        output_latex_tables[current_label], output_md_tables[current_label] = build_label_table(
+            results_dict[current_label], current_label, caption)
 
     tables_dump(output_latex_tables, name + '_latex_tables')
     tables_dump(output_md_tables, name + '_md_tables')
 
+# * HELPER ---------------------------------------------------------------------
+
 
 def tables_dump(output_tables, filename):
+    """ Helper function to write tables to text files """
 
-    with open(OUTPUT_PATH + filename + ".txt", "w") as f:
+    filepath = TABLES_OUTPUT_PATH + filename + ".txt"
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+
+    with open(filepath, "w") as f:
 
         for tableId in output_tables:
 
@@ -40,14 +56,8 @@ def tables_dump(output_tables, filename):
         f.close()
 
 
-# * LATEX ----------------------------------------------------------------------
-
-LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
-LATEX_TABLE_END = '\n\\end{table}'
-OUTPUT_PATH = 'data/output/'
-
-
-def latextab_per_label(dict, label):
+def build_label_table(dict, label, caption):
+    """ Helper function to build the md and latex result tables """
 
     rows = [[key] + list(dict[key].values()) for key, value in dict.items()]
     headers = list(dict[list(dict)[0]].keys())
@@ -59,14 +69,22 @@ def latextab_per_label(dict, label):
     print(f'\n{label}')
     print(markdown_table_output)
 
-    latex_table_output = build_latex_table(latex_table, label)
+    latex_table_output = build_latex_table(latex_table, label, caption)
 
     return latex_table_output, markdown_table_output
 
 
-def build_latex_table(table, label):
-    return LATEX_TABLE_BEGIN + table + build_latex_caption(label) + LATEX_TABLE_END
+LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
+LATEX_TABLE_END = '\n\\end{table}'
 
 
-def build_latex_caption(label):
-    return f'\n\caption{{\\label{{tab: results-{label}}} Model performances for \'{label}\'.}}'
+def build_latex_table(table, label, caption):
+    """ Helper function to build the latex wrappers around the table """
+
+    return LATEX_TABLE_BEGIN + table + build_latex_caption(label, caption) + LATEX_TABLE_END
+
+
+def build_latex_caption(label, caption):
+    """ Helper function to build the latex caption """
+
+    return f'\n\caption{{\\label{{tab: results-{label}}} {caption} model performances for \'{label}\'.}}'

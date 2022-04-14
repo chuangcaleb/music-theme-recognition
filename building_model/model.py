@@ -122,13 +122,13 @@ json_dump(feature_names, 'final_feature_names')
 
 pickle_dump(output_best_models_dict, 'output_best_models')
 
-json_dump(output_all_results_dict, 'output_all_results')
-json_dump(output_avg_results_dict, 'output_avg_results')
-json_dump(output_best_results_dict, 'output_best_results')
-json_dump(output_best_params_dict, 'output_best_params')
+json_dump(output_all_results_dict, 'output_all_results', 'results/')
+json_dump(output_avg_results_dict, 'output_avg_results', 'results/')
+json_dump(output_best_results_dict, 'output_best_results', 'results/')
+json_dump(output_best_params_dict, 'output_best_params', 'results/')
 
-results_table_dump(output_avg_results_dict, 'avg')
-results_table_dump(output_best_results_dict, 'best')
+results_table_dump(output_avg_results_dict, 'avg', 'Average')
+results_table_dump(output_best_results_dict, 'best', 'Best')
 
 # * Finish!
 
