@@ -4,13 +4,20 @@ from sklearn import tree
 from eval_utils.load_data import load_json, load_pickle
 
 root_path = "data/output/"
-run_id = "temp"
+run_id = "without-threshold"
 
 models_dict = load_pickle(root_path + run_id + "/output_best_models.pickle")
 feature_names = load_json(root_path + run_id + "/final_feature_names.json")
+results_dict = load_json(root_path + run_id + "/output_best_results.json")
 
 
 def plotDecisionTree(estimator, feature_names, target_label):
+
+    # Get scores object
+    scores_dict = results_dict[target_label]['DecnTree']
+    scores_list = [k + ' = ' + str(round(v, 3))
+                   for k, v in scores_dict.items()]
+    textstr = '\n'.join(scores_list)
 
     # Figure size
     plt.figure(figsize=(15, 9))
@@ -24,6 +31,13 @@ def plotDecisionTree(estimator, feature_names, target_label):
     plt.plot(target_label, label=target_label)
     plt.plot('absent', label='absent')
     plt.legend(loc='upper right')
+
+    # Parameters in text box
+    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    ax = plt.gca()
+    ax.text(0, 1, textstr,
+            horizontalalignment='left',
+            verticalalignment='top', fontsize=10, bbox=props, transform=ax.transAxes)
 
     # Title
     # plt.title(
