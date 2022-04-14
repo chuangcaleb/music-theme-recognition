@@ -3,8 +3,11 @@ import numpy as np
 from eval_utils.load_data import load_json, load_pickle
 from tabulate import tabulate
 
-models_pickle = load_pickle("data/output/output_best_models.pickle")
-feature_names = load_json("data/output/final_feature_names.json")
+root_path = "data/output/"
+run_id = "temp"
+
+models_dict = load_pickle(root_path + run_id + "/output_best_models.pickle")
+feature_names = load_json(root_path + run_id + "/final_feature_names.json")
 
 
 def printFeatureImportances(models_pickle, feature_names):
@@ -43,4 +46,4 @@ def printFeatureImportances(models_pickle, feature_names):
     print()
 
 
-printFeatureImportances(models_pickle, feature_names)
+printFeatureImportances(models_dict, feature_names)

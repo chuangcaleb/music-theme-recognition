@@ -6,8 +6,6 @@ from tabulate import tabulate
 
 from mtr_utils import config as cfg
 
-TABLES_OUTPUT_PATH = cfg.OUTPUT_PATH + 'tables/'
-
 
 # * Dump -----------------------------------------------------------------------
 
@@ -44,7 +42,7 @@ def results_table_dump(results_dict, name, caption):
 def tables_dump(output_tables, filename):
     """ Helper function to write tables to text files """
 
-    filepath = TABLES_OUTPUT_PATH + filename + ".txt"
+    filepath = cfg.OUTPUT_PATH + 'tables/' + filename + ".txt"
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     with open(filepath, "w") as f:

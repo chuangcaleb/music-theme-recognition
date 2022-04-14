@@ -176,10 +176,10 @@ class defClf:
 classifiers = [
     defClf.zeroRate,
     defClf.randomRate,
-    defClf.naiveBayes,
+    # defClf.naiveBayes,
     # defClf.knn,
     # defClf.svm,
-    # defClf.decnTree,
+    defClf.decnTree,
     # defClf.randForest
     # defaultClassifier.neuralNet,
 ]
