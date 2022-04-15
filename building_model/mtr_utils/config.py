@@ -11,7 +11,9 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
-OUTPUT_PATH = 'data/output/.temp/'
+RUN_ID = '.temp'
+
+OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
 # * MODEL PARAMS ---------------------------------------------------------------
 
