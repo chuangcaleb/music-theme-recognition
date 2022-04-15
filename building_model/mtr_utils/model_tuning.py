@@ -1,8 +1,8 @@
 from sklearn.model_selection import GridSearchCV
 
 
-def tuneClassifer(classifier, feature_np, label_np, param_grid, cv, scoring):
-    """ Tunes a model-agnostic classifier """
+def getTunedClassifer(classifier, feature_np, label_np, param_grid, cv, scoring):
+    """ Returns a tuned model-agnostic classifier """
 
     gscv = GridSearchCV(
         classifier,
@@ -16,4 +16,4 @@ def tuneClassifer(classifier, feature_np, label_np, param_grid, cv, scoring):
     # Fit with entire dataset
     gscv.fit(feature_np, label_np)
 
-    return gscv
+    return gscv.best_estimator_

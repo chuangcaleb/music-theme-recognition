@@ -9,7 +9,7 @@ from mtr_utils.feature_selection.load_feature_set import \
     preselected_feature_list
 from mtr_utils.import_dataset import raw_feature_df, raw_label_df
 from mtr_utils.label_dataset_selection import extractLabelDataset
-from mtr_utils.model_tuning import tuneClassifer
+from mtr_utils.model_tuning import getTunedClassifer
 from mtr_utils.process_results import average_results, save_best_models
 from mtr_utils.sampling import oversample, smote, undersample
 from mtr_utils.scoring import get_scoring, round_scores
@@ -74,10 +74,8 @@ for current_label in cfg.SELECTED_LABELS:
 
             # * Tuning
 
-            gscv = tuneClassifer(clf['model'], x_resampled,
-                                 y_resampled, clf['param'], cfg.CV, cfg.BEST_CV_SCORING)
-
-            best_estimator = gscv.best_estimator_
+            best_estimator = getTunedClassifer(clf['model'], x_resampled,
+                                               y_resampled, clf['param'], cfg.CV, cfg.BEST_CV_SCORING)
 
             # * Training
 
