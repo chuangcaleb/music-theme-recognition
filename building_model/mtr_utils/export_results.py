@@ -30,13 +30,30 @@ def results_table_dump(results_dict, name, caption):
 
     for current_label in results_dict:
 
-        output_latex_tables[current_label], output_md_tables[current_label] = build_label_table(
-            results_dict[current_label], current_label, caption)
+        current_results = results_dict[current_label]
 
+        # Round results
+        rounded_current_results = {
+            metric: round_dict_values(current_results[metric], 3)
+            for metric in current_results
+        }
+
+        # Build latex and md tables
+        output_latex_tables[current_label], output_md_tables[current_label] = build_label_table(
+            rounded_current_results, current_label, caption)
+
+    # Write tables to files
     tables_dump(output_latex_tables, name, '_latex_tables.txt')
     tables_dump(output_md_tables, name,  '_md_tables.md')
 
 # * HELPER ---------------------------------------------------------------------
+
+
+def round_dict_values(d, k):
+    """ Round all values in dictionary to k decimal places """
+
+    # return {key: round(dict[key], k) for key in dict}
+    return {key: '{:.03f}'.format(d[key]) for key in d}
 
 
 def tables_dump(output_tables, name, ext):
@@ -47,7 +64,7 @@ def tables_dump(output_tables, name, ext):
 
     with open(filepath, "w") as f:
 
-        f.write(f'# {name} results\n')
+        f.write(f'# {cfg.RUN_ID}: {name} results\n')
 
         for tableId in output_tables:
 
@@ -59,12 +76,26 @@ def tables_dump(output_tables, name, ext):
 def build_label_table(dict, label, caption):
     """ Helper function to build the md and latex result tables """
 
-    rows = [[key] + list(dict[key].values()) for key, value in dict.items()]
-    headers = list(dict[list(dict)[0]].keys())
+    rows = [
+        [key] + list(dict[key].values()) for key, value in dict.items()
+    ]
+    headers = list(
+        dict[list(dict)[0]].keys()
+    )
 
-    latex_table = tabulate(rows, headers=headers, tablefmt='latex')
+    latex_table = tabulate(
+        rows,
+        headers=headers,
+        tablefmt='latex',
+        disable_numparse=True
+    )
     markdown_table_output = tabulate(
-        rows, headers=headers, tablefmt='github', numalign="left")
+        rows,
+        headers=headers,
+        tablefmt='github',
+        numalign="left",
+        disable_numparse=True
+    )
 
     print(f'\n{label}\n')
     print(markdown_table_output)
