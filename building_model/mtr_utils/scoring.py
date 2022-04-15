@@ -43,9 +43,3 @@ def get_scoring(estimator, x_test, y_test):
     }
 
     return scores
-
-
-def round_scores(scores, dp):
-    for key, value in scores.items():
-        scores[key] = round(value, dp)
-    return scores

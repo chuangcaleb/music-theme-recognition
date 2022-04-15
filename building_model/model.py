@@ -79,12 +79,13 @@ for current_label in cfg.SELECTED_LABELS:
 
             best_estimator = gscv.best_estimator_
 
-            # * Training & Testing
+            # * Training
 
             best_estimator.fit(x_resampled, y_resampled)
 
+            # * Testing
+
             scores = get_scoring(best_estimator, x_test, y_test)
-            # print(round_scores(scores, 3))
 
             # * Export results per classifier
 
