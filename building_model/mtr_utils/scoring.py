@@ -1,4 +1,4 @@
-from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
 
 
 def get_scoring(estimator, x_test, y_test):
@@ -28,18 +28,18 @@ def get_scoring(estimator, x_test, y_test):
         y_pred=y_predictions,
         zero_division=0
     )
-    # roc_auc = roc_auc_score(
-    #     y_true=y_test,
-    #     y_pred=y_predictions,
-    # )
+    rocauc = roc_auc_score(
+        y_true=y_test,
+        y_score=y_predictions,
+    )
 
     scores = {
         'f1-bin': f1bin,
         'f1-mac': f1mac,
         'accura': accuracy,
         'precis': precision,
-        'recall': recall
-        # 'roc-auc': roc_auc,
+        'recall': recall,
+        'rocauc': rocauc,
     }
 
     return scores
