@@ -33,23 +33,25 @@ def results_table_dump(results_dict, name, caption):
         output_latex_tables[current_label], output_md_tables[current_label] = build_label_table(
             results_dict[current_label], current_label, caption)
 
-    tables_dump(output_latex_tables, name + '_latex_tables')
-    tables_dump(output_md_tables, name + '_md_tables')
+    tables_dump(output_latex_tables, name, '_latex_tables.txt')
+    tables_dump(output_md_tables, name,  '_md_tables.md')
 
 # * HELPER ---------------------------------------------------------------------
 
 
-def tables_dump(output_tables, filename):
+def tables_dump(output_tables, name, ext):
     """ Helper function to write tables to text files """
 
-    filepath = cfg.OUTPUT_PATH + 'tables/' + filename + ".txt"
+    filepath = cfg.OUTPUT_PATH + 'tables/' + name + ext
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     with open(filepath, "w") as f:
 
+        f.write(f'# {name} results\n')
+
         for tableId in output_tables:
 
-            f.write(tableId + '\n\n' + output_tables[tableId] + '\n\n\n')
+            f.write('\n## ' + tableId + '\n\n' + output_tables[tableId] + '\n')
 
         f.close()
 
@@ -64,7 +66,7 @@ def build_label_table(dict, label, caption):
     markdown_table_output = tabulate(
         rows, headers=headers, tablefmt='github', numalign="left")
 
-    print(f'\n{label}')
+    print(f'\n{label}\n')
     print(markdown_table_output)
 
     latex_table_output = build_latex_table(latex_table, label, caption)
