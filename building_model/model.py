@@ -12,7 +12,7 @@ from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import getTunedClassifer
 from mtr_utils.process_results import average_results, save_best_models
 from mtr_utils.sampling import oversample, smote, undersample
-from mtr_utils.scoring import get_scoring, round_scores
+from mtr_utils.scoring import get_scoring
 
 output_all_results_dict = {}
 output_best_results_dict = {}
