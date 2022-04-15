@@ -1,10 +1,8 @@
-from matplotlib import pyplot as plt
-import numpy as np
 from eval_utils.load_data import load_json, load_pickle
 from tabulate import tabulate
 
 root_path = "data/output/"
-run_id = ".temp"
+run_id = "macro_rfparams"
 
 models_dict = load_pickle(root_path + run_id + "/output_best_models.pickle")
 feature_list = load_json(root_path + run_id + "/final_feature_list.json")

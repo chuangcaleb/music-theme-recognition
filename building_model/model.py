@@ -45,7 +45,7 @@ for current_label in cfg.SELECTED_LABELS:
 
     for current_seed in cfg.RAND_SEEDS_LIST:
 
-        print(f"\nWith random.seed({current_seed})\n")
+        print(f"\n{current_label} with random.seed({current_seed}):")
 
         clf_results_dict = {}
         clf_models_dict = {}
@@ -70,7 +70,7 @@ for current_label in cfg.SELECTED_LABELS:
 
         for clf in cfg.classifiers:
 
-            print(f"Building {current_label}: {clf['name']}...")
+            print(f"Building {clf['name']}...")
 
             # * Tuning
 
@@ -124,7 +124,7 @@ pickle_dump(output_best_models_dict, 'output_best_models')
 json_dump(output_all_results_dict, 'output_all_results', 'results/')
 json_dump(output_avg_results_dict, 'output_avg_results', 'results/')
 json_dump(output_best_results_dict, 'output_best_results', 'results/')
-json_dump(output_best_params_dict, 'output_best_params', 'results/')
+json_dump(output_best_params_dict, 'output_best_params')
 
 results_table_dump(output_avg_results_dict, 'avg', 'Average')
 results_table_dump(output_best_results_dict, 'best', 'Best')

@@ -95,9 +95,9 @@ SV_PARAMETERS = {'C': [0.1, 1, 10, 100, 1000],
 
 RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
-    'n_estimators': [10, 50, 120, 200, 400],
+    'n_estimators': [50, 100, 175, 250, 350],
     'max_features': ['auto', 'sqrt', 'log2'],
-    'max_depth': [4, 6, 8, 9],
+    'max_depth': [4, 6, 8],
     'criterion': ['gini', 'entropy']
 }
 
