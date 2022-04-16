@@ -14,7 +14,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = 'strat_grid_rocauc'
+RUN_ID = 'strat_grid_rocauc_scaled'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -58,6 +58,13 @@ SELECTED_LABELS = [
 Remove features with a variance below this value
 """
 THRESHOLD_VAL = 0
+
+# * Train-Test Split
+
+""" 
+The proportion of dataset to include in the test set
+"""
+TEST_SIZE = 0.2
 
 # * Cross-Validation Tuning
 
@@ -186,6 +193,6 @@ classifiers = [
     defClf.knn,
     defClf.svm,
     defClf.decnTree,
-    defClf.randForest
+    # defClf.randForest
     # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]

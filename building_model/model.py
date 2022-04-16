@@ -1,5 +1,6 @@
 from sklearn.dummy import DummyClassifier
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler
 
 from mtr_utils import config as cfg
 from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
@@ -29,6 +30,11 @@ manual_feature_df = data.raw_feature_df[load_feature_set.preselected_feature_lis
 selected_features_df, feature_list = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
+# * Feature Scaling (Normalization)
+
+scaler = MinMaxScaler().fit(selected_features_df)
+scaled_feature_df = scaler.transform(selected_features_df)
+
 # ? FEATURE ENGINEERING - merging labels?
 
 # * FOR EACH LABEL -------------------------------------------------------------
@@ -53,13 +59,13 @@ for current_label in cfg.SELECTED_LABELS:
 
         # * Converting Dataset Type
 
-        feature_df = selected_features_df
+        feature_df = scaled_feature_df
         label_np = label_df[[current_label]].to_numpy().astype(int).ravel()
 
         # * Splitting Dataset
 
         (x_train, x_test, y_train, y_test) = train_test_split(
-            feature_df, label_np, test_size=0.2, random_state=current_seed)
+            feature_df, label_np, test_size=cfg.TEST_SIZE, stratify=label_np, random_state=current_seed)
 
         # * Sampling
 
