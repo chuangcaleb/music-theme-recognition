@@ -3,27 +3,27 @@ from statistics import mean
 # * Average --------------------------------------------------------------------
 
 
-def average_results(dict):
+def calc_stats(dict, func):
 
-    avg_results_dict = {}
+    stat_dict = {}
 
     # For each label, run the average
     for label, seed_dict in dict.items():
 
-        label_avg_dict = get_label_average(seed_dict)
+        label_stat_dict = get_label_stat(seed_dict, func)
 
         # We build the output dict label-by-label
-        avg_results_dict.update({label: label_avg_dict})
+        stat_dict.update({label: label_stat_dict})
 
         # break
 
-    return avg_results_dict
+    return stat_dict
 
 
-def get_label_average(seed_dict):
+def get_label_stat(seed_dict, func):
 
     # Init dictionary
-    label_avg_dict = init_label_average_dict(seed_dict)
+    label_avg_dict = init_label_dict(seed_dict)
 
     # Build dictionary by adding scores into list
     for seed, clf_dict in seed_dict.items():
@@ -39,12 +39,12 @@ def get_label_average(seed_dict):
 
         for score, value in score_dict.items():
 
-            label_avg_dict[clf][score] = mean(label_avg_dict[clf][score])
+            label_avg_dict[clf][score] = func(label_avg_dict[clf][score])
 
     return label_avg_dict
 
 
-def init_label_average_dict(seed_dict):
+def init_label_dict(seed_dict):
 
     return_dictionary = {}
 
