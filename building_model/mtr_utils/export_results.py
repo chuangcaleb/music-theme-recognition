@@ -43,8 +43,8 @@ def results_table_dump(results_dict, name, caption):
             rounded_current_results, current_label, caption)
 
     # Write tables to files
-    tables_dump(output_latex_tables, name, '_latex_tables.txt')
-    tables_dump(output_md_tables, name,  '_md_tables.md')
+    tables_txt_dump(output_latex_tables, name, '_latex_tables.txt')
+    tables_txt_dump(output_md_tables, name,  '_md_tables.md')
 
 # * HELPER ---------------------------------------------------------------------
 
@@ -55,7 +55,7 @@ def round_dict_values(d, k):
     return {key: '{:.03f}'.format(d[key]) for key in d}
 
 
-def tables_dump(output_tables, name, ext):
+def tables_txt_dump(output_tables, name, ext):
     """ Helper function to write tables to text files """
 
     filepath = cfg.OUTPUT_PATH + 'tables/' + name + ext
@@ -117,4 +117,4 @@ def build_latex_table(table, label, caption):
 def build_latex_caption(label, caption):
     """ Helper function to build the latex caption """
 
-    return f'\n\caption{{\\label{{tab: results-{label}}} {caption} model performances for \'{label}\'.}}'
+    return f'\n\caption{{\\label{{tab: results-{label}}} {caption} model performances for `{label}\'.}}'

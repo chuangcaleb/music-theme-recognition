@@ -1,10 +1,15 @@
 from tabulate import tabulate
+
+from eval_utils import config as cfg
 from eval_utils import load_data as data
+from eval_utils.export_results import txt_dump
 
 
 def printFeatureImportances(models_pickle, feature_list):
 
     print("\n\n========================== Feature Importance scores per label ==========================\n")
+
+    all_tables = {}
 
     for current_label in models_pickle:
 
@@ -40,7 +45,11 @@ def printFeatureImportances(models_pickle, feature_list):
 
         print(table, end='\n\n')
 
+        all_tables.update({current_label: table})
+
     print()
+
+    txt_dump(all_tables, cfg.RUN_ID + '/feat_imp', '.md')
 
 
 printFeatureImportances(data.models_dict, data.feature_list)
