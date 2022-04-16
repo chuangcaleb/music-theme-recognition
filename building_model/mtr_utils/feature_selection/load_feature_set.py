@@ -3,13 +3,12 @@
 import json
 
 # Path is relative to building_model instead of root, because the model.ipynb is run relative to itself and not root.
-# json_file_path = 'feature_selection/feature_set.json'
-# output_file_path = 'feature_selection/manually_preselected_features.txt'
 json_file_path = 'building_model/mtr_utils/feature_selection/feature_set.json'
-output_file_path = 'building_model/mtr_utils/feature_selection/manually_preselected_features.txt'
+# output_file_path = 'building_model/mtr_utils/feature_selection/manually_preselected_features.txt'
 
 
-def load_presel_features(json_file_path, output_file_path):
+# def load_presel_features(json_file_path, output_file_path):
+def load_presel_features(json_file_path):
     """ Loads and parses the json preselected feature set and returns it a list
      of strings """
 
@@ -50,9 +49,9 @@ def load_presel_features(json_file_path, output_file_path):
                         preselected_feature_list.append(feature_name)
 
     # Write output to .txt file too
-    with open(output_file_path, 'w') as f:
-        for feature in preselected_feature_list:
-            f.write(feature + '\n')
+    # with open(output_file_path, 'w') as f:
+    #     for feature in preselected_feature_list:
+    #         f.write(feature + '\n')
 
     # print('\nSuccessfully written manually preselected features to ' + output_file_path + '\n')
     print(
@@ -61,5 +60,5 @@ def load_presel_features(json_file_path, output_file_path):
     return(preselected_feature_list)
 
 
-preselected_feature_list = load_presel_features(
-    json_file_path, output_file_path)
+preselected_feature_list = load_presel_features(json_file_path)
+# json_file_path, output_file_path)
