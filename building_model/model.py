@@ -3,11 +3,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
 from mtr_utils import config as cfg
+from mtr_utils import import_dataset as data
 from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
+from mtr_utils.feat_eng.scaling import normalizeData
+from mtr_utils.feature_selection import load_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
-from mtr_utils.feature_selection import load_feature_set
-from mtr_utils import import_dataset as data
 from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import getTunedClassifer
 from mtr_utils.process_results import average_results, save_best_models
@@ -32,8 +33,7 @@ selected_features_df, feature_list = filterVarianceThreshold(
 
 # * Feature Scaling (Normalization)
 
-scaler = MinMaxScaler().fit(selected_features_df)
-scaled_feature_df = scaler.transform(selected_features_df)
+scaled_feature_df = normalizeData(selected_features_df)
 
 # ? FEATURE ENGINEERING - merging labels?
 

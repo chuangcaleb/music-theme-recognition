@@ -14,7 +14,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = 'strat_grid_rocauc_scaled'
+RUN_ID = '.temp'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
