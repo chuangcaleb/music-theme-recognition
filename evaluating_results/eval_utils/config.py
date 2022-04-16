@@ -2,8 +2,8 @@
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = "rocauc_1"
+RUN_ID = "strat_grid_rocauc_scaled"
 ROOT_PATH = "data/output/"
-OUTPUT_PATH = "data/eval/"
+# OUTPUT_PATH = "data/eval/"
 
-REL_PATH = ROOT_PATH + RUN_ID
+OUTPUT_PATH = ROOT_PATH + RUN_ID + '/'
