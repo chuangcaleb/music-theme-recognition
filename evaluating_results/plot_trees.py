@@ -1,10 +1,8 @@
 import matplotlib.pyplot as plt
 from sklearn import tree
 
+from eval_utils import config as cfg
 from eval_utils import load_data as data
-
-root_path = "data/output/"
-run_id = "without-threshold"
 
 
 def plotDecisionTree(estimator, feature_list, target_label):
@@ -47,13 +45,16 @@ def plotDecisionTree(estimator, feature_list, target_label):
 
 for current_label in data.models_dict:
 
-    for clf in data.models_dict[current_label]:
+    if 'DecnTree' in data.models_dict[current_label]:
 
-        if clf == 'DecnTree':
+        model = data.models_dict[current_label]['DecnTree']
+        plotDecisionTree(model, data.feature_list, current_label)
 
-            model = data.models_dict[current_label][clf]
-            plotDecisionTree(model, data.feature_list, current_label)
+    else:
 
-            # print(export_text(model, feature_list))
+        print(f'Specified run \'{cfg.RUN_ID}\' has no Decision Tree model')
+        break
+
+    # print(export_text(model, feature_list))
 
     # break
