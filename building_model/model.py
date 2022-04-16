@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler
 from mtr_utils import config as cfg
 from mtr_utils import import_dataset as data
 from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
-from mtr_utils.feat_eng.scaling import normalizeData
+from mtr_utils.scaling import normalizeData
 from mtr_utils.feature_selection import load_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
