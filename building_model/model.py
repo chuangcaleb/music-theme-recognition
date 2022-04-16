@@ -5,8 +5,7 @@ from mtr_utils import config as cfg
 from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
-from mtr_utils.feature_selection.load_feature_set import \
-    preselected_feature_list
+from mtr_utils.feature_selection import load_feature_set
 from mtr_utils import import_dataset as data
 from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import getTunedClassifer
@@ -25,7 +24,7 @@ label_df = extractLabelDataset(data.raw_label_df, cfg.SELECTED_LABELS)
 
 # * Feature Selection
 
-manual_feature_df = data.raw_feature_df[preselected_feature_list]
+manual_feature_df = data.raw_feature_df[load_feature_set.preselected_feature_list]
 
 selected_features_df, feature_list = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
