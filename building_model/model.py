@@ -10,7 +10,7 @@ from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
 from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import getTunedClassifer
-from mtr_utils.process_results import save_best_models
+from mtr_utils.save_best import save_best_models
 from mtr_utils.sampling import oversample, smote, undersample
 from mtr_utils.scoring import get_scoring
 
