@@ -52,7 +52,6 @@ def results_table_dump(results_dict, name, caption):
 def round_dict_values(d, k):
     """ Round all values in dictionary to k decimal places """
 
-    # return {key: round(dict[key], k) for key in dict}
     return {key: '{:.03f}'.format(d[key]) for key in d}
 
 

@@ -5,13 +5,16 @@ import random
 import numpy as np
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import StratifiedKFold
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
-RUN_ID = '.temp'
+# * PATH -----------------------------------------------------------------------
+
+RUN_ID = 'strat_grid_rocauc'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -23,7 +26,7 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 RAND_SEED = 899
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 2
+NUM_OF_RAND_SEEDS = 10
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -45,8 +48,8 @@ Specify labels to process or skip
 Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
 """
 SELECTED_LABELS = [
-    'risk', 'contentment',
-    # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
+    # 'risk', 'contentment',
+    'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
 
 # * Feature Selection
@@ -61,14 +64,14 @@ THRESHOLD_VAL = 0
 """ 
 Number of folds to use during cross-validation
 """
-CV = 5
+CV = StratifiedKFold(5)
 
 """ 
 Scoring metric for selecting the best fold in cross-validation
 
 Refer to: https://scikit-learn.org/stable/modules/model_evaluation.html
 """
-BEST_CV_SCORING = 'f1_macro'
+BEST_CV_SCORING = 'roc_auc'
 
 # * CLASSIFIERS ----------------------------------------------------------------
 
@@ -89,15 +92,15 @@ DT_PARAMETERS = {
 
 # * SVM
 
-SV_PARAMETERS = {'C': [0.1, 1, 10, 100, 1000],
-                 'gamma': [1, 0.1, 0.01, 0.001, 0.0001],
-                 'kernel': ['rbf']}
+SV_PARAMETERS = {'C': [0.1, 1, 10, 100],
+                 'gamma': [0.1, 0.01, 0.001, 0.0001, 0.00001],
+                 'kernel': ['poly', 'rbf']}
 
 # * Random Forest
 
 RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
-    'n_estimators': [50, 100, 175, 250, 350],
+    'n_estimators': [75, 150, 250, 350],
     'max_features': ['auto', 'sqrt', 'log2'],
     'max_depth': [4, 6, 8],
     'criterion': ['gini', 'entropy']
@@ -180,9 +183,9 @@ classifiers = [
     defClf.zeroRate,
     defClf.randomRate,
     defClf.naiveBayes,
-    # defClf.knn,
-    # defClf.svm,
-    # defClf.decnTree,
-    # defClf.randForest
+    defClf.knn,
+    defClf.svm,
+    defClf.decnTree,
+    defClf.randForest
     # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]

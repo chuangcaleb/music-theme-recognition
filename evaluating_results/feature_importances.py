@@ -1,14 +1,5 @@
-from eval_utils.load_data import load_json, load_pickle
 from tabulate import tabulate
-
-root_path = "data/output/"
-run_id = "macro_rfparams"
-
-models_dict = load_pickle(root_path + run_id + "/output_best_models.pickle")
-feature_list = load_json(root_path + run_id + "/final_feature_list.json")
-results_dict = load_json(root_path + run_id +
-                         "/results/output_best_results.json")
-# results_dict = load_json(root_path + run_id + "/output_best_results.json")
+from eval_utils import load_data as data
 
 
 def printFeatureImportances(models_pickle, feature_list):
@@ -18,7 +9,7 @@ def printFeatureImportances(models_pickle, feature_list):
     for current_label in models_pickle:
 
         label_title = f'\n> \033[93m{current_label}\033[0m'
-        scores_dict = results_dict[current_label]['DecnTree']
+        scores_dict = data.results_dict[current_label]['DecnTree']
         scores_list = [k + ' = ' + str(round(v, 3))
                        for k, v in scores_dict.items()]
         textstr = '\n'.join(scores_list)
@@ -52,4 +43,4 @@ def printFeatureImportances(models_pickle, feature_list):
     print()
 
 
-printFeatureImportances(models_dict, feature_list)
+printFeatureImportances(data.models_dict, data.feature_list)

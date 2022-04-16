@@ -7,7 +7,7 @@ from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
 from mtr_utils.feature_selection.load_feature_set import \
     preselected_feature_list
-from mtr_utils.import_dataset import raw_feature_df, raw_label_df
+from mtr_utils import import_dataset as data
 from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import getTunedClassifer
 from mtr_utils.process_results import average_results, save_best_models
@@ -21,11 +21,11 @@ output_best_params_dict = {}
 
 # * Extract data from label dataset
 
-label_df = extractLabelDataset(raw_label_df, cfg.SELECTED_LABELS)
+label_df = extractLabelDataset(data.raw_label_df, cfg.SELECTED_LABELS)
 
 # * Feature Selection
 
-manual_feature_df = raw_feature_df[preselected_feature_list]
+manual_feature_df = data.raw_feature_df[preselected_feature_list]
 
 selected_features_df, feature_list = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
@@ -70,7 +70,7 @@ for current_label in cfg.SELECTED_LABELS:
 
         for clf in cfg.classifiers:
 
-            print(f"Building {clf['name']}...")
+            print(f"{clf['name']}...")
 
             # * Tuning
 

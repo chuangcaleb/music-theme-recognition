@@ -1,20 +1,16 @@
 import matplotlib.pyplot as plt
 from sklearn import tree
 
-from eval_utils.load_data import load_json, load_pickle
+from eval_utils import load_data as data
 
 root_path = "data/output/"
 run_id = "without-threshold"
-
-models_dict = load_pickle(root_path + run_id + "/output_best_models.pickle")
-feature_list = load_json(root_path + run_id + "/final_feature_list.json")
-results_dict = load_json(root_path + run_id + "/output_best_results.json")
 
 
 def plotDecisionTree(estimator, feature_list, target_label):
 
     # Get scores object
-    scores_dict = results_dict[target_label]['DecnTree']
+    scores_dict = data.results_dict[target_label]['DecnTree']
     scores_list = [k + ' = ' + str(round(v, 3))
                    for k, v in scores_dict.items()]
     textstr = '\n'.join(scores_list)
@@ -24,7 +20,7 @@ def plotDecisionTree(estimator, feature_list, target_label):
     # plt.figure(figsize=(20, 10))
 
     # Main plot
-    tree.plot_tree(estimator, feature_list=feature_list, class_names=[
+    tree.plot_tree(estimator, feature_names=feature_list, class_names=[
         'absent', target_label], label='root', filled=True, fontsize=5)
 
     # Labels
@@ -49,13 +45,15 @@ def plotDecisionTree(estimator, feature_list, target_label):
 
 # * FOR EACH LABEL -------------------------------------------------------------
 
-for current_label in models_dict:
+for current_label in data.models_dict:
 
-    for clf in models_dict[current_label]:
+    for clf in data.models_dict[current_label]:
 
         if clf == 'DecnTree':
 
-            model = models_dict[current_label][clf]
-            plotDecisionTree(model, feature_list, current_label)
+            model = data.models_dict[current_label][clf]
+            plotDecisionTree(model, data.feature_list, current_label)
 
             # print(export_text(model, feature_list))
+
+    # break
