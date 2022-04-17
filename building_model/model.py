@@ -122,11 +122,11 @@ json_dump(feature_list, 'final_feature_list')
 
 pickle_dump(output_best_models_dict, 'best_models')
 
-json_dump(output_all_results_dict, 'all_results', 'results/')
-json_dump(output_best_results_dict, 'best_results', 'results/')
-json_dump(output_best_params_dict, 'best_params')
+json_dump(output_all_results_dict, 'results_all', 'results/')
+json_dump(output_best_results_dict, 'results_best', 'results/')
+json_dump(output_best_params_dict, 'params_best')
 
-results_table_dump(output_best_results_dict, 'best', 'Best')
+results_table_dump(output_best_results_dict, 'results_best', 'Best')
 
 # * Finish!
 

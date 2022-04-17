@@ -212,5 +212,3 @@ actual_classifiers = [
     clf['name'] for clf in classifiers
     if type(clf['model']) is not DummyClassifier
 ]
-
-print(actual_classifiers)

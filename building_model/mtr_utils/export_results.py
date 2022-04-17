@@ -43,27 +43,30 @@ def results_table_dump(results_dict, name, caption):
             rounded_current_results, current_label, caption)
 
     # Write tables to files
-    tables_txt_dump(output_latex_tables, name, '_latex_tables.txt')
-    tables_txt_dump(output_md_tables, name,  '_md_tables.md')
+    tables_txt_dump(output_latex_tables, caption, f'latex/{name}.tex')
+    tables_txt_dump(output_md_tables, caption,  f'md/{name}.md')
+
+
+def exportConfig():
+    pass
 
 # * HELPER ---------------------------------------------------------------------
 
 
 def round_dict_values(d, k):
     """ Round all values in dictionary to k decimal places """
-
     return {key: '{:.03f}'.format(d[key]) for key in d}
 
 
-def tables_txt_dump(output_tables, name, ext):
+def tables_txt_dump(output_tables, caption, relpath):
     """ Helper function to write tables to text files """
 
-    filepath = cfg.OUTPUT_PATH + 'tables/' + name + ext
+    filepath = cfg.OUTPUT_PATH + 'tables/' + relpath
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     with open(filepath, "w") as f:
 
-        f.write(f'# {cfg.RUN_ID}: {name} results\n')
+        f.write(f'# {cfg.RUN_ID}: {caption} results\n')
 
         for tableId in output_tables:
 

@@ -48,7 +48,7 @@ def printFeatureImportances(models_pickle, feature_list):
 
     print()
 
-    tables_txt_dump(all_tables, 'feat_imp', '.md')
+    tables_txt_dump(all_tables, 'Feature Importances', 'md/feat_imp.md')
 
 
 printFeatureImportances(data.models_dict, data.feature_list)

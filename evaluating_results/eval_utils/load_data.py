@@ -16,5 +16,5 @@ def load_json(path):
 
 models_dict = load_pickle("best_models.pickle")
 feature_list = load_json("final_feature_list.json")
-best_results_dict = load_json("results/best_results.json")
-all_results_dict = load_json("results/all_results.json")
+best_results_dict = load_json("results/results_best.json")
+all_results_dict = load_json("results/results_all.json")
