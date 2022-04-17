@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from sklearn import tree
 
 from eval_utils import config as cfg
-from eval_utils import load_data as data
+from eval_utils import load_results as data
 
 
 def plotDecisionTree(estimator, feature_list, target_label):

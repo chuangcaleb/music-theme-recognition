@@ -1,6 +1,6 @@
 from tabulate import tabulate
 
-from eval_utils import load_data as data
+from eval_utils import load_results as data
 from eval_utils.export_results import tables_txt_dump
 
 
