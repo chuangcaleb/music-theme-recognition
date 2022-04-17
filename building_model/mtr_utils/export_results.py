@@ -1,6 +1,8 @@
+import inspect
 import json
 import os
 import pickle
+from numpy import ndarray
 
 from tabulate import tabulate
 
@@ -48,7 +50,33 @@ def results_table_dump(results_dict, name, caption):
 
 
 def exportConfig():
-    pass
+
+    excluded = ['SVC', 'CLASSIFIERS']
+    bad_types = [range, ndarray]
+    variables = vars(cfg)
+
+    def unwantedKeys(k): return k in excluded or k.startswith('__')
+
+    def hasLower(str): return (any(c.islower() for c in str))
+
+    def stringClasses(obj):
+        if inspect.getmodule(obj) != None or type(obj) in bad_types:
+            return str(obj)
+        else:
+            return obj
+
+    def dictValuesToStr(obj):
+        if isinstance(obj, dict):
+            return {k: dictValuesToStr(v) for k, v in obj.items()}
+        else:
+            return stringClasses(obj)
+
+    cleaned_variables = {k: dictValuesToStr(v)
+                         for k, v in variables.items()
+                         if not unwantedKeys(k)
+                         if not hasLower(str(k))}
+
+    return cleaned_variables
 
 # * HELPER ---------------------------------------------------------------------
 
@@ -78,6 +106,23 @@ def tables_txt_dump(output_tables, caption, relpath):
 def build_label_table(dict, label, caption):
     """ Helper function to build the md and latex result tables """
 
+    # ------------------------- Helper Functions ----------------------------- #
+
+    LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
+    LATEX_TABLE_END = '\n\\end{table}'
+
+    def build_latex_table(table, label, caption):
+        """ Helper function to build the latex wrappers around the table """
+
+        return LATEX_TABLE_BEGIN + table + build_latex_caption(label, caption) + LATEX_TABLE_END
+
+    def build_latex_caption(label, caption):
+        """ Helper function to build the latex caption """
+
+        return f'\n\caption{{\\label{{tab: results-{label}}} {caption} model performances for `{label}\'.}}'
+
+    # ------------------------------ Code ----------------------------------- #
+
     rows = [
         [key] + list(dict[key].values()) for key, value in dict.items()
     ]
@@ -105,19 +150,3 @@ def build_label_table(dict, label, caption):
     latex_table_output = build_latex_table(latex_table, label, caption)
 
     return latex_table_output, markdown_table_output
-
-
-LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
-LATEX_TABLE_END = '\n\\end{table}'
-
-
-def build_latex_table(table, label, caption):
-    """ Helper function to build the latex wrappers around the table """
-
-    return LATEX_TABLE_BEGIN + table + build_latex_caption(label, caption) + LATEX_TABLE_END
-
-
-def build_latex_caption(label, caption):
-    """ Helper function to build the latex caption """
-
-    return f'\n\caption{{\\label{{tab: results-{label}}} {caption} model performances for `{label}\'.}}'

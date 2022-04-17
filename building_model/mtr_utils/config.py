@@ -1,5 +1,6 @@
 """ Configuration settings for the building the MTR models """
 
+import inspect
 import random
 
 import numpy as np
@@ -29,12 +30,12 @@ RAND_SEED = 900
 """ Number of random seeds to generate """
 NUM_OF_RAND_SEEDS = 2
 
+
 # List of random seeds
 random.seed(RAND_SEED)
-RAND_SEEDS_LIST = random.sample(range(1, 999999), NUM_OF_RAND_SEEDS)
-# print(RAND_STATE_RANGE)
+RAND_SEEDS_LIST = sorted(random.sample(range(1, 999999), NUM_OF_RAND_SEEDS))
 
-""" 
+"""
 Scoring metric for selecting the best seed
 
 Refer to: building_model/mtr_utils/scoring.py
@@ -43,7 +44,7 @@ BEST_SEED_SCORING = 'rocauc'
 
 # * Label Selection
 
-""" 
+"""
 Specify labels to process or skip
 
 Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
@@ -55,7 +56,7 @@ SELECTED_LABELS = [
 
 # * Feature Engineering
 
-""" 
+"""
 Remove features with a variance below this value
 """
 THRESHOLD_VAL = 0
@@ -70,19 +71,19 @@ SCALER = scaler.standardize
 
 # * Train-Test Split
 
-""" 
+"""
 The proportion of dataset to include in the test set
 """
 TEST_SIZE = 0.2
 
 # * Cross-Validation Tuning
 
-""" 
+"""
 Number of folds to use during cross-validation
 """
 CV = StratifiedKFold(5)
 
-""" 
+"""
 Scoring metric for selecting the best fold in cross-validation
 
 Refer to: https://scikit-learn.org/stable/modules/model_evaluation.html
@@ -140,6 +141,7 @@ NB_PARAMETERS = {
     'var_smoothing': np.logspace(0, -9, num=100)
 }
 
+
 # * classifiers object
 
 
@@ -188,27 +190,31 @@ class defClf:
         'param': NN_PARAMETERS
     }
 
-    naiveBayes = {
-        'name': 'GaussianNB',
-        'model':  GaussianNB(),
-        'param': NB_PARAMETERS
-    }
+    # naiveBayes = {
+    #     'name': 'GaussianNB',
+    #     'model':  GaussianNB(),
+    #     'param': NB_PARAMETERS
+    # }
 
 
 # Comment out individual classifiers that you want to skip
-classifiers = [
+CLASSIFIERS = [
     defClf.zeroRate,
     defClf.randomRate,
-    defClf.naiveBayes,
+    # defClf.naiveBayes,
     # defClf.knn,
-    # defClf.svm,
-    defClf.decnTree,
+    defClf.svm,
+    # defClf.decnTree,
     # defClf.randForest,
     # defClf.neuralNet
-    # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]
 
-actual_classifiers = [
-    clf['name'] for clf in classifiers
+# ALL_CLASSIFIERS = [
+#     clf['name'] for clf in CLASSIFIERS
+# ]
+
+
+ACTUAL_CLASSIFIERS = [
+    clf['name'] for clf in CLASSIFIERS
     if type(clf['model']) is not DummyClassifier
 ]

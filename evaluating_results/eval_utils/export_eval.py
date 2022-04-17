@@ -23,6 +23,11 @@ def json_dump(dict, filename, subdir=''):
 def results_table_dump(results_dict, name, caption):
     """ Main function to dump results in tables as text files """
 
+    def round_dict_values(d, k):
+        """ Round all values in dictionary to k decimal places """
+
+        return {key: '{:.03f}'.format(d[key]) for key in d}
+
     output_latex_tables = {}
     output_md_tables = {}
 
@@ -47,16 +52,7 @@ def results_table_dump(results_dict, name, caption):
     tables_txt_dump(output_md_tables, caption,  f'md/{name}.md')
 
 
-def exportConfig():
-    pass
-
 # * HELPER ---------------------------------------------------------------------
-
-
-def round_dict_values(d, k):
-    """ Round all values in dictionary to k decimal places """
-
-    return {key: '{:.03f}'.format(d[key]) for key in d}
 
 
 def tables_txt_dump(output_tables, caption, relpath):
@@ -78,6 +74,23 @@ def tables_txt_dump(output_tables, caption, relpath):
 
 def build_label_table(dict, label, caption):
     """ Helper function to build the md and latex result tables """
+
+    # ------------------------- Helper Functions ----------------------------- #
+
+    LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
+    LATEX_TABLE_END = '\n\\end{table}'
+
+    def build_latex_table(table, label, caption):
+        """ Helper function to build the latex wrappers around the table """
+
+        return LATEX_TABLE_BEGIN + table + build_latex_caption(label, caption) + LATEX_TABLE_END
+
+    def build_latex_caption(label, caption):
+        """ Helper function to build the latex caption """
+
+        return f'\n\caption{{\\label{{tab: results-{label}}} {caption} model performances for `{label}\'.}}'
+
+    # ------------------------------ Code ----------------------------------- #
 
     rows = [
         [key] + list(dict[key].values()) for key, value in dict.items()
@@ -106,19 +119,3 @@ def build_label_table(dict, label, caption):
     latex_table_output = build_latex_table(latex_table, label, caption)
 
     return latex_table_output, markdown_table_output
-
-
-LATEX_TABLE_BEGIN = '\\begin{table}[ht]\n'
-LATEX_TABLE_END = '\n\\end{table}'
-
-
-def build_latex_table(table, label, caption):
-    """ Helper function to build the latex wrappers around the table """
-
-    return LATEX_TABLE_BEGIN + table + build_latex_caption(label, caption) + LATEX_TABLE_END
-
-
-def build_latex_caption(label, caption):
-    """ Helper function to build the latex caption """
-
-    return f'\n\caption{{\\label{{tab: results-{label}}} {caption} model performances for `{label}\'.}}'

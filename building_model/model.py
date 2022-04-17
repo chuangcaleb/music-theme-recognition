@@ -6,7 +6,8 @@ from sklearn.model_selection import train_test_split
 
 from mtr_utils import config as cfg
 from mtr_utils import import_dataset as data
-from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
+from mtr_utils.export_results import (exportConfig, json_dump, pickle_dump,
+                                      results_table_dump)
 from mtr_utils.feature_selection import load_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
@@ -73,7 +74,7 @@ for current_label in cfg.SELECTED_LABELS:
 
         # * FOR EACH CLASSIFIER MODEL ------------------------------------------
 
-        for clf in cfg.classifiers:
+        for clf in cfg.CLASSIFIERS:
 
             print(f"{clf['name']}...")
 
@@ -95,7 +96,7 @@ for current_label in cfg.SELECTED_LABELS:
             # Save performance scores
             clf_results_dict[clf['name']] = scores
             # Save model objects IF is not a baseline classifier
-            if clf['name'] in cfg.actual_classifiers:
+            if clf['name'] in cfg.ACTUAL_CLASSIFIERS:
                 clf_models_dict[clf['name']] = best_estimator
 
         # * Update results for classifiers per seed
@@ -125,6 +126,8 @@ pickle_dump(output_best_models_dict, 'models_best')
 json_dump(output_all_results_dict, 'results_all', 'results/')
 json_dump(output_best_results_dict, 'results_best', 'results/')
 json_dump(output_best_params_dict, 'params_best')
+
+json_dump(exportConfig(), 'run_config')
 
 results_table_dump(output_best_results_dict, 'results_best', 'Best')
 
