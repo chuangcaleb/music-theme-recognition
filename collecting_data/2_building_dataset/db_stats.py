@@ -1,13 +1,14 @@
-from cProfile import label
-import pandas as pd
-from process_db import *
-import matplotlib.pyplot as plt
 import json
 
-label_root_path = 'data/labels'
-song_theme_label_database_path = label_root_path + \
-    '/song_theme_label_database.xlsx'
-label_summary_export_path = label_root_path + '/label_stats_summary.json'
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+from process_db import *
+
+label_root_dir = 'data/labels/'
+song_theme_label_database_path = label_root_dir + \
+    'song_theme_label_database.xlsx'
 
 # Convert all p's to 1's
 p_to_1_convert(song_theme_label_database_path)
@@ -83,10 +84,22 @@ print(sorted_label_stats_df)
 
 print()
 
-sorted_label_stats_df.plot(kind='bar', y=1.0, xlabel='Labels',
-                           ylabel='Frequency', legend=False, title='Theme Label Frequencies in Samples Dataset')
+# sorted_label_stats_df.plot(kind='bar', y=1.0, xlabel='Labels',
+#                            ylabel='Frequency', legend=False, title='Theme Label Frequencies in Samples Dataset')
 # plt.show()
 
+
+sorted_label_stats_df.plot(
+    kind='bar',
+    y=1.0,
+    xlabel='Labels',
+    ylabel='Frequency',
+    legend=False,
+    title='Theme Label Frequencies in Samples Dataset'
+)
+
+plt.tight_layout()
+plt.savefig(label_root_dir + 'label_freq.png')
 
 # * EXPORT
 
@@ -104,8 +117,8 @@ stats_dict = {
     'recog_procs_perc': perc_recog_procs,
 } | sorted_label_stats_dict
 
+label_summary_export_path = label_root_dir + 'label_stats_summary.json'
 
 json.dump(stats_dict, open(label_summary_export_path, "w"))
-
 
 print('Saved label statistics to ' + label_summary_export_path)
