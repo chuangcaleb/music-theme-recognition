@@ -10,7 +10,6 @@ from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
 from mtr_utils.feature_selection import load_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
-from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import getTunedClassifer
 from mtr_utils.sampling import oversample, smote, undersample
 from mtr_utils.save_best import save_best_models
@@ -24,13 +23,12 @@ output_best_results_dict = {}
 output_best_models_dict = {}
 output_best_params_dict = {}
 
-# * Extract data from label dataset
-
-label_df = extractLabelDataset(data.raw_label_df, cfg.SELECTED_LABELS)
+raw_feature_df = data.raw_feature_df
+raw_label_df = data.extracted_label_df
 
 # * Feature Selection
 
-manual_feature_df = data.raw_feature_df[load_feature_set.preselected_feature_list]
+manual_feature_df = raw_feature_df[load_feature_set.preselected_feature_list]
 
 selected_features_df, feature_list = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
@@ -59,12 +57,10 @@ for current_label in cfg.SELECTED_LABELS:
         clf_results_dict = {}
         clf_models_dict = {}
 
-        # ? Further feature selection
-
         # * Converting Dataset Type
 
         feature_df = scaled_feature_df
-        label_np = label_df[[current_label]].to_numpy().astype(int).ravel()
+        label_np = raw_label_df[[current_label]].to_numpy().astype(int).ravel()
 
         # * Splitting Dataset
 
