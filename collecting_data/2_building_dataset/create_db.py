@@ -1,9 +1,8 @@
-import os
+import os.path
 import pandas as pd
 
 """
-! WARNING: Overwrites the csv! OR: in a non-overwriting way? Compares key index(es), compile & sort unique set, then overwrite
-Nah not enough time. If accidentally overwritten, just restore from last git commit.
+Compares key index(es), compile & sort unique set, then overwrite?
 """
 
 root_path = 'data/bin'
@@ -15,25 +14,32 @@ directory_names = os.listdir(root_path)
 # Get list of subfiles
 directories_data = [x for x in os.walk(root_path) if x[0] != root_path]
 
-# For each source/directory
-for i, directory_data in enumerate(directories_data):
 
-    print(i, directory_names[i])
+if not os.path.exists(song_theme_database_path):
 
-    # Sort this source's samples alphabetically
-    directory_data[2].sort()
+    # For each source/directory
+    for i, directory_data in enumerate(directories_data):
 
-    # Create a partial dataframe
-    current_df = pd.DataFrame({
-        "id": directory_data[2],
-        "source": directory_names[i]
-    })
+        print(i, directory_names[i])
 
-    # Append to main dataframe
-    label_df = label_df.append(current_df, ignore_index=True)
+        # Sort this source's samples alphabetically
+        directory_data[2].sort()
 
-# Display in console
-print(label_df)
+        # Create a partial dataframe
+        current_df = pd.DataFrame({
+            "id": directory_data[2],
+            "source": directory_names[i]
+        })
 
-# Write to output csv file
-label_df.to_excel(song_theme_database_path, index=False)
+        # Append to main dataframe
+        label_df = label_df.append(current_df, ignore_index=True)
+
+    # Display in console
+    print(label_df)
+
+    # Write to output csv file
+    label_df.to_excel(song_theme_database_path, index=False)
+
+else:
+
+    print('\nLabel database already exists!\n')

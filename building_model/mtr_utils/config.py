@@ -128,10 +128,10 @@ NN_PARAMETERS = {
     'solver': ['lbfgs', 'sgd'],
     # 'solver': ['lbfgs', 'sgd', 'adam'],
     'max_iter': [1500, 1750, 2000],
-    'activation': ['identity', 'logistic', 'tanh', 'relu'],
     # 'activation': ['identity', 'logistic', 'tanh', 'relu'],
-    'alpha': 10.0 ** -np.arange(1, 10),
-    'hidden_layer_sizes': np.arange(10, 15),
+    # 'activation': ['identity', 'logistic', 'tanh', 'relu'],
+    # 'alpha': 10.0 ** -np.arange(1, 10),
+    # 'hidden_layer_sizes': np.arange(10, 15),
 }
 
 # * Naive Bayes
