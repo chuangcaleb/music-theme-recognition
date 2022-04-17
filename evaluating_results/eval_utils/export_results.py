@@ -43,8 +43,12 @@ def results_table_dump(results_dict, name, caption):
             rounded_current_results, current_label, caption)
 
     # Write tables to files
-    tables_txt_dump(output_latex_tables, name, '_latex_tables.txt')
-    tables_txt_dump(output_md_tables, name,  '_md_tables.md')
+    tables_txt_dump(output_latex_tables, name, '_tables.tex')
+    tables_txt_dump(output_md_tables, name,  '_tables.md')
+
+
+def exportConfig():
+    pass
 
 # * HELPER ---------------------------------------------------------------------
 
