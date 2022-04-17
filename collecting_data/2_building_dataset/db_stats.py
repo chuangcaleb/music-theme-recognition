@@ -1,8 +1,13 @@
+from cProfile import label
 import pandas as pd
 from process_db import *
 import matplotlib.pyplot as plt
+import json
 
-song_theme_label_database_path = 'data/labels/song_theme_label_database.xlsx'
+label_root_path = 'data/labels'
+song_theme_label_database_path = label_root_path + \
+    '/song_theme_label_database.xlsx'
+label_summary_export_path = label_root_path + '/label_stats_summary.json'
 
 # Convert all p's to 1's
 p_to_1_convert(song_theme_label_database_path)
@@ -28,17 +33,14 @@ Recog/Processed = (countif recognizable == 1) / (countif recognizable != NaN)
 total_count = len(label_df.index)
 
 recognizable_count = len(label_df[label_df.recognizable == 1])
-perc_recognizable = "(" + \
-    str(percentage(recognizable_count, total_count)) + "%)"
+perc_recognizable = percentage(recognizable_count, total_count)
 
-processed_count = label_df.recognizable.count()
-perc_processed = "(" + \
-    str(percentage(processed_count, total_count)) + "%)"
+processed_count = int(label_df.recognizable.count())
+perc_processed = percentage(processed_count, total_count)
 
 unprocessed_count = total_count - processed_count
 
-perc_recog_procs = "(" + \
-    str(percentage(recognizable_count, processed_count)) + "%)"
+perc_recog_procs = percentage(recognizable_count, processed_count)
 
 # * Count label occurrences
 
@@ -66,12 +68,11 @@ sorted_label_stats_df = label_stats_df.sort_values(by='%', ascending=False)
 
 print("\n\n\033[92mMusic Theme Database Statistics\033[0m \n")
 
-print("Total number of samples:", total_count)
-print("Recognizable samples:",
-      recognizable_count, perc_recognizable)
-print("Processed samples:", processed_count, perc_processed)
-print("-> Unprocessed samples:", unprocessed_count)
-print("Recognized / Processed samples:", perc_recog_procs)
+print(f"Total number of samples: {total_count}")
+print(f"Recognizable samples: {recognizable_count} ({perc_recognizable}%)")
+print(f"Processed samples: {processed_count} ({perc_processed}%)")
+print(f"-> Unprocessed samples: {unprocessed_count}")
+print(f"Recognized / Processed samples: ({perc_recog_procs}%)")
 
 print()
 
@@ -84,4 +85,27 @@ print()
 
 sorted_label_stats_df.plot(kind='bar', y=1.0, xlabel='Labels',
                            ylabel='Frequency', legend=False, title='Theme Label Frequencies in Samples Dataset')
-plt.show()
+# plt.show()
+
+
+# * EXPORT
+
+sorted_label_stats_dict = sorted_label_stats_df.to_dict()
+# with open(label_summary_export_path, 'w') as f:
+#     f.write(sorted_label_stats_json)
+
+stats_dict = {
+    'total_count': total_count,
+    'recognized_count': recognizable_count,
+    'recognizable_perc': perc_recognizable,
+    'processed_samples_count': processed_count,
+    'processed_samples_perc': perc_processed,
+    'unprocessed_count': unprocessed_count,
+    'recog_procs_perc': perc_recog_procs,
+} | sorted_label_stats_dict
+
+
+json.dump(stats_dict, open(label_summary_export_path, "w"))
+
+
+print('Saved label statistics to ' + label_summary_export_path)
