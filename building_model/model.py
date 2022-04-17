@@ -120,7 +120,7 @@ for current_label in cfg.SELECTED_LABELS:
 
 json_dump(feature_list, 'final_feature_list')
 
-pickle_dump(output_best_models_dict, 'best_models')
+pickle_dump(output_best_models_dict, 'models_best')
 
 json_dump(output_all_results_dict, 'results_all', 'results/')
 json_dump(output_best_results_dict, 'results_best', 'results/')
