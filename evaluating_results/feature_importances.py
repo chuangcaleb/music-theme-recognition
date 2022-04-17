@@ -1,6 +1,5 @@
 from tabulate import tabulate
 
-from eval_utils import config as cfg
 from eval_utils import load_data as data
 from eval_utils.export_results import tables_txt_dump
 
@@ -14,7 +13,7 @@ def printFeatureImportances(models_pickle, feature_list):
     for current_label in models_pickle:
 
         label_title = f'\n> \033[93m{current_label}\033[0m'
-        scores_dict = data.best_results_dict[current_label]['DecnTree']
+        scores_dict = data.best_results_dict[current_label]['RandForest']
         scores_list = [k + ' = ' + str(round(v, 3))
                        for k, v in scores_dict.items()]
         textstr = '\n'.join(scores_list)
@@ -49,7 +48,7 @@ def printFeatureImportances(models_pickle, feature_list):
 
     print()
 
-    tables_txt_dump(all_tables, '/feat_imp', '.md')
+    tables_txt_dump(all_tables, 'feat_imp', '.md')
 
 
 printFeatureImportances(data.models_dict, data.feature_list)

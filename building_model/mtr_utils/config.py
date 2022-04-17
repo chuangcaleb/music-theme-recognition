@@ -14,7 +14,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = '.temp'
+RUN_ID = 'auc_900'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -23,10 +23,10 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 # * Random Seed
 
 """ Random seed for the random generator """
-RAND_SEED = 899
+RAND_SEED = 900
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 2
+NUM_OF_RAND_SEEDS = 15
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -38,7 +38,7 @@ Scoring metric for selecting the best seed
 
 Refer to: building_model/mtr_utils/scoring.py
 """
-BEST_SEED_SCORING = 'f1-bin'
+BEST_SEED_SCORING = 'rocauc'
 
 # * Label Selection
 
@@ -48,8 +48,8 @@ Specify labels to process or skip
 Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
 """
 SELECTED_LABELS = [
-    'risk', 'contentment',
-    # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
+    # 'risk', 'contentment',
+    'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
 
 # * Feature Selection
@@ -193,6 +193,6 @@ classifiers = [
     defClf.knn,
     defClf.svm,
     defClf.decnTree,
-    # defClf.randForest
+    defClf.randForest
     # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]
