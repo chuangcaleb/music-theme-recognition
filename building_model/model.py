@@ -1,18 +1,23 @@
+import warnings
+
 from sklearn.dummy import DummyClassifier
+from sklearn.exceptions import ConvergenceWarning
 from sklearn.model_selection import train_test_split
 
 from mtr_utils import config as cfg
 from mtr_utils import import_dataset as data
 from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
-from mtr_utils.scaling import scaleData
 from mtr_utils.feature_selection import load_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
 from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils.model_tuning import getTunedClassifer
-from mtr_utils.save_best import save_best_models
 from mtr_utils.sampling import oversample, smote, undersample
+from mtr_utils.save_best import save_best_models
+from mtr_utils.scaling import scaleData
 from mtr_utils.scoring import get_scoring
+
+# warnings.simplefilter("ignore", category=ConvergenceWarning)
 
 output_all_results_dict = {}
 output_best_results_dict = {}
@@ -30,7 +35,7 @@ manual_feature_df = data.raw_feature_df[load_feature_set.preselected_feature_lis
 selected_features_df, feature_list = filterVarianceThreshold(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
-# * Feature Scaling (Normalization)
+# * Feature Scaling
 
 scaled_feature_df = scaleData(selected_features_df)
 

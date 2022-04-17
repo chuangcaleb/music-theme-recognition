@@ -1,4 +1,4 @@
-""" Configuration settings for the running the MTR model """
+""" Configuration settings for the building the MTR models """
 
 import random
 
@@ -27,7 +27,7 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 RAND_SEED = 900
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 2
+NUM_OF_RAND_SEEDS = 5
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -125,10 +125,11 @@ RF_PARAMETERS = {
 # * Neural Network
 
 NN_PARAMETERS = {
-    # 'solver': ['lbfgs'],
-    'solver': ['lbfgs', 'sgd', 'adam'],
+    'solver': ['lbfgs', 'sgd'],
+    # 'solver': ['lbfgs', 'sgd', 'adam'],
     'max_iter': [1500, 1750, 2000],
     'activation': ['identity', 'logistic', 'tanh', 'relu'],
+    # 'activation': ['identity', 'logistic', 'tanh', 'relu'],
     'alpha': 10.0 ** -np.arange(1, 10),
     'hidden_layer_sizes': np.arange(10, 15),
 }
@@ -196,12 +197,13 @@ class defClf:
 
 # Comment out individual classifiers that you want to skip
 classifiers = [
-    defClf.zeroRate,
-    defClf.randomRate,
-    defClf.naiveBayes,
+    # defClf.zeroRate,
+    # defClf.randomRate,
+    # defClf.naiveBayes,
     # defClf.knn,
     # defClf.svm,
     # defClf.decnTree,
     # defClf.randForest
+    defClf.neuralNet
     # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]
