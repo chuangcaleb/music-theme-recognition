@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from mtr_utils import config as cfg
 from mtr_utils import import_dataset as data
 from mtr_utils.export_results import json_dump, pickle_dump, results_table_dump
-from mtr_utils.scaling import normalizeData
+from mtr_utils.scaling import scaleData
 from mtr_utils.feature_selection import load_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import \
     filterVarianceThreshold
@@ -32,7 +32,7 @@ selected_features_df, feature_list = filterVarianceThreshold(
 
 # * Feature Scaling (Normalization)
 
-scaled_feature_df = normalizeData(selected_features_df)
+scaled_feature_df = scaleData(selected_features_df)
 
 # ? FEATURE ENGINEERING - merging labels?
 

@@ -9,12 +9,13 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = 'auc_900'
+RUN_ID = '.temp'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -26,7 +27,7 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 RAND_SEED = 900
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 15
+NUM_OF_RAND_SEEDS = 2
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -48,16 +49,24 @@ Specify labels to process or skip
 Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
 """
 SELECTED_LABELS = [
-    # 'risk', 'contentment',
-    'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
+    'risk', 'contentment',
+    # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
 
-# * Feature Selection
+# * Feature Engineering
 
 """ 
 Remove features with a variance below this value
 """
 THRESHOLD_VAL = 0
+
+
+class scaler:
+    normalize = MinMaxScaler()
+    standardize = StandardScaler()
+
+
+SCALER = scaler.standardize
 
 # * Train-Test Split
 
@@ -190,9 +199,9 @@ classifiers = [
     defClf.zeroRate,
     defClf.randomRate,
     defClf.naiveBayes,
-    defClf.knn,
-    defClf.svm,
-    defClf.decnTree,
-    defClf.randForest
+    # defClf.knn,
+    # defClf.svm,
+    # defClf.decnTree,
+    # defClf.randForest
     # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]

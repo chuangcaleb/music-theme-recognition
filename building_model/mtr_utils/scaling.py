@@ -1,6 +1,10 @@
-from sklearn.preprocessing import MinMaxScaler
+from mtr_utils import config as cfg
 
 
-def normalizeData(df):
-    scaler = MinMaxScaler().fit(df)
+def scaleData(df):
+
+    scaler = cfg.SCALER
+
+    scaler.fit(df)
+
     return scaler.transform(df)
