@@ -14,9 +14,9 @@ def printFeatureImportances(models_pickle, feature_list):
 
         label_title = f'\n> \033[93m{current_label}\033[0m'
         scores_dict = data.best_results_dict[current_label]['RandForest']
-        scores_list = [k + ' = ' + str(round(v, 3))
-                       for k, v in scores_dict.items()]
-        textstr = '\n'.join(scores_list)
+        scores_str = [k + ' = ' + str(round(v, 3))
+                      for k, v in scores_dict.items()]
+        textstr = '\n'.join(scores_str)
 
         print(label_title, end='\n\n')
         print(textstr, end='\n\n')
