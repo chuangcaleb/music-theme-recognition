@@ -2,7 +2,7 @@ from tabulate import tabulate
 
 from eval_utils import config as cfg
 from eval_utils import load_data as data
-from eval_utils.export_results import txt_dump
+from eval_utils.export_results import tables_txt_dump
 
 
 def printFeatureImportances(models_pickle, feature_list):
@@ -49,7 +49,7 @@ def printFeatureImportances(models_pickle, feature_list):
 
     print()
 
-    txt_dump(all_tables, cfg.RUN_ID + '/feat_imp', '.md')
+    tables_txt_dump(all_tables, '/feat_imp', '.md')
 
 
 printFeatureImportances(data.models_dict, data.feature_list)

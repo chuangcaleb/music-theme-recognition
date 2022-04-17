@@ -14,7 +14,7 @@ def load_json(path):
     return json.load(open(cfg.OUTPUT_PATH + path, "r"))
 
 
-models_dict = load_pickle("/best_models.pickle")
-feature_list = load_json("/final_feature_list.json")
-best_results_dict = load_json("/results/best_results.json")
-all_results_dict = load_json("/results/all_results.json")
+models_dict = load_pickle("best_models.pickle")
+feature_list = load_json("final_feature_list.json")
+best_results_dict = load_json("results/best_results.json")
+all_results_dict = load_json("results/all_results.json")
