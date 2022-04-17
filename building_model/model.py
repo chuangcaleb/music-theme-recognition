@@ -94,8 +94,8 @@ for current_label in cfg.SELECTED_LABELS:
 
             # Save performance scores
             clf_results_dict[clf['name']] = scores
-            # Save model objects UNLESS is a DummyClassifier
-            if type(clf['model']) is not DummyClassifier:
+            # Save model objects IF is not a baseline classifier
+            if clf['name'] in cfg.actual_classifiers:
                 clf_models_dict[clf['name']] = best_estimator
 
         # * Update results for classifiers per seed

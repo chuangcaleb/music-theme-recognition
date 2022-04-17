@@ -27,7 +27,7 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 RAND_SEED = 900
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 5
+NUM_OF_RAND_SEEDS = 2
 
 # List of random seeds
 random.seed(RAND_SEED)
@@ -197,13 +197,20 @@ class defClf:
 
 # Comment out individual classifiers that you want to skip
 classifiers = [
-    # defClf.zeroRate,
-    # defClf.randomRate,
-    # defClf.naiveBayes,
+    defClf.zeroRate,
+    defClf.randomRate,
+    defClf.naiveBayes,
     # defClf.knn,
     # defClf.svm,
-    # defClf.decnTree,
-    # defClf.randForest
-    defClf.neuralNet
+    defClf.decnTree,
+    # defClf.randForest,
+    # defClf.neuralNet
     # defaultClassifier.neuralNet (Doesn't converge, throws errors)
 ]
+
+actual_classifiers = [
+    clf['name'] for clf in classifiers
+    if type(clf['model']) is not DummyClassifier
+]
+
+print(actual_classifiers)

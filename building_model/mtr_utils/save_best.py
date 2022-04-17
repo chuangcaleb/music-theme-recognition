@@ -7,9 +7,8 @@ def save_best_models(label_results_dict, label_models_dict):
     label_best_models_dict = {}
     label_best_params_dict = {}
 
-    actual_clf_list = list(list(label_models_dict.values())[0].keys())
-
-    for clf in actual_clf_list:
+    # Only iterate through actual classifiers, skipping baseline classifeirs
+    for clf in cfg.actual_classifiers:
 
         # Init best score to 0
         best_score = 0
