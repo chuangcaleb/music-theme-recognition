@@ -141,7 +141,6 @@ NB_PARAMETERS = {
     'var_smoothing': np.logspace(0, -9, num=100)
 }
 
-
 # * classifiers object
 
 

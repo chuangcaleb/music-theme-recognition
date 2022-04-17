@@ -2,7 +2,7 @@
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = "auc_900"
+RUN_ID = ".temp"
 # ROOT_PATH = "data/output/"
 # OUTPUT_PATH = "data/eval/"
 

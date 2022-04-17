@@ -53,6 +53,7 @@ def exportConfig():
 
     excluded = ['SVC', 'CLASSIFIERS']
     bad_types = [range, ndarray]
+
     variables = vars(cfg)
 
     def unwantedKeys(k): return k in excluded or k.startswith('__')
@@ -71,12 +72,10 @@ def exportConfig():
         else:
             return stringClasses(obj)
 
-    cleaned_variables = {k: dictValuesToStr(v)
-                         for k, v in variables.items()
-                         if not unwantedKeys(k)
-                         if not hasLower(str(k))}
-
-    return cleaned_variables
+    return {k: dictValuesToStr(v)
+            for k, v in variables.items()
+            if not unwantedKeys(k)
+            and not hasLower(str(k))}
 
 # * HELPER ---------------------------------------------------------------------
 
