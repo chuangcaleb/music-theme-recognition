@@ -1,6 +1,4 @@
 import pandas as pd
-
-from mtr_utils.label_dataset_selection import extractLabelDataset
 from mtr_utils import config as cfg
 
 song_theme_feature_database_path = 'data/features/song_theme_feature_database.csv'
