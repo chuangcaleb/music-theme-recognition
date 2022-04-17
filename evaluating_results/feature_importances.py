@@ -1,7 +1,7 @@
 from tabulate import tabulate
 
 from eval_utils import load_results as data
-from eval_utils.export_results import tables_txt_dump
+from eval_utils.export_eval import tables_txt_dump
 
 
 def printFeatureImportances(models_pickle, feature_list):
