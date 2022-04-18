@@ -1,6 +1,5 @@
 import json
 import pickle
-import os
 from eval_utils import config as cfg
 
 

@@ -1,6 +1,7 @@
+from ntpath import join
 import warnings
+import pandas as pd
 
-from sklearn.dummy import DummyClassifier
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.model_selection import train_test_split
 
@@ -25,7 +26,7 @@ output_best_models_dict = {}
 output_best_params_dict = {}
 
 raw_feature_df = data.raw_feature_df
-raw_label_df = data.extracted_label_df
+raw_label_df = data.data_label_df
 
 # * Feature Selection
 
@@ -36,7 +37,7 @@ selected_features_df, feature_list = filter_var_thresh(
 
 # * Feature Scaling
 
-scaled_feature_df = scale_data(selected_features_df)
+scaled_feature_np = scale_data(selected_features_df)
 
 # ? FEATURE ENGINEERING - merging labels?
 
@@ -60,13 +61,13 @@ for current_label in cfg.SELECTED_LABELS:
 
         # * Converting Dataset Type
 
-        feature_df = scaled_feature_df
+        feature_np = scaled_feature_np
         label_np = raw_label_df[[current_label]].to_numpy().astype(int).ravel()
 
         # * Splitting Dataset
 
         (x_train, x_test, y_train, y_test) = train_test_split(
-            feature_df, label_np, test_size=cfg.TEST_SIZE, stratify=label_np, random_state=current_seed)
+            feature_np, label_np, test_size=cfg.TEST_SIZE, stratify=label_np, random_state=current_seed)
 
         # * Sampling
 
@@ -117,7 +118,16 @@ for current_label in cfg.SELECTED_LABELS:
     output_best_params_dict.update({current_label: label_best_params_dict})
 
 
-# * Export models and results
+# * Export data for this run
+
+feature_df = pd.DataFrame(data=feature_np, columns=feature_list)
+# out_label_df = data.extracted_label_df
+
+# joined_df = out_label_df.join(feature_df)
+
+# print(joined_df)
+
+feature_df.to_csv('data/output/' + cfg.RUN_ID + '/processed_features.csv')
 
 json_dump(feature_list, 'final_feature_list')
 

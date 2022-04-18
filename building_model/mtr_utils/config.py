@@ -226,11 +226,11 @@ defaultClassifiers = {
 
 # Comment out individual classifiers that you want to skip
 CLASSIFIERS = [
-    # defaultClassifiers['zeroRate'],
+    defaultClassifiers['zeroRate'],
     defaultClassifiers['randomRate'],
     defaultClassifiers['naiveBayes'],
     # defaultClassifiers['knn'],
-    defaultClassifiers['svm'],
+    # defaultClassifiers['svm'],
     # defaultClassifiers['decnTree'],
     # defaultClassifiers['randForest'],
     # defaultClassifiers['neuralNet'],
