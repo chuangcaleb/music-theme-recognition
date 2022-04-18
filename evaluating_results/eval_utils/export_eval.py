@@ -93,7 +93,7 @@ def build_label_table(dict, label, caption):
     # ------------------------------ Code ----------------------------------- #
 
     rows = [
-        [key] + list(dict[key].values()) for key, value in dict.items()
+        [key] + list(dict[key].values()) for key in dict.keys()
     ]
     headers = list(
         dict[list(dict)[0]].keys()

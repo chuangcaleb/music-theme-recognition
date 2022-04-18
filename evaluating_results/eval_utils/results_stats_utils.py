@@ -1,7 +1,3 @@
-from statistics import mean
-
-# * Average --------------------------------------------------------------------
-
 
 def calc_stats(dict, func):
 
@@ -48,7 +44,7 @@ def init_label_dict(seed_dict):
 
     return_dictionary = {}
 
-    for seed, clf_dict in seed_dict.items():
+    for clf_dict in seed_dict.values():
 
         for clf, score_dict in clf_dict.items():
 
