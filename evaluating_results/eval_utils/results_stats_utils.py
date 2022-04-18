@@ -1,3 +1,10 @@
+from cProfile import label
+import pprint
+import statistics
+from eval_utils import load_results as data
+
+current_classifiers = [clf['name'] for clf in data.config_dict['CLASSIFIERS']]
+
 
 def calc_stats(dict, func):
 
@@ -18,11 +25,14 @@ def calc_stats(dict, func):
 
 def get_label_stat(seed_dict, func):
 
+    # Init template dictionary of metrics
+    scores_template_dict = {k: [] for k in data.config_dict['METRICS']}
     # Init dictionary
-    label_avg_dict = init_label_dict(seed_dict)
+    label_avg_dict = {k: scores_template_dict.copy()
+                      for k in current_classifiers}
 
     # Build dictionary by adding scores into list
-    for seed, clf_dict in seed_dict.items():
+    for clf_dict in seed_dict.values():
 
         for clf, score_dict in clf_dict.items():
 
@@ -33,27 +43,8 @@ def get_label_stat(seed_dict, func):
     # Average each list item
     for clf, score_dict in label_avg_dict.items():
 
-        for score, value in score_dict.items():
+        for score, values in score_dict.items():
 
-            label_avg_dict[clf][score] = func(label_avg_dict[clf][score])
+            label_avg_dict[clf][score] = func(values)
 
     return label_avg_dict
-
-
-def init_label_dict(seed_dict):
-
-    return_dictionary = {}
-
-    for clf_dict in seed_dict.values():
-
-        for clf, score_dict in clf_dict.items():
-
-            return_dictionary[clf] = {}
-
-            for score in score_dict:
-
-                return_dictionary[clf][score] = []
-
-        break  # Only run this for the first seed
-
-    return return_dictionary
