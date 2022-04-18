@@ -19,11 +19,11 @@ def plotDecisionTree(estimator, feature_list, target_label):
 
     # Main plot
     tree.plot_tree(estimator, feature_names=feature_list, class_names=[
-        'absent', target_label], label='root', filled=True, fontsize=5)
+        target_label, 'absent'], label='root', filled=True, fontsize=5)
 
     # Labels
-    plt.plot(target_label, label=target_label)
     plt.plot('absent', label='absent')
+    plt.plot(target_label, label=target_label)
     plt.legend(loc='upper right')
 
     # Parameters in text box

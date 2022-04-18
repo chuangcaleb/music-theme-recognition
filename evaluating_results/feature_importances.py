@@ -114,10 +114,13 @@ for label, features in all_scores.items():
             y_group.extend(y_feat)
             x_group.extend(x_feat)
 
-        ax.scatter(y_group, x_group, marker='x')
+        ax.scatter(y_group, x_group, marker='x', alpha=0.5, label=name)
 
     plt.title('Feature Distribution for ' + label)
 
     plt.tight_layout()
+    plt.legend()
 
     plt.show()
+
+    break
