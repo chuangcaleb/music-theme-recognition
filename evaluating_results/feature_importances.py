@@ -1,3 +1,4 @@
+from ntpath import join
 from tabulate import tabulate
 import pandas as pd
 
@@ -12,6 +13,8 @@ label_df = label_df[label_df.recognizable == 1]
 label_df.reset_index(drop=True, inplace=True)
 
 prc_feat_df = pd.read_csv(cfg.RUN_DIR + '/processed_features.csv')
+
+joined_df = label_df.join(prc_feat_df)
 
 models_dict = data.models_dict
 feature_list = data.feature_list
@@ -70,8 +73,8 @@ print()
 
 for label, features in all_scores.items():
 
-    pos_label_i = label_df.index[label_df[label] == 1].tolist()
-    neg_label_i = label_df.index[label_df[label] == 0].tolist()
+    # pos_label_i = label_df.index[label_df[label] == 1].tolist()
+    # neg_label_i = label_df.index[label_df[label] == 0].tolist()
     # neg_label_i = [x for x
     #                in list(range(len(label_df)))
     #                if not x in pos_label_i]
@@ -81,30 +84,40 @@ for label, features in all_scores.items():
     pos_feat_tuples = []
     neg_feat_tuples = []
 
-    for feat_pair in features:
+    # for feat_pair in features:
 
-        feature_name = feat_pair[0]
+    #     feature_name = feat_pair[0]
 
-        pos_feat_series = prc_feat_df.iloc[pos_label_i][feature_name]
-        pos_feat_list = pos_feat_series.tolist()
-        neg_feat_series = prc_feat_df.iloc[neg_label_i][feature_name]
-        neg_feat_list = neg_feat_series.tolist()
+    # pos_feat_series = prc_feat_df.iloc[pos_label_i][feature_name]
+    # pos_feat_list = pos_feat_series.tolist()
+    # neg_feat_series = prc_feat_df.iloc[neg_label_i][feature_name]
+    # neg_feat_list = neg_feat_series.tolist()
 
-        pos_feat_tuples.extend([(feature_name, y) for y in pos_feat_list])
-        neg_feat_tuples.extend([(feature_name, y) for y in neg_feat_list])
+    # pos_feat_tuples.extend([(feature_name, y) for y in pos_feat_list])
+    # neg_feat_tuples.extend([(feature_name, y) for y in neg_feat_list])
 
-    x_pos = [i[1] for i in pos_feat_tuples]
-    y_pos = [i[0] for i in pos_feat_tuples]
-    x_neg = [i[1] for i in pos_feat_tuples]
-    y_neg = [i[0] for i in pos_feat_tuples]
+    # x_pos = [i[1] for i in pos_feat_tuples]
+    # y_pos = [i[0] for i in pos_feat_tuples]
+    # x_neg = [i[1] for i in pos_feat_tuples]
+    # y_neg = [i[0] for i in pos_feat_tuples]
+    groups = joined_df.groupby(label)
 
-    ax.scatter(x_pos, y_pos)
-    # ax.scatter(x_neg, y_neg, c='o')
+    for name, group in groups:
+
+        y_group = []
+        x_group = []
+
+        for (feature, score) in features:
+
+            y_feat = group[feature].tolist()
+            x_feat = [feature] * len(y_feat)
+            y_group.extend(y_feat)
+            x_group.extend(x_feat)
+
+        ax.scatter(y_group, x_group, marker='x')
 
     plt.title('Feature Distribution for ' + label)
 
     plt.tight_layout()
 
     plt.show()
-
-    break
