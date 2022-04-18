@@ -6,4 +6,4 @@ RUN_ID = "auc_900"
 # ROOT_PATH = "data/output/"
 # OUTPUT_PATH = "data/eval/"
 
-OUTPUT_PATH = "data/output/" + RUN_ID + '/'
+RUN_DIR = "data/output/" + RUN_ID + '/'

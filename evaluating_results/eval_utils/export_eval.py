@@ -11,11 +11,11 @@ from eval_utils import config as cfg
 
 
 def pickle_dump(dict, filename):
-    pickle.dump(dict, open(cfg.OUTPUT_PATH + filename + ".pickle", "wb"))
+    pickle.dump(dict, open(cfg.RUN_DIR + filename + ".pickle", "wb"))
 
 
 def json_dump(dict, filename, subdir=''):
-    filepath = cfg.OUTPUT_PATH + subdir + filename + ".json"
+    filepath = cfg.RUN_DIR + subdir + filename + ".json"
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     json.dump(dict, open(filepath, "w"))
 
@@ -58,7 +58,7 @@ def results_table_dump(results_dict, name, caption):
 def tables_txt_dump(output_tables, caption, relpath):
     """ Helper function to write tables to text files """
 
-    filepath = cfg.OUTPUT_PATH + 'tables/' + relpath
+    filepath = cfg.RUN_DIR + 'tables/' + relpath
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     with open(filepath, "w") as f:

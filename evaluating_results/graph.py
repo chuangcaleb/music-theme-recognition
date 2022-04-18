@@ -4,9 +4,9 @@ from eval_utils import config as cfg
 
 label_stats_dict = json.load(open('data/labels/label_stats_summary.json', "r"))
 std_results_dict = json.load(
-    open(cfg.OUTPUT_PATH + 'results/results_best.json', "r"))
+    open(cfg.RUN_DIR + 'results/results_best.json', "r"))
 config_dict = json.load(
-    open(cfg.OUTPUT_PATH + 'run_config.json', "r"))
+    open(cfg.RUN_DIR + 'run_config.json', "r"))
 
 # label_stats_list = [key for key, value in label_stats_dict['%'].items()]
 # label_stats_list.reverse()
