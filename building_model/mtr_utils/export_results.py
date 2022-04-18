@@ -51,12 +51,19 @@ def results_table_dump(results_dict, name, caption):
 
 def exportConfig():
 
-    excluded = ['SVC', 'CLASSIFIERS']
+    excluded = ['SVC']
     bad_types = [range, ndarray]
 
     variables = vars(cfg)
 
-    def unwantedKeys(k): return k in excluded or k.startswith('__')
+    """ 
+    Gets rid of specific unwanted params:
+    1. special case blacklist
+    2. private vars and magic methods (leading underscore) 
+    3. Has any lowercase characters
+    """
+    def unwantedParams(k): return k in excluded or k.startswith(
+        '_') or hasLower(str(k))
 
     def hasLower(str): return (any(c.islower() for c in str))
 
@@ -66,16 +73,18 @@ def exportConfig():
         else:
             return obj
 
-    def dictValuesToStr(obj):
+    def seqValuesToStr(obj):
         if isinstance(obj, dict):
-            return {k: dictValuesToStr(v) for k, v in obj.items()}
+            return {k: seqValuesToStr(v) for k, v in obj.items()}
+        if isinstance(obj, list):
+            return [seqValuesToStr(e) for e in obj]
         else:
             return stringClasses(obj)
 
-    return {k: dictValuesToStr(v)
+    return {k: seqValuesToStr(v)
             for k, v in variables.items()
-            if not unwantedKeys(k)
-            and not hasLower(str(k))}
+            if not unwantedParams(k)}
+
 
 # * HELPER ---------------------------------------------------------------------
 

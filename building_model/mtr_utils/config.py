@@ -1,6 +1,5 @@
 """ Configuration settings for the building the MTR models """
 
-import inspect
 import random
 
 import numpy as np
@@ -92,9 +91,15 @@ BEST_CV_SCORING = 'roc_auc'
 
 # * CLASSIFIERS ----------------------------------------------------------------
 
+# * Naive Bayes
+
+_NB_PARAMETERS = {
+    'var_smoothing': np.logspace(0, -9, num=100)
+}
+
 # * kNN
 
-KNN_PARAMETERS = {
+_KNN_PARAMETERS = {
     'n_neighbors': list(range(1, 10)),
     'algorithm': ['auto', 'ball_tree', 'kd_tree', 'brute'],
     'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
@@ -102,20 +107,20 @@ KNN_PARAMETERS = {
 
 # * Decision Tree
 
-DT_PARAMETERS = {
+_DT_PARAMETERS = {
     'max_leaf_nodes': range(3, 15),
     'criterion': ["gini", "entropy"]
 }
 
 # * SVM
 
-SV_PARAMETERS = {'C': [0.1, 1, 10, 100],
-                 'gamma': [0.1, 0.01, 0.001, 0.0001, 0.00001],
-                 'kernel': ['poly', 'rbf']}
+_SV_PARAMETERS = {'C': [0.1, 1, 10, 100],
+                  'gamma': [0.1, 0.01, 0.001, 0.0001, 0.00001],
+                  'kernel': ['poly', 'rbf']}
 
 # * Random Forest
 
-RF_PARAMETERS = {
+_RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
     'n_estimators': [75, 150, 250, 350],
     'max_features': ['auto', 'sqrt', 'log2'],
@@ -125,7 +130,7 @@ RF_PARAMETERS = {
 
 # * Neural Network
 
-NN_PARAMETERS = {
+_NN_PARAMETERS = {
     'solver': ['lbfgs', 'sgd'],
     # 'solver': ['lbfgs', 'sgd', 'adam'],
     'max_iter': [1500, 1750, 2000],
@@ -135,77 +140,65 @@ NN_PARAMETERS = {
     # 'hidden_layer_sizes': np.arange(10, 15),
 }
 
-# * Naive Bayes
-
-NB_PARAMETERS = {
-    'var_smoothing': np.logspace(0, -9, num=100)
-}
 
 # * classifiers object
 
+""" Dict object to store all our classifiers neatly """
+defaultClassifiers = {
 
-class defClf:
-    """ Class object to store all our classifiers neatly """
-
-    zeroRate = {
+    'zeroRate': {
         'name': 'ZeroRate',
         'model': DummyClassifier(strategy='most_frequent'),
         'param': {}
-    }
-
-    randomRate = {
+    },
+    'randomRate': {
         'name': 'RandomRate',
         'model': DummyClassifier(strategy='stratified'),
         'param': {}
-    }
-
-    knn = {
+    },
+    'naiveBayes': {
+        'name': 'GaussianNB',
+        'model':  GaussianNB(),
+        'param': _NB_PARAMETERS
+    },
+    'knn': {
         'name': 'kNN',
         'model': KNeighborsClassifier(),
-        'param': KNN_PARAMETERS
-    }
-
-    decnTree = {
+        'param': _KNN_PARAMETERS
+    },
+    'decnTree': {
         'name': 'DecnTree',
         'model': DecisionTreeClassifier(),
-        'param': DT_PARAMETERS
-    }
-
-    svm = {
+        'param': _DT_PARAMETERS
+    },
+    'svm': {
         'name': 'SVM',
         'model': SVC(),
-        'param': SV_PARAMETERS
-    }
-
-    randForest = {
+        'param': _SV_PARAMETERS
+    },
+    'randForest': {
         'name': 'RandForest',
         'model': RandomForestClassifier(),
-        'param': RF_PARAMETERS
-    }
-
-    neuralNet = {
+        'param': _RF_PARAMETERS
+    },
+    'neuralNet': {
         'name': 'NeuralNet',
         'model': MLPClassifier(),
-        'param': NN_PARAMETERS
+        'param': _NN_PARAMETERS
     }
-
-    # naiveBayes = {
-    #     'name': 'GaussianNB',
-    #     'model':  GaussianNB(),
-    #     'param': NB_PARAMETERS
-    # }
+}
 
 
 # Comment out individual classifiers that you want to skip
 CLASSIFIERS = [
-    defClf.zeroRate,
-    defClf.randomRate,
-    # defClf.naiveBayes,
-    # defClf.knn,
-    defClf.svm,
-    # defClf.decnTree,
-    # defClf.randForest,
-    # defClf.neuralNet
+    # defaultClassifiers['zeroRate'],
+    defaultClassifiers['randomRate'],
+    defaultClassifiers['naiveBayes'],
+    # defaultClassifiers['knn'],
+    defaultClassifiers['svm'],
+    # defaultClassifiers['decnTree'],
+    # defaultClassifiers['randForest'],
+    # defaultClassifiers['neuralNet'],
 ]
 
 # ALL_CLASSIFIERS = [
