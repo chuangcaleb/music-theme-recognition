@@ -49,7 +49,7 @@ def results_table_dump(results_dict, name, caption):
     tables_txt_dump(output_md_tables, caption,  f'md/{name}.md')
 
 
-def exportConfig():
+def export_config():
 
     excluded = ['SVC']
     bad_types = [range, ndarray]

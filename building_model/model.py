@@ -6,15 +6,15 @@ from sklearn.model_selection import train_test_split
 
 from mtr_utils import config as cfg
 from mtr_utils import import_dataset as data
-from mtr_utils.export_results import (exportConfig, json_dump, pickle_dump,
+from mtr_utils.export_results import (export_config, json_dump, pickle_dump,
                                       results_table_dump)
 from mtr_utils.feature_selection import load_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import \
-    filterVarianceThreshold
-from mtr_utils.model_tuning import getTunedClassifer
+    filter_var_thresh
+from mtr_utils.model_tuning import get_tuned_classifier
 from mtr_utils.sampling import oversample, smote, undersample
 from mtr_utils.save_best import save_best_models
-from mtr_utils.scaling import scaleData
+from mtr_utils.scaling import scale_data
 from mtr_utils.scoring import get_scoring
 
 # warnings.simplefilter("ignore", category=ConvergenceWarning)
@@ -31,12 +31,12 @@ raw_label_df = data.extracted_label_df
 
 manual_feature_df = raw_feature_df[load_feature_set.preselected_feature_list]
 
-selected_features_df, feature_list = filterVarianceThreshold(
+selected_features_df, feature_list = filter_var_thresh(
     manual_feature_df, cfg.THRESHOLD_VAL)
 
 # * Feature Scaling
 
-scaled_feature_df = scaleData(selected_features_df)
+scaled_feature_df = scale_data(selected_features_df)
 
 # ? FEATURE ENGINEERING - merging labels?
 
@@ -80,8 +80,8 @@ for current_label in cfg.SELECTED_LABELS:
 
             # * Tuning
 
-            best_estimator = getTunedClassifer(clf['model'], x_resampled,
-                                               y_resampled, clf['param'], cfg.CV, cfg.BEST_CV_SCORING)
+            best_estimator = get_tuned_classifier(clf['model'], x_resampled,
+                                                  y_resampled, clf['param'], cfg.CV, cfg.BEST_CV_SCORING)
 
             # * Training
 
@@ -127,7 +127,7 @@ json_dump(output_all_results_dict, 'results_all', 'results/')
 json_dump(output_best_results_dict, 'results_best', 'results/')
 json_dump(output_best_params_dict, 'params_best')
 
-json_dump(exportConfig(), 'run_config')
+json_dump(export_config(), 'run_config')
 
 results_table_dump(output_best_results_dict, 'results_best', 'Best')
 

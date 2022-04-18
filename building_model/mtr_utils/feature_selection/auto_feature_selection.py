@@ -1,7 +1,7 @@
 from sklearn.feature_selection import VarianceThreshold
 
 
-def filterVarianceThreshold(df, threshold_val):
+def filter_var_thresh(df, threshold_val):
     """Removes all columns of a dataframe that fall below a given threshold of 
     variance """
 

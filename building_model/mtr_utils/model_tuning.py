@@ -1,7 +1,7 @@
 from sklearn.model_selection import GridSearchCV
 
 
-def getTunedClassifer(classifier, feature_np, label_np, param_grid, cv, scoring):
+def get_tuned_classifier(classifier, feature_np, label_np, param_grid, cv, scoring):
     """ Returns a tuned model-agnostic classifier """
 
     gscv = GridSearchCV(

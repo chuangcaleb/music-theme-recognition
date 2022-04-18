@@ -1,7 +1,7 @@
 from mtr_utils import config as cfg
 
 
-def scaleData(df):
+def scale_data(df):
 
     scaler = cfg.SCALER
 
