@@ -36,7 +36,7 @@ def results_table_dump(results_dict, name, caption):
 
         # Round results
         rounded_current_results = {
-            metric: round_dict_values(current_results[metric], 3)
+            metric: round_dict_values(current_results[metric])
             for metric in current_results
         }
 
@@ -89,8 +89,8 @@ def exportConfig():
 # * HELPER ---------------------------------------------------------------------
 
 
-def round_dict_values(d, k):
-    """ Round all values in dictionary to k decimal places """
+def round_dict_values(d):
+    """ Round all values in dictionary """
     return {key: '{:.03f}'.format(d[key]) for key in d}
 
 

@@ -13,13 +13,16 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
+
 # * PATH -----------------------------------------------------------------------
 
 RUN_ID = '.temp'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
+
 # * MODEL PARAMS ---------------------------------------------------------------
+
 
 # * Random Seed
 
@@ -41,6 +44,7 @@ Refer to: building_model/mtr_utils/scoring.py
 """
 BEST_SEED_SCORING = 'rocauc'
 
+
 # * Label Selection
 
 """
@@ -52,6 +56,7 @@ SELECTED_LABELS = [
     'risk', 'contentment',
     # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
+
 
 # * Feature Engineering
 
@@ -68,12 +73,14 @@ class scaler:
 
 SCALER = scaler.standardize
 
+
 # * Train-Test Split
 
 """
 The proportion of dataset to include in the test set
 """
 TEST_SIZE = 0.2
+
 
 # * Cross-Validation Tuning
 
@@ -89,13 +96,37 @@ Refer to: https://scikit-learn.org/stable/modules/model_evaluation.html
 """
 BEST_CV_SCORING = 'roc_auc'
 
+
+# * Scoring
+
+METRICS = [
+    'f1-bin',
+    'f1-mac',
+    'accura',
+    'precis',
+    'recall',
+    'rocauc'
+]
+
+# METRICS = {
+#     'f1-bin': scoringFunctions.f1bin,
+#     'f1-mac': scoringFunctions.f1mac,
+#     'accura': scoringFunctions.accuracy,
+#     'precis': scoringFunctions.precision,
+#     'recall': scoringFunctions.recall,
+#     'rocauc': scoringFunctions.rocauc,
+# }
+
+
 # * CLASSIFIERS ----------------------------------------------------------------
+
 
 # * Naive Bayes
 
 _NB_PARAMETERS = {
     'var_smoothing': np.logspace(0, -9, num=100)
 }
+
 
 # * kNN
 
@@ -105,6 +136,7 @@ _KNN_PARAMETERS = {
     'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski']
 }
 
+
 # * Decision Tree
 
 _DT_PARAMETERS = {
@@ -112,11 +144,13 @@ _DT_PARAMETERS = {
     'criterion': ["gini", "entropy"]
 }
 
+
 # * SVM
 
 _SV_PARAMETERS = {'C': [0.1, 1, 10, 100],
                   'gamma': [0.1, 0.01, 0.001, 0.0001, 0.00001],
                   'kernel': ['poly', 'rbf']}
+
 
 # * Random Forest
 
@@ -127,6 +161,7 @@ _RF_PARAMETERS = {
     'max_depth': [4, 6, 8],
     'criterion': ['gini', 'entropy']
 }
+
 
 # * Neural Network
 

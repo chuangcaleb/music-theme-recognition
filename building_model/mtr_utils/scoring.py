@@ -1,45 +1,68 @@
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
+from mtr_utils import config as cfg
+
+
+class scoringFunctions:
+
+    def f1bin(y_test, y_pred):
+        return f1_score(
+            y_true=y_test,
+            y_pred=y_pred
+        )
+
+    def f1mac(y_test, y_pred):
+        return f1_score(
+            y_true=y_test,
+            y_pred=y_pred,
+            average='macro'
+        )
+
+    def accuracy(y_test, y_pred):
+        return accuracy_score(
+            y_true=y_test,
+            y_pred=y_pred
+        )
+
+    def precision(y_test, y_pred):
+        return precision_score(
+            y_true=y_test,
+            y_pred=y_pred,
+            zero_division=0
+        )
+
+    def recall(y_test, y_pred):
+        return recall_score(
+            y_true=y_test,
+            y_pred=y_pred,
+            zero_division=0
+        )
+
+    def rocauc(y_test, y_pred):
+        return roc_auc_score(
+            y_true=y_test,
+            y_score=y_pred,
+        )
+
+
+metrics = {
+    'f1-bin': scoringFunctions.f1bin,
+    'f1-mac': scoringFunctions.f1mac,
+    'accura': scoringFunctions.accuracy,
+    'precis': scoringFunctions.precision,
+    'recall': scoringFunctions.recall,
+    'rocauc': scoringFunctions.rocauc,
+}
+
+current_metrics = {k: v for k, v in metrics.items() if k in cfg.METRICS}
 
 
 def get_scoring(estimator, x_test, y_test):
 
-    y_predictions = estimator.predict(x_test)
+    y_pred = estimator.predict(x_test)
 
-    f1bin = f1_score(
-        y_true=y_test,
-        y_pred=y_predictions
-    )
-    f1mac = f1_score(
-        y_true=y_test,
-        y_pred=y_predictions,
-        average='macro'
-    )
-    accuracy = accuracy_score(
-        y_true=y_test,
-        y_pred=y_predictions
-    )
-    precision = precision_score(
-        y_true=y_test,
-        y_pred=y_predictions,
-        zero_division=0
-    )
-    recall = recall_score(
-        y_true=y_test,
-        y_pred=y_predictions,
-        zero_division=0
-    )
-    rocauc = roc_auc_score(
-        y_true=y_test,
-        y_score=y_predictions,
-    )
+    scores = {}
 
-    scores = {
-        'f1-bin': f1bin,
-        'f1-mac': f1mac,
-        'accura': accuracy,
-        'precis': precision,
-        'recall': recall,
-        'rocauc': rocauc,
-    }
+    for metric, scoring_func in current_metrics.items():
+        scores[metric] = scoring_func(y_test, y_pred)
 
     return scores
