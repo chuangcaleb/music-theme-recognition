@@ -1,9 +1,13 @@
-from cProfile import label
-import pprint
-import statistics
 from eval_utils import load_results as data
+from eval_utils.export_eval import json_dump, results_table_dump
 
 current_classifiers = [clf['name'] for clf in data.config_dict['CLASSIFIERS']]
+
+
+def calc_and_dump(data_dict, func, filename, title):
+    processed_results_dict = calc_stats(data_dict, func)
+    json_dump(processed_results_dict, filename, 'results/')
+    results_table_dump(processed_results_dict, filename, title)
 
 
 def calc_stats(dict, func):
