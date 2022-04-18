@@ -28,7 +28,7 @@ def results_table_dump(results_dict, name, caption):
     output_latex_tables = {}
     output_md_tables = {}
 
-    print(f'\n\n> \033[93m{name}\033[0m results')
+    print(f'\n\n> \033[93m{caption}\033[0m results')
 
     for current_label in results_dict:
 
