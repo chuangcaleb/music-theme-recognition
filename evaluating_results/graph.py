@@ -4,13 +4,15 @@ from eval_utils import config as cfg
 
 label_stats_dict = json.load(open('data/labels/label_stats_summary.json', "r"))
 std_results_dict = json.load(
-    open(cfg.RUN_DIR + 'results/results_best.json', "r"))
+    open(cfg.RUN_DIR + 'results/results_avg.json', "r"))
 config_dict = json.load(
     open(cfg.RUN_DIR + 'run_config.json', "r"))
 
-# label_stats_list = [key for key, value in label_stats_dict['%'].items()]
-# label_stats_list.reverse()
-label_stats_list = config_dict['SELECTED_LABELS']
+label_stats_list = [i for i in label_stats_dict['%'].keys()]
+label_stats_list.reverse()
+# label_stats_list = config_dict['SELECTED_LABELS']
+
+label_y = 'ROC-AUC'
 
 color_list = ['r', 'b', 'g', 'c', 'm', 'y']
 
@@ -26,18 +28,24 @@ for label, clf_dict in std_results_dict.items():
 
         clf_results[clf].append(scores_dict['rocauc'])
 
-plt.title("Standard Deviation by Positive Label Proportion")
+plt.title(label_y + " by Positive Label Proportion")
 plt.xlabel("Positive Label Proportion (%)")
-plt.ylabel("Standard Deviation")
-
-print(clf_results)
+plt.ylabel(label_y)
 
 for i, clf in enumerate(clf_list):
     plt.plot(label_stats_list,
-             clf_results[clf], color=color_list[i], label=clf_list[i])
+             clf_results[clf],
+             color=color_list[i],
+             label=clf_list[i],
+             marker='x'
+             )
+
 
 plt.xticks(rotation=90)
+plt.axhline(y=0.5, linestyle='dashed', color='r', label='worthless test')
+plt.axhline(y=0.6, linestyle='dashed', color='r',
+            alpha=0.4, label='ROC-AUC = 0.6')
 plt.tight_layout()
-plt.legend()
+plt.legend(fontsize='7')
 
 plt.show()
