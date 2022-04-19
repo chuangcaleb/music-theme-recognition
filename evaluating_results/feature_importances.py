@@ -2,6 +2,7 @@ from ntpath import join
 import textwrap
 from tabulate import tabulate
 import pandas as pd
+from matplotlib import markers
 
 from eval_utils import load_results as data
 from eval_utils.export_eval import tables_txt_dump
@@ -78,7 +79,9 @@ for label, features in all_scores.items():
 
     groups = joined_df.groupby(label)
 
-    for name, group_df in groups:
+    marker_types = [markers.CARETUPBASE, markers.CARETDOWNBASE]
+
+    for i, (label_value, group_df) in enumerate(groups):
 
         y_group = []
         x_group = []
@@ -93,7 +96,8 @@ for label, features in all_scores.items():
             y_group.extend(y_feat)
             x_group.extend(x_feat)
 
-        ax.scatter(y_group, x_group, marker='x', alpha=0.5, label=name)
+        ax.scatter(y_group, x_group, marker=marker_types[i],
+                   alpha=0.4, label=label_value)
 
     plt.title('Feature Distribution for ' + label)
     plt.tick_params(axis='y', which='major', labelsize=6)
