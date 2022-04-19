@@ -22,7 +22,7 @@ feature_list = data.feature_list
 all_tables = {}
 all_scores = {}
 
-print("\n\n========================== Feature Importance scores per label ==========================\n")
+# print("\n\n========================== Feature Importance scores per label ==========================\n")
 
 for current_label in models_dict:
 
@@ -73,33 +73,11 @@ print()
 
 for label, features in all_scores.items():
 
-    # pos_label_i = label_df.index[label_df[label] == 1].tolist()
-    # neg_label_i = label_df.index[label_df[label] == 0].tolist()
-    # neg_label_i = [x for x
-    #                in list(range(len(label_df)))
-    #                if not x in pos_label_i]
-
     fig, ax = plt.subplots()
 
     pos_feat_tuples = []
     neg_feat_tuples = []
 
-    # for feat_pair in features:
-
-    #     feature_name = feat_pair[0]
-
-    # pos_feat_series = prc_feat_df.iloc[pos_label_i][feature_name]
-    # pos_feat_list = pos_feat_series.tolist()
-    # neg_feat_series = prc_feat_df.iloc[neg_label_i][feature_name]
-    # neg_feat_list = neg_feat_series.tolist()
-
-    # pos_feat_tuples.extend([(feature_name, y) for y in pos_feat_list])
-    # neg_feat_tuples.extend([(feature_name, y) for y in neg_feat_list])
-
-    # x_pos = [i[1] for i in pos_feat_tuples]
-    # y_pos = [i[0] for i in pos_feat_tuples]
-    # x_neg = [i[1] for i in pos_feat_tuples]
-    # y_neg = [i[0] for i in pos_feat_tuples]
     groups = joined_df.groupby(label)
 
     for name, group in groups:
@@ -123,4 +101,4 @@ for label, features in all_scores.items():
 
     plt.show()
 
-    break
+    # break

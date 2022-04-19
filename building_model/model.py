@@ -127,7 +127,6 @@ feature_df = pd.DataFrame(data=feature_np, columns=feature_list)
 
 # print(joined_df)
 
-feature_df.to_csv('data/output/' + cfg.RUN_ID + '/processed_features.csv')
 
 json_dump(feature_list, 'final_feature_list')
 
@@ -140,6 +139,8 @@ json_dump(output_best_params_dict, 'params_best')
 json_dump(export_config(), 'run_config')
 
 results_table_dump(output_best_results_dict, 'results_best', 'Best')
+
+feature_df.to_csv('data/output/' + cfg.RUN_ID + '/processed_features.csv')
 
 # * Finish!
 
