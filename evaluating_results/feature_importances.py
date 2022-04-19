@@ -1,4 +1,5 @@
 from ntpath import join
+import textwrap
 from tabulate import tabulate
 import pandas as pd
 
@@ -73,28 +74,32 @@ print()
 
 for label, features in all_scores.items():
 
-    fig, ax = plt.subplots()
-
-    pos_feat_tuples = []
-    neg_feat_tuples = []
+    fig, ax = plt.subplots(figsize=(7, 4))
 
     groups = joined_df.groupby(label)
 
-    for name, group in groups:
+    for name, group_df in groups:
 
         y_group = []
         x_group = []
 
         for (feature, score) in features:
 
-            y_feat = group[feature].tolist()
-            x_feat = [feature] * len(y_feat)
+            feature_display = feature
+            feature_display = textwrap.fill(feature_display, 24)
+
+            y_feat = group_df[feature].tolist()
+            x_feat = [feature_display] * len(y_feat)
             y_group.extend(y_feat)
             x_group.extend(x_feat)
 
         ax.scatter(y_group, x_group, marker='x', alpha=0.5, label=name)
 
     plt.title('Feature Distribution for ' + label)
+    plt.tick_params(axis='y', which='major', labelsize=6)
+
+    ax.set_ylabel('Feature', fontsize=10)
+    ax.set_xlabel('Normalized Value', fontsize=10)
 
     plt.tight_layout()
     plt.legend()
