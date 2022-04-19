@@ -1,3 +1,4 @@
+import copy
 from eval_utils import load_results as data
 from eval_utils.export_eval import json_dump, results_table_dump
 
@@ -10,12 +11,12 @@ def calc_and_dump(data_dict, func, filename, title):
     results_table_dump(processed_results_dict, filename, title)
 
 
-def calc_stats(dict, func):
+def calc_stats(results_dict, func):
 
     stat_dict = {}
 
     # For each label, run the average
-    for label, seed_dict in dict.items():
+    for label, seed_dict in results_dict.items():
 
         label_stat_dict = get_label_stat(seed_dict, func)
 
@@ -32,8 +33,8 @@ def get_label_stat(seed_dict, func):
     # Init template dictionary of metrics
     scores_template_dict = {k: [] for k in data.config_dict['METRICS']}
     # Init dictionary
-    label_avg_dict = {k: scores_template_dict.copy()
-                      for k in current_classifiers}
+    label_stat_dict = {k: copy.deepcopy(scores_template_dict)
+                       for k in current_classifiers}
 
     # Build dictionary by adding scores into list
     for clf_dict in seed_dict.values():
@@ -42,13 +43,13 @@ def get_label_stat(seed_dict, func):
 
             for score, value in score_dict.items():
 
-                label_avg_dict[clf][score].append(value)
+                label_stat_dict[clf][score].append(value)
 
     # Average each list item
-    for clf, score_dict in label_avg_dict.items():
+    for clf, score_dict in label_stat_dict.items():
 
         for score, values in score_dict.items():
 
-            label_avg_dict[clf][score] = func(values)
+            label_stat_dict[clf][score] = func(values)
 
-    return label_avg_dict
+    return label_stat_dict
