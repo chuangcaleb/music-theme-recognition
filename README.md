@@ -24,11 +24,11 @@ This project is for my individual dissertation of my Bachelor's.
 
 ### Prerequisites
 
-- matplotlib
+<!-- - matplotlib
 - scipy
 - numpy
 - jupyter
-- scikit-learn
+- scikit-learn -->
 <!-- - scikit-multilearn[^1]
 
 [^1]: There was a major issue with the MLkNN class, see [here](https://github.com/scikit-multilearn/scikit-multilearn/issues/224#) on how to fix it. -->
