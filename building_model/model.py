@@ -30,14 +30,12 @@ raw_label_df = data.data_label_df
 
 # * Feature Selection
 
+# Manual selection
 manual_feature_df = raw_feature_df[load_feature_set.preselected_feature_list]
 
+# Automatic selection
 selected_features_df, feature_list = filter_var_thresh(
     manual_feature_df, cfg.THRESHOLD_VAL)
-
-# * Feature Scaling
-
-scaled_feature_np = scale_data(selected_features_df)
 
 # ? FEATURE ENGINEERING - merging labels?
 
@@ -61,17 +59,23 @@ for current_label in cfg.SELECTED_LABELS:
 
         # * Converting Dataset Type
 
-        feature_np = scaled_feature_np
+        feature_np = selected_features_df.values
         label_np = raw_label_df[[current_label]].to_numpy().astype(int).ravel()
 
         # * Splitting Dataset
 
-        (x_train, x_test, y_train, y_test) = train_test_split(
+        x_train, x_test, y_train, y_test = train_test_split(
             feature_np, label_np, test_size=cfg.TEST_SIZE, stratify=label_np, random_state=current_seed)
 
         # * Sampling
 
-        x_resampled, y_resampled = smote(x_train, y_train, current_seed)
+        x_train_smp, y_train_smp = smote(x_train, y_train, current_seed)
+
+        # * Feature Scaling
+
+        scaler, x_train_scl, x_test_scl = scale_data(x_train_smp, x_test)
+        # x_train_scl = x_train_smp
+        # x_test_scl = x_test
 
         # * FOR EACH CLASSIFIER MODEL ------------------------------------------
 
@@ -81,16 +85,16 @@ for current_label in cfg.SELECTED_LABELS:
 
             # * Tuning
 
-            best_estimator = get_tuned_classifier(clf['model'], x_resampled,
-                                                  y_resampled, clf['param'], cfg.CV, cfg.BEST_CV_SCORING)
+            best_estimator = get_tuned_classifier(clf['model'], x_train_scl,
+                                                  y_train_smp, clf['param'], cfg.CV, cfg.BEST_CV_SCORING)
 
             # * Training
 
-            best_estimator.fit(x_resampled, y_resampled)
+            best_estimator.fit(x_train_smp, y_train_smp)
 
             # * Testing
 
-            scores = get_scoring(best_estimator, x_test, y_test)
+            scores = get_scoring(best_estimator, x_test_scl, y_test)
 
             # * Export results per classifier
 

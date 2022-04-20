@@ -13,10 +13,11 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
+from mtr_utils.scaling import DummyScaler
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = 'auc_norm'
+RUN_ID = '.temp'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -27,10 +28,10 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 # * Random Seed
 
 """ Random seed for the random generator """
-RAND_SEED = 900
+RAND_SEED = 5
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 15
+NUM_OF_RAND_SEEDS = 3
 
 
 # List of random seeds
@@ -69,9 +70,10 @@ THRESHOLD_VAL = 0
 class scaler:
     norm = MinMaxScaler()
     stnd = StandardScaler()
+    none = DummyScaler()
 
 
-SCALER = scaler.norm
+SCALER = scaler.stnd
 
 
 # * Train-Test Split
@@ -222,9 +224,9 @@ CLASSIFIERS = [
     defaultClassifiers['randomRate'],
     defaultClassifiers['naiveBayes'],
     defaultClassifiers['knn'],
-    defaultClassifiers['svm'],
+    # defaultClassifiers['svm'],
     defaultClassifiers['decnTree'],
-    defaultClassifiers['randForest'],
+    # defaultClassifiers['randForest'],
     # defaultClassifiers['neuralNet'],
 ]
 

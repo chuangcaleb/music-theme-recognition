@@ -2,7 +2,7 @@
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = "auc_norm"
+RUN_ID = ".temp"
 # ROOT_PATH = "data/output/"
 # OUTPUT_PATH = "data/eval/"
 
