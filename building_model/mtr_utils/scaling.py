@@ -1,4 +1,5 @@
 from mtr_utils import config as cfg
+from sklearn.preprocessing import MinMaxScaler, RobustScaler, StandardScaler
 
 
 def scale_data(x_train, x_test):
@@ -20,3 +21,10 @@ class DummyScaler():
 
     def fit(self, X, y=None):
         pass
+
+
+class scaler:
+    nrml = MinMaxScaler()
+    stnd = StandardScaler()
+    rbst = RobustScaler()
+    none = DummyScaler()

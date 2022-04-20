@@ -9,11 +9,10 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
-from sklearn.preprocessing import MinMaxScaler, RobustScaler, StandardScaler
+
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-
-from mtr_utils.scaling import DummyScaler
+from mtr_utils.scaling import scaler
 
 # * PATH -----------------------------------------------------------------------
 
@@ -65,13 +64,6 @@ SELECTED_LABELS = [
 Remove features with a variance below this value
 """
 THRESHOLD_VAL = 0
-
-
-class scaler:
-    nrml = MinMaxScaler()
-    stnd = StandardScaler()
-    rbst = RobustScaler()
-    none = DummyScaler()
 
 
 SCALER = scaler.rbst
@@ -225,7 +217,7 @@ CLASSIFIERS = [
     defaultClassifiers['randomRate'],
     defaultClassifiers['naiveBayes'],
     defaultClassifiers['knn'],
-    # defaultClassifiers['svm'],
+    defaultClassifiers['svm'],
     defaultClassifiers['decnTree'],
     # defaultClassifiers['randForest'],
     # defaultClassifiers['neuralNet'],
