@@ -5,16 +5,17 @@ from eval_utils.results_stats_utils import calc_stats
 from eval_utils.results_stats_utils import get_label_stat
 from eval_utils.export_eval import dump_results
 
+current_classifiers = [clf for clf in data.config_dict['ACTUAL_CLASSIFIERS']]
+
+average_clf = {clf: mean for clf in current_classifiers}
+stdev_clf = {clf: stdev for clf in current_classifiers}
+
 stats = {
     'avrg': mean,
     'best': max,
     'stdv': stdev
 }
 
-current_classifiers = [clf['name'] for clf in data.config_dict['CLASSIFIERS']]
-
-average_clf = {clf: mean for clf in current_classifiers}
-stdev_clf = {clf: stdev for clf in current_classifiers}
 
 # ---------------------------------------------------------------------------- #
 
