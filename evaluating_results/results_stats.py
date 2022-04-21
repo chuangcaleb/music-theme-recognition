@@ -1,7 +1,7 @@
 from statistics import mean, stdev
 
 from eval_utils import load_results as data
-from eval_utils.results_stats_utils import calc_stats
+from eval_utils.results_stats_utils import calc_stats, calc_clf_stats
 from eval_utils.results_stats_utils import get_label_stats
 from eval_utils.export_eval import dump_results
 
@@ -30,5 +30,5 @@ dump_results(std_results_dict, 'results_std', 'Standard Deviation')
 label_results_dict = calc_stats(data.all_results_dict, stats, match_clf=False)
 dump_results(label_results_dict, 'results_labels', 'Label Overview')
 
-model_results_dict = calc_stats(data.all_results_dict, stats, match_clf=False)
-dump_results(label_results_dict, 'results_models', 'Model Overview')
+model_results_dict = calc_clf_stats(data.all_results_dict, stats)
+dump_results(model_results_dict, 'results_models', 'Model Overview')
