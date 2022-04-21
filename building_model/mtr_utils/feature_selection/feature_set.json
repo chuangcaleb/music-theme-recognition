@@ -663,37 +663,37 @@
 				"feature_enabled": false
 			},
 			"Unpitched_Percussion_Instrument_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"String_Keyboard_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Acoustic_Guitar_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Electric_Guitar_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Violin_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Saxophone_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Brass_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Woodwinds_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Orchestral_Strings_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"String_Ensemble_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			},
 			"Electric_Instrument_Prevalence": {
-				"feature_enabled": false
+				"feature_enabled": true
 			}
 		}
 	},

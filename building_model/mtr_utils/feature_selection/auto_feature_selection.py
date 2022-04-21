@@ -17,8 +17,8 @@ def filter_var_thresh(df, threshold_val):
     print(
         f"Removed {len(constant_columns)} feature(s) that have a variance of less than {threshold_val}.")
 
-    # for column in constant_columns:
-    #     print("Removed:", column)
+    for column in constant_columns:
+        print("Removed:", column)
 
     print(f"There are {(var_feature_np.shape[1])} features left.")
 

@@ -16,7 +16,7 @@ from mtr_utils.scaling import scaler
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = '.temp'
+RUN_ID = 'stnd_bin'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -30,7 +30,7 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 RAND_SEED = 5
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 3
+NUM_OF_RAND_SEEDS = 15
 
 
 # List of random seeds
@@ -42,7 +42,7 @@ Scoring metric for selecting the best seed
 
 Refer to: building_model/mtr_utils/scoring.py
 """
-BEST_SEED_SCORING = 'rocauc'
+BEST_SEED_SCORING = 'f1-bin'
 
 
 # * Label Selection
@@ -66,7 +66,17 @@ Remove features with a variance below this value
 THRESHOLD_VAL = 0
 
 
-SCALER = scaler.rbst
+""" 
+Options for scaling data
+
+nrml = MinMaxScaler()
+stnd = StandardScaler()
+rbst = RobustScaler()
+none = DummyScaler()
+
+Refer to building_model/mtr_utils/scaling.py
+"""
+SCALER = scaler.stnd
 
 
 # * Train-Test Split
@@ -89,7 +99,7 @@ Scoring metric for selecting the best fold in cross-validation
 
 Refer to: https://scikit-learn.org/stable/modules/model_evaluation.html
 """
-BEST_CV_SCORING = 'roc_auc'
+BEST_CV_SCORING = 'f1'
 
 
 # * Scoring
@@ -214,12 +224,12 @@ defaultClassifiers = {
 # Comment out individual classifiers that you want to skip
 CLASSIFIERS = [
     defaultClassifiers['zeroRate'],
-    defaultClassifiers['randomRate'],
+    # defaultClassifiers['randomRate'],
     defaultClassifiers['naiveBayes'],
     defaultClassifiers['knn'],
     defaultClassifiers['svm'],
     defaultClassifiers['decnTree'],
-    # defaultClassifiers['randForest'],
+    defaultClassifiers['randForest'],
     # defaultClassifiers['neuralNet'],
 ]
 

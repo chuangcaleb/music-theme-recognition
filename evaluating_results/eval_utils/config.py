@@ -2,7 +2,7 @@
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = ".temp"
+RUN_ID = "stnd_bin"
 # ROOT_PATH = "data/output/"
 # OUTPUT_PATH = "data/eval/"
 
