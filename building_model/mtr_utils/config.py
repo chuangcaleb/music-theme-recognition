@@ -5,6 +5,7 @@ import random
 import numpy as np
 from sklearn.dummy import DummyClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
@@ -16,7 +17,7 @@ from mtr_utils.scaling import scaler
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = 'stnd_bin'
+RUN_ID = '.temp'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -117,6 +118,13 @@ METRICS = [
 # * CLASSIFIERS ----------------------------------------------------------------
 
 
+# * Logistic Regression
+
+_LR_PARAMETERS = {
+    'C': np.logspace(-4, 4, 50),
+    'penalty': ['l2']
+}
+
 # * Naive Bayes
 
 _NB_PARAMETERS = {
@@ -188,6 +196,11 @@ defaultClassifiers = {
         'model': DummyClassifier(strategy='stratified'),
         'param': {}
     },
+    'logisRegrs': {
+        'name': 'LogisRegrs',
+        'model': LogisticRegression(),
+        'param': _LR_PARAMETERS
+    },
     'naiveBayes': {
         'name': 'GaussianNB',
         'model':  GaussianNB(),
@@ -225,6 +238,7 @@ defaultClassifiers = {
 CLASSIFIERS = [
     defaultClassifiers['zeroRate'],
     # defaultClassifiers['randomRate'],
+    # defaultClassifiers['logisRegrs'],
     defaultClassifiers['naiveBayes'],
     defaultClassifiers['knn'],
     defaultClassifiers['svm'],
