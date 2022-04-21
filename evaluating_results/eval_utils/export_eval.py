@@ -20,6 +20,11 @@ def json_dump(dict, filename, subdir=''):
     json.dump(dict, open(filepath, "w"))
 
 
+def dump_results(dict, filename, title):
+    json_dump(dict, filename, 'results/')
+    results_table_dump(dict, filename, title)
+
+
 def results_table_dump(results_dict, name, caption):
     """ Main function to dump results in tables as text files """
 
