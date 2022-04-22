@@ -17,7 +17,7 @@ from mtr_utils.scaling import scaler
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = '.temp'
+RUN_ID = 'bin_noscale'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -28,10 +28,10 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 # * Random Seed
 
 """ Random seed for the random generator """
-RAND_SEED = 5
+RAND_SEED = 7
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 15
+NUM_OF_RAND_SEEDS = 10
 
 
 # List of random seeds
@@ -77,7 +77,7 @@ none = DummyScaler()
 
 Refer to building_model/mtr_utils/scaling.py
 """
-SCALER = scaler.stnd
+SCALER = scaler.none
 
 
 # * Train-Test Split
@@ -145,7 +145,7 @@ _KNN_PARAMETERS = {
 
 _SV_PARAMETERS = {'C': [0.1, 1, 10, 100],
                   'gamma': [0.1, 0.01, 0.001, 0.0001, 0.00001],
-                  'kernel': ['poly', 'rbf']}
+                  'kernel': ['rbf']}
 
 
 # * Decision Tree

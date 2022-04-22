@@ -3,6 +3,7 @@ import copy
 from eval_utils import load_results as data
 
 #! So messy. Needs rewriting!
+actual_clf_list = data.config_dict['ACTUAL_CLASSIFIERS']
 
 
 def calc_stats(results_dict, row_headers, match_clf):
@@ -40,7 +41,7 @@ def get_label_stats(seed_dict, row_headers, match_clf=True):
 
             for clf, score_dict in clf_dict.items():
 
-                # If clf is not in row_ids, which are the actual classifiers
+                # If clf is not in row_ids, which vary
                 if clf not in row_ids:
                     continue  # Skip baseline classifiers
 
@@ -54,6 +55,10 @@ def get_label_stats(seed_dict, row_headers, match_clf=True):
         for clf_dict in seed_dict.values():
 
             for clf, score_dict in clf_dict.items():
+
+                # If clf is not in clf_list, which are the actual classifiers
+                if clf not in actual_clf_list:
+                    continue  # Skip baseline classifiers
 
                 for metric, score in score_dict.items():
 

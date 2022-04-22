@@ -2,7 +2,7 @@
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = "stnd_bin"
+RUN_ID = "bin_noscale"
 # ROOT_PATH = "data/output/"
 # OUTPUT_PATH = "data/eval/"
 
