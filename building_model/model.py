@@ -73,8 +73,6 @@ for current_label in cfg.SELECTED_LABELS:
         # * Feature Scaling
 
         scaler, x_train_scl, x_test_scl = scale_data(x_train_smp, x_test)
-        # x_train_scl = x_train_smp
-        # x_test_scl = x_test
 
         # * FOR EACH CLASSIFIER MODEL ------------------------------------------
 
@@ -89,7 +87,7 @@ for current_label in cfg.SELECTED_LABELS:
 
             # * Training
 
-            best_estimator.fit(x_train_smp, y_train_smp)
+            best_estimator.fit(x_train_scl, y_train_smp)
 
             # * Testing
 

@@ -17,7 +17,7 @@ from mtr_utils.scaling import scaler
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = 'bin_noscale'
+RUN_ID = 'bin_rbst'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -31,7 +31,7 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 RAND_SEED = 7
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 10
+NUM_OF_RAND_SEEDS = 2
 
 
 # List of random seeds
@@ -54,8 +54,8 @@ Specify labels to process or skip
 Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
 """
 SELECTED_LABELS = [
-    # 'risk', 'contentment',
-    'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
+    'risk', 'contentment',
+    # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
 
 
@@ -77,7 +77,7 @@ none = DummyScaler()
 
 Refer to building_model/mtr_utils/scaling.py
 """
-SCALER = scaler.none
+SCALER = scaler.stnd
 
 
 # * Train-Test Split
@@ -122,7 +122,7 @@ METRICS = [
 
 _LR_PARAMETERS = {
     'C': np.logspace(-4, 4, 50),
-    'penalty': ['l2']
+    'penalty': ['l1', 'l2']
 }
 
 # * Naive Bayes
@@ -161,7 +161,7 @@ _DT_PARAMETERS = {
 
 _RF_PARAMETERS = {
     # 'n_estimators': [200, 300, 400],
-    'n_estimators': [75, 150, 250, 350],
+    'n_estimators': [75, 150, 220, 300],
     'max_features': ['auto', 'sqrt', 'log2'],
     'max_depth': [4, 6, 8],
     'criterion': ['gini', 'entropy']
@@ -186,8 +186,10 @@ _NN_PARAMETERS = {
 """ Dict object to store all our classifiers neatly """
 defaultClassifiers = {
 
+    # Since we oversample and balance the training data, both classes will be equal. However, DummyClassifier still picks class '0' over class '1', even when they are equal. This is good, because '0' is our majority class.
     'zeroRate': {
         'name': 'ZeroRate',
+        # 'model': DummyClassifier(strategy='constant', constant=0),
         'model': DummyClassifier(strategy='most_frequent'),
         'param': {}
     },
@@ -238,7 +240,7 @@ defaultClassifiers = {
 CLASSIFIERS = [
     defaultClassifiers['zeroRate'],
     # defaultClassifiers['randomRate'],
-    # defaultClassifiers['logisRegrs'],
+    defaultClassifiers['logisRegrs'],
     defaultClassifiers['naiveBayes'],
     defaultClassifiers['knn'],
     defaultClassifiers['svm'],

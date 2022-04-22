@@ -2,8 +2,6 @@
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = "bin_noscale"
-# ROOT_PATH = "data/output/"
-# OUTPUT_PATH = "data/eval/"
+RUN_ID = "bin_norm"
 
 RUN_DIR = "data/output/" + RUN_ID + '/'
