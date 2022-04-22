@@ -2,6 +2,6 @@
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = "bin_norm"
+RUN_ID = "bin_stnd"
 
 RUN_DIR = "data/output/" + RUN_ID + '/'

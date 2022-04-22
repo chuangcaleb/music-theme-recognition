@@ -54,8 +54,8 @@ Specify labels to process or skip
 Full list: 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love','desire', 'hope', 'wonder'
 """
 SELECTED_LABELS = [
-    'risk', 'contentment',
-    # 'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
+    # 'risk', 'contentment',
+    'grief', 'delusion', 'powerlessness', 'freedom', 'risk', 'safety', 'jadedness', 'authority', 'unity', 'celebration', 'contentment', 'love', 'desire', 'hope', 'wonder'
 ]
 
 
@@ -77,7 +77,7 @@ none = DummyScaler()
 
 Refer to building_model/mtr_utils/scaling.py
 """
-SCALER = scaler.stnd
+SCALER = scaler.rbst
 
 
 # * Train-Test Split
@@ -122,7 +122,7 @@ METRICS = [
 
 _LR_PARAMETERS = {
     'C': np.logspace(-4, 4, 50),
-    'penalty': ['l1', 'l2']
+    # 'penalty': ['l1', 'l2']
 }
 
 # * Naive Bayes
@@ -145,7 +145,7 @@ _KNN_PARAMETERS = {
 
 _SV_PARAMETERS = {'C': [0.1, 1, 10, 100],
                   'gamma': [0.1, 0.01, 0.001, 0.0001, 0.00001],
-                  'kernel': ['rbf']}
+                  'kernel': ['linear', 'poly', 'rbf']}
 
 
 # * Decision Tree
@@ -240,12 +240,12 @@ defaultClassifiers = {
 CLASSIFIERS = [
     defaultClassifiers['zeroRate'],
     # defaultClassifiers['randomRate'],
-    defaultClassifiers['logisRegrs'],
-    defaultClassifiers['naiveBayes'],
-    defaultClassifiers['knn'],
+    # defaultClassifiers['logisRegrs'],
+    # defaultClassifiers['naiveBayes'],
+    # defaultClassifiers['knn'],
     defaultClassifiers['svm'],
-    defaultClassifiers['decnTree'],
-    defaultClassifiers['randForest'],
+    # defaultClassifiers['decnTree'],
+    # defaultClassifiers['randForest'],
     # defaultClassifiers['neuralNet'],
 ]
 
