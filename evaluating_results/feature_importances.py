@@ -1,5 +1,5 @@
-from ntpath import join
 import textwrap
+from sklearn.preprocessing import MinMaxScaler
 from tabulate import tabulate
 import pandas as pd
 from matplotlib import markers
@@ -7,16 +7,24 @@ from matplotlib import markers
 from eval_utils import load_results as data
 from eval_utils.export_eval import tables_txt_dump
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import minmax_scale
 
 from eval_utils import config as cfg
 
+# Import and extract label_df
 label_df = pd.read_excel('data/labels/song_theme_label_database.xlsx')
 label_df = label_df[label_df.recognizable == 1]
 label_df.reset_index(drop=True, inplace=True)
 
-prc_feat_df = pd.read_csv(cfg.RUN_DIR + '/processed_features.csv')
+# Import and scale feature_df
+feat_df = pd.read_csv('data/features/song_theme_feature_database.csv')
+feat_df = feat_df.iloc[:, 1:]
+# scaler = MinMaxScaler()
+df_scaled = minmax_scale(feat_df.to_numpy())
+df_scaled = pd.DataFrame(df_scaled, columns=feat_df.columns)
 
-joined_df = label_df.join(prc_feat_df)
+# Concat
+joined_df = pd.concat([label_df, df_scaled], axis=1)
 
 models_dict = data.models_dict
 feature_list = data.feature_list
@@ -63,12 +71,12 @@ for current_label in models_dict:
     all_scores.update({current_label: top_features_scores})
 
     # Report into tables
-#     table = tabulate(top_features_scores, headers=[
-#                      'feature', 'imp_sc'], tablefmt='github')
-#     print(table, end='\n\n')
-#     all_tables.update({current_label: table})
+    table = tabulate(top_features_scores, headers=[
+                     'feature', 'imp_sc'], tablefmt='github')
+    print(table, end='\n\n')
+    all_tables.update({current_label: table})
 
-# tables_txt_dump(all_tables, 'Feature Importances', 'md/feat_imp.md')
+tables_txt_dump(all_tables, 'Feature Importances', 'md/feat_imp.md')
 
 print()
 

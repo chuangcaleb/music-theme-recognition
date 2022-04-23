@@ -121,14 +121,6 @@ for current_label in cfg.SELECTED_LABELS:
 
 # * Export data for this run
 
-# feature_df = pd.DataFrame(data=feature_np, columns=feature_list)
-# out_label_df = data.extracted_label_df
-
-# joined_df = out_label_df.join(feature_df)
-
-# print(joined_df)
-
-
 json_dump(feature_list, 'final_feature_list')
 
 json_dump(output_all_results_dict, 'results_all', 'results/')
@@ -140,8 +132,6 @@ pickle_dump(output_best_models_dict, 'models_best')
 json_dump(export_config(), 'run_config')
 
 results_table_dump(output_best_results_dict, 'results_best', 'Best')
-
-# feature_df.to_csv('data/output/' + cfg.RUN_ID + '/processed_features.csv')
 
 # * Finish!
 
