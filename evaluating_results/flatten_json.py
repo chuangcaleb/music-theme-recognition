@@ -17,6 +17,6 @@ result = [
 
 columns = ["label", "seed", "clf", "metric", "score"]
 
-all_results_df = pd.DataFrame(result, columns=columns, index=False)
+all_results_df = pd.DataFrame(result, columns=columns)
 
 all_results_df.to_csv(FILEPATH)
