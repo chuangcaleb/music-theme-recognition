@@ -7,10 +7,10 @@ def scale_data(x_train, x_test):
     scaler = cfg.SCALER
 
     scaler.fit(x_train)
-    x_train_smp = scaler.transform(x_train)
-    x_test_smp = scaler.transform(x_test)
+    x_train_scl = scaler.transform(x_train)
+    x_test_scl = scaler.transform(x_test)
 
-    return scaler, x_train_smp, x_test_smp
+    return scaler, x_train_scl, x_test_scl
 
 
 class DummyScaler():
