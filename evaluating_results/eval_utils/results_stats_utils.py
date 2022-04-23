@@ -1,6 +1,7 @@
 import copy
 
 from eval_utils import load_results as data
+import numpy as np
 
 #! So messy. Needs rewriting!
 actual_clf_list = data.config_dict['ACTUAL_CLASSIFIERS']
@@ -134,3 +135,20 @@ def calc_clf_stats(results_dict, row_headers):
                 stat_dict[clf_table][row][metric] = func(values)
 
     return stat_dict
+
+
+""" Calculates the range of values in a list """
+
+
+def stats_range(data):
+    range = max(data) - min(data)
+    return range
+
+
+""" Calculates the interquartile range of values in a list """
+
+
+def stats_iqr(data):
+    q3, q1 = np.percentile(data, [75, 25])
+    iqr = q3 - q1
+    return iqr
