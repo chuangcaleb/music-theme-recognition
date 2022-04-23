@@ -31,7 +31,7 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 RAND_SEED = 7
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 2
+NUM_OF_RAND_SEEDS = 1
 
 
 # List of random seeds
@@ -239,10 +239,10 @@ defaultClassifiers = {
 # Comment out individual classifiers that you want to skip
 CLASSIFIERS = [
     defaultClassifiers['zeroRate'],
-    # defaultClassifiers['randomRate'],
-    # defaultClassifiers['logisRegrs'],
-    # defaultClassifiers['naiveBayes'],
-    # defaultClassifiers['knn'],
+    defaultClassifiers['randomRate'],
+    defaultClassifiers['logisRegrs'],
+    defaultClassifiers['naiveBayes'],
+    defaultClassifiers['knn'],
     defaultClassifiers['svm'],
     # defaultClassifiers['decnTree'],
     # defaultClassifiers['randForest'],

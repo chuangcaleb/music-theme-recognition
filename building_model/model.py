@@ -136,7 +136,6 @@ json_dump(output_best_results_dict, 'results_best', 'results/')
 json_dump(output_best_params_dict, 'params_best')
 
 pickle_dump(output_best_models_dict, 'models_best')
-pickle_dump(scaler, 'scaler')
 
 json_dump(export_config(), 'run_config')
 
