@@ -17,7 +17,7 @@ from mtr_utils.scaling import scaler
 
 # * PATH -----------------------------------------------------------------------
 
-RUN_ID = 'bin_rbst'
+RUN_ID = '.temp'
 
 OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 
@@ -28,15 +28,16 @@ OUTPUT_PATH = 'data/output/' + RUN_ID + '/'
 # * Random Seed
 
 """ Random seed for the random generator """
-RAND_SEED = 7
+RAND_SEED = 77
 
 """ Number of random seeds to generate """
-NUM_OF_RAND_SEEDS = 1
+NUM_OF_RAND_SEEDS = 10
 
 
 # List of random seeds
 random.seed(RAND_SEED)
 RAND_SEEDS_LIST = sorted(random.sample(range(1, 999999), NUM_OF_RAND_SEEDS))
+# RAND_SEEDS_LIST = [50632] * 10
 
 """
 Scoring metric for selecting the best seed
@@ -77,7 +78,7 @@ none = DummyScaler()
 
 Refer to building_model/mtr_utils/scaling.py
 """
-SCALER = scaler.rbst
+SCALER = scaler.stnd
 
 
 # * Train-Test Split
@@ -171,13 +172,12 @@ _RF_PARAMETERS = {
 # * Neural Network
 
 _NN_PARAMETERS = {
-    'solver': ['lbfgs', 'sgd'],
-    # 'solver': ['lbfgs', 'sgd', 'adam'],
+    # 'solver': ['lbfgs', 'sgd'],
+    'solver': ['lbfgs', 'sgd', 'adam'],
     'max_iter': [1500, 1750, 2000],
-    # 'activation': ['identity', 'logistic', 'tanh', 'relu'],
-    # 'activation': ['identity', 'logistic', 'tanh', 'relu'],
-    # 'alpha': 10.0 ** -np.arange(1, 10),
-    # 'hidden_layer_sizes': np.arange(10, 15),
+    'activation': ['identity', 'logistic', 'tanh', 'relu'],
+    'alpha': 10.0 ** -np.arange(1, 10),
+    'hidden_layer_sizes': np.arange(10, 15),
 }
 
 
@@ -239,13 +239,13 @@ defaultClassifiers = {
 # Comment out individual classifiers that you want to skip
 CLASSIFIERS = [
     defaultClassifiers['zeroRate'],
-    defaultClassifiers['randomRate'],
+    # defaultClassifiers['randomRate'],
     defaultClassifiers['logisRegrs'],
     defaultClassifiers['naiveBayes'],
     defaultClassifiers['knn'],
     defaultClassifiers['svm'],
-    # defaultClassifiers['decnTree'],
-    # defaultClassifiers['randForest'],
+    defaultClassifiers['decnTree'],
+    defaultClassifiers['randForest'],
     # defaultClassifiers['neuralNet'],
 ]
 

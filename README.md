@@ -8,9 +8,9 @@ A multi-label classifier algorithm to predict motifs/themes in musical compositi
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Roadmap](#roadmap)
-- [License](#license)
-- [Contact](#contact)
+<!-- - [Roadmap](#roadmap) -->
+<!-- - [License](#license) -->
+<!-- - [Contact](#contact) -->
 
 ## About the Project
 
@@ -18,7 +18,7 @@ This project is for my individual dissertation of my Bachelor's.
 
 ## Built With
 
-- [Python](https://www.python.org/)
+- [Python v3.9.7](https://www.python.org/)
 
 ## Getting Started
 
@@ -48,6 +48,8 @@ git clone https://github.com/chuangcaleb/music-theme-recognition
 ```
 
 ## Usage
+
+The project is subdivided into four modules, to decouple the project workflow.
 
 ### 1. [collecting_data](collecting_data/)
 
@@ -85,20 +87,38 @@ java -Xmx3072m -jar [PATH_TO_YOUR_JSYMBOLIC]/jSymbolic2.jar -configrun calculati
 python3 calculating_dataset/clean_db.py
 ```
 
-### 3. [building_model](building_model)
+### 3. [building_model](building_model/)
 
 From here, it is mostly automated.
 
 `model.py` is the main script to run. You should never need to fiddle with it because the parameters can all be configured with `config.py`.
 
-## Roadmap
+### 4. [evaluating_results](evaluating_results/)
+
+Similarly to the [building_model](building_model/) module, a `config.py` file handles configurations for this module.
+
+#### 4a. Process Results
+
+`results_stats.py` calculates relevant statistics about the result set.
+
+`flatten_json.py` is a temporary utility script that converts the json results into a flat table in csv.
+
+#### 4b. Analyze Results
+
+`plot_trees.py` draws the best Decision Trees from the specified run.
+
+`feature_importances.py` shows a plot of the feature value distributions for each theme label for the top 10 most-important features as calculated from the best Random Forest, from the specified run.
+
+`graph.py` plots results from the specified run.
+
+<!-- ## Roadmap
 
 See the [kanban](https://github.com/chuangcaleb/music-theme-recognition/projects/1?fullscreen=true) for active tasks.
 
 ## License
 
-<!-- Distributed under the MIT License. See `LICENSE` for more information. -->
-
-## Contact
+ Distributed under the MIT License. See `LICENSE` for more information. 
+ 
+ ### Contact -->
 
 20204134 Chuang Caleb hcycc2
