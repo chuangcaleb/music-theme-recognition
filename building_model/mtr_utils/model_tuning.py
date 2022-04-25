@@ -10,7 +10,8 @@ def get_tuned_classifier(classifier, feature_np, label_np, param_grid, cv, scori
         refit=True,
         cv=cv,
         scoring=scoring,
-        error_score='raise'
+        error_score='raise',
+        verbose=True
     )
 
     # Fit with entire dataset
