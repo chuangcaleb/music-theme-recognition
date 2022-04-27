@@ -8,9 +8,9 @@ A multi-label classifier algorithm to predict motifs/themes in musical compositi
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-<!-- - [Roadmap](#roadmap) -->
-<!-- - [License](#license) -->
-<!-- - [Contact](#contact) -->
+- [Roadmap](#roadmap)
+- [License](#license)
+- [Contact](#contact)
 
 ## About the Project
 
@@ -23,15 +23,6 @@ This project is for my individual dissertation of my Bachelor's.
 ## Getting Started
 
 ### Prerequisites
-
-<!-- - matplotlib
-- scipy
-- numpy
-- jupyter
-- scikit-learn -->
-<!-- - scikit-multilearn[^1]
-
-[^1]: There was a major issue with the MLkNN class, see [here](https://github.com/scikit-multilearn/scikit-multilearn/issues/224#) on how to fix it. -->
 
 Python related dependencies can be installed using:
 
@@ -73,7 +64,7 @@ Different scripts download MIDI files from various sources into [a bin directory
 
 1. `generate_jsymbolic_config.py` builds a configuration script based on the MIDI files found in the bin directory.
 2. Run `jSymbolic` with [themeConfigFile.txt](calculating_dataset/themeConfigFile.txt) as the configuration script.
-3. Finally, run `clean_db.py` to clean up the database for use.
+3. Finally, run `clean_db.py` to clean up the database for use. 'definition_dump/py` dumps the definition data from xml to csv.
 
 These three steps can (and should) be automatically executed.
 
@@ -85,6 +76,7 @@ python3 calculating_dataset/generate_jsymbolic_config.py
 java -Xmx3072m -jar [PATH_TO_YOUR_JSYMBOLIC]/jSymbolic2.jar -configrun calculating_dataset/themeConfigFile.txt
 
 python3 calculating_dataset/clean_db.py
+python3 calculating_dataset/definition_dump.py
 ```
 
 ### 3. [building_model](building_model/)
@@ -111,14 +103,14 @@ Similarly to the [building_model](building_model/) module, a `config.py` file ha
 
 `graph.py` plots results from the specified run.
 
-<!-- ## Roadmap
+## Roadmap
 
 See the [kanban](https://github.com/chuangcaleb/music-theme-recognition/projects/1?fullscreen=true) for active tasks.
 
 ## License
 
- Distributed under the MIT License. See `LICENSE` for more information. 
- 
- ### Contact -->
+ Distributed under the MIT License. See `LICENSE` for more information.
+
+### Contact
 
 20204134 Chuang Caleb hcycc2

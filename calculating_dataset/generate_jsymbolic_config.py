@@ -1,5 +1,5 @@
 import pandas as pd
-import feature_dump as feature_dump_list
+from feature_list import ALL_MIDI_FEATURES_LIST
 
 
 def config_write(string):
@@ -8,27 +8,35 @@ def config_write(string):
 
 # * Other paths ----------------------------------------------------------------
 
-# Input midi bin's root path
-bin_root_path = 'data/bin/'
+DATA_ROOT_DIR = 'data/'
+
+# Input midi bin's root dir
+BIN_ROOT_DIR = DATA_ROOT_DIR + 'bin/'
+
+LABEL_DATABASE_PATH = DATA_ROOT_DIR + 'labels/song_theme_label_database.xlsx'
 
 # Output path
-feat_output_path = 'data/features/song_theme_feature_database.xml'
-def_output_path = 'data/features/song_theme_feature_definitions.xml'
+FEAT_ROOT_DIR = DATA_ROOT_DIR + 'features/'
+FEAT_OUTPUT_PATH = FEAT_ROOT_DIR + 'song_theme_feature_database.xml'
+DEF_OUTPUT_PATH = FEAT_ROOT_DIR + 'song_theme_feature_definitions.xml'
 
-# Access our custom config file
-config_file = open('calculating_dataset/themeConfigFile.txt', 'wb')
+CONFIG_PATH = FEAT_ROOT_DIR + 'theme_jsymb_config.txt'
 
-
-# * Database -------------------------------------------------------------------
+# * Import Data ----------------------------------------------------------------
 
 # Access song_theme_label_database db
-song_theme_label_database_path = 'data/labels/song_theme_label_database.xlsx'
-label_df = pd.read_excel(song_theme_label_database_path)
+label_df = pd.read_excel(LABEL_DATABASE_PATH)
+
+# Access our custom config file
+config_file = open(CONFIG_PATH, 'wb')
+
+# * Process Data ---------------------------------------------------------------
+
 
 # Get recognizable midi paths from database
 paths_recognizable_df = label_df[label_df.recognizable == 1].iloc[:, 0:2]
 # Generate a Series of all recognizable midi paths
-paths_list = bin_root_path + paths_recognizable_df['source'] + \
+paths_list = BIN_ROOT_DIR + paths_recognizable_df['source'] + \
     '/' + paths_recognizable_df['id']
 
 # Concatenate Series of strings into one string object
@@ -48,7 +56,7 @@ config_write('convert_to_csv=true')
 
 # Features to Extract
 config_write('<features_to_extract>')
-for feature in feature_dump_list.all_midi_features_list:
+for feature in ALL_MIDI_FEATURES_LIST:
     config_write(feature)
 
 # Input Files
@@ -57,7 +65,8 @@ config_write(paths_list_string)
 
 # Output Files
 config_write('<output_files>')
-config_write('feature_values_save_path=' + feat_output_path)
-config_write('feature_definitions_save_path=' + def_output_path)
+config_write('feature_values_save_path=' + FEAT_OUTPUT_PATH)
+config_write('feature_definitions_save_path=' + DEF_OUTPUT_PATH)
 
 config_file.close()
+print('\nGenerated config file at ' + CONFIG_PATH, end='\n')
