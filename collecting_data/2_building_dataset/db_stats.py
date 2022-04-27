@@ -6,15 +6,15 @@ import pandas as pd
 
 from process_db import *
 
-label_root_dir = 'data/labels/'
-song_theme_label_database_path = label_root_dir + \
-    'song_theme_label_database.xlsx'
+LABELS_DIR = 'data/labels/'
+LABEL_DB_PATH = LABELS_DIR + 'song_theme_label_database.xlsx'
+STATS_EXPORT_PATH = LABELS_DIR + 'label_stats_summary.json'
 
 # Convert all p's to 1's
-p_to_1_convert(song_theme_label_database_path)
+p_to_1_convert(LABEL_DB_PATH)
 
 # Import data
-label_df = pd.read_excel(song_theme_label_database_path)
+label_df = pd.read_excel(LABEL_DB_PATH)
 
 # * Aux methods
 
@@ -99,13 +99,11 @@ sorted_label_stats_df.plot(
 )
 
 plt.tight_layout()
-plt.savefig(label_root_dir + 'label_freq.png')
+plt.savefig(LABELS_DIR + 'label_freq.png')
 
 # * EXPORT
 
 sorted_label_stats_dict = sorted_label_stats_df.to_dict()
-# with open(label_summary_export_path, 'w') as f:
-#     f.write(sorted_label_stats_json)
 
 stats_dict = {
     'total_count': total_count,
@@ -117,8 +115,6 @@ stats_dict = {
     'recog_procs_perc': perc_recog_procs,
 } | sorted_label_stats_dict
 
-label_summary_export_path = label_root_dir + 'label_stats_summary.json'
+json.dump(stats_dict, open(STATS_EXPORT_PATH, "w"))
 
-json.dump(stats_dict, open(label_summary_export_path, "w"))
-
-print('Saved label statistics to ' + label_summary_export_path)
+print('Saved label statistics to ' + STATS_EXPORT_PATH)

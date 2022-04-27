@@ -7,10 +7,9 @@ source = 'midiworld'
 domain = "http://www.midiworld.com"
 category = 'movie%20themes'  # CHANGE THIS
 
-download_path = 'data/bin/' + \
-    source + "/" + re.sub(r'%20', "-", category)
-if not os.path.exists(download_path):
-    os.makedirs(download_path)
+OUTPUT_DIR = 'data/bin/' + source + "/" + re.sub(r'%20', "-", category)
+if not os.path.exists(OUTPUT_DIR):
+    os.makedirs(OUTPUT_DIR)
 
 
 # Extract metadata from the download label
@@ -35,7 +34,7 @@ def downloadFile(anchor, filename):
 
     link = anchor['href']
     mid_file = requests.get(link, stream=True)
-    with open(download_path + '/' + filename, 'wb') as saveMidFile:
+    with open(OUTPUT_DIR + '/' + filename, 'wb') as saveMidFile:
         saveMidFile.write(mid_file.content)
         print('Downloaded \"{}\" successfully.'.format(filename))
 

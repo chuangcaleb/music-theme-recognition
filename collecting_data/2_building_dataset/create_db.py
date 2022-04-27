@@ -5,17 +5,16 @@ import pandas as pd
 Compares key index(es), compile & sort unique set, then overwrite?
 """
 
-root_path = 'data/bin'
-song_theme_database_path = 'data/labels/song_theme_label_database.xlsx'
-label_df = pd.DataFrame()
+BIN_DIR = 'data/bin'
+LABEL_DB_PATH = 'data/labels/song_theme_label_database.xlsx'
 
 # Get list of directories/sources
-directory_names = os.listdir(root_path)
+directory_names = os.listdir(BIN_DIR)
 # Get list of subfiles
-directories_data = [x for x in os.walk(root_path) if x[0] != root_path]
+directories_data = [x for x in os.walk(BIN_DIR) if x[0] != BIN_DIR]
 
 
-if not os.path.exists(song_theme_database_path):
+if not os.path.exists(LABEL_DB_PATH):
 
     # For each source/directory
     for i, directory_data in enumerate(directories_data):
@@ -38,7 +37,7 @@ if not os.path.exists(song_theme_database_path):
     print(label_df)
 
     # Write to output csv file
-    label_df.to_excel(song_theme_database_path, index=False)
+    label_df.to_excel(LABEL_DB_PATH, index=False)
 
 else:
 

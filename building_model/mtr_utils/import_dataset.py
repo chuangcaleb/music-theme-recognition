@@ -1,16 +1,16 @@
 import pandas as pd
 from mtr_utils import config as cfg
 
-song_theme_feature_database_path = 'data/features/song_theme_feature_database.csv'
-song_theme_label_database_path = 'data/labels/song_theme_label_database.xlsx'
+FEATURE_DB_PATH = 'data/features/song_theme_feature_database.csv'
+LABEL_DB_PATH = 'data/labels/song_theme_label_database.xlsx'
 
 try:
 
     # Access song_theme_feature_database
-    raw_feature_df = pd.read_csv(song_theme_feature_database_path)
+    raw_feature_df = pd.read_csv(FEATURE_DB_PATH)
 
     # Access song_theme_labels_database
-    raw_label_df = pd.read_excel(song_theme_label_database_path)
+    raw_label_df = pd.read_excel(LABEL_DB_PATH)
 
     # Extract recognizable data from label dataset
     recognz_label_df = raw_label_df[raw_label_df.recognizable == 1]

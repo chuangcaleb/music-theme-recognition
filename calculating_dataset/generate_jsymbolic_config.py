@@ -13,7 +13,7 @@ DATA_ROOT_DIR = 'data/'
 # Input midi bin's root dir
 BIN_ROOT_DIR = DATA_ROOT_DIR + 'bin/'
 
-LABEL_DATABASE_PATH = DATA_ROOT_DIR + 'labels/song_theme_label_database.xlsx'
+LABEL_DB_PATH = DATA_ROOT_DIR + 'labels/song_theme_label_database.xlsx'
 
 # Output path
 FEAT_ROOT_DIR = DATA_ROOT_DIR + 'features/'
@@ -25,7 +25,7 @@ CONFIG_PATH = FEAT_ROOT_DIR + 'theme_jsymb_config.txt'
 # * Import Data ----------------------------------------------------------------
 
 # Access song_theme_label_database db
-label_df = pd.read_excel(LABEL_DATABASE_PATH)
+label_df = pd.read_excel(LABEL_DB_PATH)
 
 # Access our custom config file
 config_file = open(CONFIG_PATH, 'wb')

@@ -7,7 +7,7 @@ from urllib.request import urlopen
 source = 'freemidi'
 domain = "http://www." + source + ".com"
 
-path = os.path.realpath(__file__)
+CURRENT_PATH = os.path.realpath(__file__)
 
 print(f"\n\nScraping from {domain}")
 print("Type Y to scrape; anything else to skip\n")
