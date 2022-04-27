@@ -1,5 +1,5 @@
 import pandas as pd
-from feature_list import ALL_MIDI_FEATURES_LIST
+from feature_list import ALL_MIDI_FEATURES_SET
 
 
 def config_write(string):
@@ -56,7 +56,7 @@ config_write('convert_to_csv=true')
 
 # Features to Extract
 config_write('<features_to_extract>')
-for feature in ALL_MIDI_FEATURES_LIST:
+for feature in ALL_MIDI_FEATURES_SET:
     config_write(feature)
 
 # Input Files
@@ -69,4 +69,4 @@ config_write('feature_values_save_path=' + FEAT_OUTPUT_PATH)
 config_write('feature_definitions_save_path=' + DEF_OUTPUT_PATH)
 
 config_file.close()
-print('\nGenerated config file at ' + CONFIG_PATH, end='\n')
+print('\nGenerated config file at ' + CONFIG_PATH, end='\n\n')

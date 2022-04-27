@@ -2,7 +2,7 @@
 import pickle
 import random
 from mtr_utils.import_dataset import raw_feature_df, raw_label_df
-from mtr_utils.feature_selection.load_feature_set import preselected_feature_list
+from mtr_utils.feature_selection.load_feature_set import preselected_feature_set
 from mtr_utils.feature_selection.auto_feature_selection import filter_var_thresh
 from mtr_utils import config as cfg
 
@@ -12,7 +12,7 @@ model = pickle_data['risk']['Naive Bayes']['model']
 
 # * Feature Selection
 
-manual_feature_df = raw_feature_df[preselected_feature_list]
+manual_feature_df = raw_feature_df[preselected_feature_set]
 
 selected_feature_np, feature_list = filter_var_thresh(
     manual_feature_df, cfg.THRESHOLD_VAL)

@@ -6,250 +6,250 @@ save_overall_recording_features=true
 convert_to_arff=false
 convert_to_csv=true
 <features_to_extract>
-Basic Pitch Histogram
-Pitch Class Histogram
-Folded Fifths Pitch Class Histogram
-Number of Pitches
-Number of Pitch Classes
-Number of Common Pitches
-Number of Common Pitch Classes
-Range
-Importance of Bass Register
-Importance of Middle Register
-Importance of High Register
-Dominant Spread
-Strong Tonal Centres
-Mean Pitch
-Mean Pitch Class
-Most Common Pitch
-Most Common Pitch Class
-Prevalence of Most Common Pitch
-Prevalence of Most Common Pitch Class
-Relative Prevalence of Top Pitches
-Relative Prevalence of Top Pitch Classes
-Interval Between Most Prevalent Pitches
-Interval Between Most Prevalent Pitch Classes
-Pitch Variability
-Pitch Class Variability
-Pitch Class Variability After Folding
-Pitch Skewness
-Pitch Class Skewness
-Pitch Class Skewness After Folding
-Pitch Kurtosis
-Pitch Class Kurtosis
-Pitch Class Kurtosis After Folding
-Major or Minor
-First Pitch
-First Pitch Class
-Last Pitch
-Last Pitch Class
-Glissando Prevalence
-Average Range of Glissandos
-Vibrato Prevalence
-Microtone Prevalence
-Melodic Interval Histogram
-Most Common Melodic Interval
-Mean Melodic Interval
-Number of Common Melodic Intervals
-Distance Between Most Prevalent Melodic Intervals
-Prevalence of Most Common Melodic Interval
-Relative Prevalence of Most Common Melodic Intervals
-Amount of Arpeggiation
-Repeated Notes
-Chromatic Motion
-Stepwise Motion
-Melodic Thirds
-Melodic Perfect Fourths
-Melodic Tritones
-Melodic Perfect Fifths
-Melodic Sixths
-Melodic Sevenths
-Melodic Octaves
-Melodic Large Intervals
-Minor Major Melodic Third Ratio
-Melodic Embellishments
-Direction of Melodic Motion
-Average Length of Melodic Arcs
-Average Interval Spanned by Melodic Arcs
-Melodic Pitch Variety
-Vertical Interval Histogram
-Wrapped Vertical Interval Histogram
-Chord Type Histogram
-Average Number of Simultaneous Pitch Classes
-Variability of Number of Simultaneous Pitch Classes
-Average Number of Simultaneous Pitches
-Variability of Number of Simultaneous Pitches
-Most Common Vertical Interval
-Second Most Common Vertical Interval
-Distance Between Two Most Common Vertical Intervals
-Prevalence of Most Common Vertical Interval
-Prevalence of Second Most Common Vertical Interval
-Prevalence Ratio of Two Most Common Vertical Intervals
-Vertical Unisons
-Vertical Minor Seconds
-Vertical Thirds
-Vertical Tritones
-Vertical Perfect Fourths
-Vertical Perfect Fifths
-Vertical Sixths
-Vertical Sevenths
-Vertical Octaves
-Perfect Vertical Intervals
-Vertical Dissonance Ratio
-Vertical Minor Third Prevalence
-Vertical Major Third Prevalence
-Chord Duration
-Partial Chords
-Standard Triads
-Diminished and Augmented Triads
-Dominant Seventh Chords
-Seventh Chords
-Non-Standard Chords
-Complex Chords
-Minor Major Triad Ratio
-Initial Time Signature
-Simple Initial Meter
-Compound Initial Meter
-Complex Initial Meter
-Duple Initial Meter
-Triple Initial Meter
-Quadruple Initial Meter
-Metrical Diversity
-Total Number of Notes
-Note Density per Quarter Note
-Note Density per Quarter Note per Voice
-Note Density per Quarter Note Variability
-Rhythmic Value Histogram
-Range of Rhythmic Values
-Number of Different Rhythmic Values Present
-Number of Common Rhythmic Values Present
-Prevalence of Very Short Rhythmic Values
-Prevalence of Short Rhythmic Values
-Prevalence of Medium Rhythmic Values
-Prevalence of Long Rhythmic Values
-Prevalence of Very Long Rhythmic Values
-Prevalence of Dotted Notes
-Shortest Rhythmic Value
-Longest Rhythmic Value
-Mean Rhythmic Value
-Most Common Rhythmic Value
-Prevalence of Most Common Rhythmic Value
-Relative Prevalence of Most Common Rhythmic Values
-Difference Between Most Common Rhythmic Values
-Rhythmic Value Variability
-Rhythmic Value Skewness
-Rhythmic Value Kurtosis
-Rhythmic Value Median Run Lengths Histogram
-Mean Rhythmic Value Run Length
-Median Rhythmic Value Run Length
-Variability in Rhythmic Value Run Lengths
-Rhythmic Value Variability in Run Lengths Histogram
-Mean Rhythmic Value Offset
-Median Rhythmic Value Offset
-Variability of Rhythmic Value Offsets
-Complete Rests Fraction
-Partial Rests Fraction
-Average Rest Fraction Across Voices
-Longest Complete Rest
-Longest Partial Rest
-Mean Complete Rest Duration
-Mean Partial Rest Duration
-Median Complete Rest Duration
-Median Partial Rest Duration
-Variability of Complete Rest Durations
-Variability of Partial Rest Durations
-Variability Across Voices of Combined Rests
-Beat Histogram Tempo Standardized
-Number of Strong Rhythmic Pulses - Tempo Standardized
-Number of Moderate Rhythmic Pulses - Tempo Standardized
-Number of Relatively Strong Rhythmic Pulses - Tempo Standardized
-Strongest Rhythmic Pulse - Tempo Standardized
-Second Strongest Rhythmic Pulse - Tempo Standardized
-Harmonicity of Two Strongest Rhythmic Pulses - Tempo Standardized
-Strength of Strongest Rhythmic Pulse - Tempo Standardized
-Strength of Second Strongest Rhythmic Pulse - Tempo Standardized
-Strength Ratio of Two Strongest Rhythmic Pulses - Tempo Standardized
-Combined Strength of Two Strongest Rhythmic Pulses - Tempo Standardized
-Rhythmic Variability - Tempo Standardized
-Rhythmic Looseness - Tempo Standardized
-Polyrhythms - Tempo Standardized
-Initial Tempo
-Mean Tempo
-Tempo Variability
-Duration in Seconds
-Note Density
-Note Density Variability
-Average Time Between Attacks
-Average Time Between Attacks for Each Voice
-Variability of Time Between Attacks
-Average Variability of Time Between Attacks for Each Voice
-Minimum Note Duration
-Maximum Note Duration
-Average Note Duration
-Variability of Note Durations
-Amount of Staccato
-Beat Histogram
-Number of Strong Rhythmic Pulses
-Number of Moderate Rhythmic Pulses
-Number of Relatively Strong Rhythmic Pulses
-Strongest Rhythmic Pulse
-Second Strongest Rhythmic Pulse
-Harmonicity of Two Strongest Rhythmic Pulses
-Strength of Strongest Rhythmic Pulse
-Strength of Second Strongest Rhythmic Pulse
-Strength Ratio of Two Strongest Rhythmic Pulses
-Combined Strength of Two Strongest Rhythmic Pulses
-Rhythmic Variability
-Rhythmic Looseness
-Polyrhythms
-Pitched Instruments Present
-Unpitched Instruments Present
-Note Prevalence of Pitched Instruments
-Note Prevalence of Unpitched Instruments
-Time Prevalence of Pitched Instruments
-Variability of Note Prevalence of Pitched Instruments
-Variability of Note Prevalence of Unpitched Instruments
-Number of Pitched Instruments
-Number of Unpitched Instruments
-Unpitched Percussion Instrument Prevalence
-String Keyboard Prevalence
-Acoustic Guitar Prevalence
-Electric Guitar Prevalence
-Violin Prevalence
-Saxophone Prevalence
-Brass Prevalence
-Woodwinds Prevalence
-Orchestral Strings Prevalence
-String Ensemble Prevalence
-Electric Instrument Prevalence
-Maximum Number of Independent Voices
-Average Number of Independent Voices
-Variability of Number of Independent Voices
-Voice Equality - Number of Notes
-Voice Equality - Note Duration
-Voice Equality - Dynamics
-Voice Equality - Melodic Leaps
-Voice Equality - Range
-Importance of Loudest Voice
-Relative Range of Loudest Voice
-Relative Range Isolation of Loudest Voice
-Relative Range of Highest Line
-Relative Note Density of Highest Line
-Relative Note Durations of Lowest Line
-Relative Size of Melodic Intervals in Lowest Line
-Voice Overlap
-Voice Separation
-Variability of Voice Separation
-Parallel Motion
-Similar Motion
-Contrary Motion
-Oblique Motion
-Parallel Fifths
-Parallel Octaves
-Dynamic Range
-Variation of Dynamics
-Variation of Dynamics In Each Voice
 Average Note to Note Change in Dynamics
+Wrapped Vertical Interval Histogram
+Prevalence of Short Rhythmic Values
+Unpitched Instruments Present
+Mean Melodic Interval
+Number of Strong Rhythmic Pulses
+Mean Pitch
+Most Common Pitch Class
+Relative Prevalence of Top Pitch Classes
+Variability of Note Prevalence of Pitched Instruments
+Total Number of Notes
+Prevalence of Most Common Melodic Interval
+Minor Major Triad Ratio
+Pitch Class Histogram
+Strongest Rhythmic Pulse
+Rhythmic Value Variability in Run Lengths Histogram
+Maximum Note Duration
+First Pitch
+Pitched Instruments Present
+Last Pitch Class
+Initial Tempo
+First Pitch Class
+Quadruple Initial Meter
+Brass Prevalence
+Pitch Class Variability After Folding
+Parallel Motion
+Vertical Minor Third Prevalence
+Relative Size of Melodic Intervals in Lowest Line
+Chord Duration
+Voice Separation
+Variability of Number of Simultaneous Pitch Classes
+Direction of Melodic Motion
+Prevalence of Most Common Rhythmic Value
+Beat Histogram
+Rhythmic Value Kurtosis
+Number of Strong Rhythmic Pulses - Tempo Standardized
+Pitch Class Skewness After Folding
+Unpitched Percussion Instrument Prevalence
+Orchestral Strings Prevalence
+Median Partial Rest Duration
+Melodic Perfect Fifths
+Melodic Tritones
+Variability of Number of Simultaneous Pitches
+Average Number of Independent Voices
+Strength of Second Strongest Rhythmic Pulse - Tempo Standardized
+Folded Fifths Pitch Class Histogram
+Beat Histogram Tempo Standardized
+Partial Rests Fraction
+Range
+Simple Initial Meter
+Importance of Bass Register
+Contrary Motion
+Dominant Seventh Chords
+Number of Common Pitches
+Minor Major Melodic Third Ratio
+Second Most Common Vertical Interval
+Relative Range Isolation of Loudest Voice
+Vertical Sixths
+Note Density per Quarter Note per Voice
+Melodic Embellishments
+Repeated Notes
+Note Density per Quarter Note Variability
+Number of Different Rhythmic Values Present
+Rhythmic Value Variability
+Note Density per Quarter Note
+Prevalence of Most Common Pitch
+Rhythmic Variability - Tempo Standardized
+Electric Guitar Prevalence
+Prevalence of Long Rhythmic Values
+Microtone Prevalence
+Average Number of Simultaneous Pitches
+Acoustic Guitar Prevalence
+Variability in Rhythmic Value Run Lengths
+Note Prevalence of Pitched Instruments
+Variability of Note Prevalence of Unpitched Instruments
+Number of Common Melodic Intervals
+Woodwinds Prevalence
+Variation of Dynamics
+Pitch Class Variability
+Amount of Arpeggiation
+String Keyboard Prevalence
+Voice Equality - Range
+Mean Rhythmic Value Run Length
+Violin Prevalence
+Mean Rhythmic Value Offset
+Melodic Sevenths
+Saxophone Prevalence
+Interval Between Most Prevalent Pitches
+Strongest Rhythmic Pulse - Tempo Standardized
+Polyrhythms
+Major or Minor
+Number of Moderate Rhythmic Pulses
+Tempo Variability
+Number of Unpitched Instruments
+Non-Standard Chords
+Rhythmic Value Median Run Lengths Histogram
+Melodic Interval Histogram
+Seventh Chords
+Rhythmic Looseness
+Number of Pitches
+Melodic Pitch Variety
+Most Common Rhythmic Value
+Rhythmic Value Histogram
+Voice Equality - Melodic Leaps
+Pitch Class Kurtosis
+Average Time Between Attacks
+Difference Between Most Common Rhythmic Values
+Minimum Note Duration
+Last Pitch
+Rhythmic Value Skewness
+Duple Initial Meter
+Distance Between Two Most Common Vertical Intervals
+Stepwise Motion
+Mean Partial Rest Duration
+Voice Equality - Dynamics
+Importance of Middle Register
+Vertical Tritones
+Melodic Sixths
+Melodic Thirds
+Pitch Class Kurtosis After Folding
+Complex Chords
+Second Strongest Rhythmic Pulse
+Complex Initial Meter
+Number of Relatively Strong Rhythmic Pulses
+Range of Rhythmic Values
+Melodic Octaves
+Longest Partial Rest
+Average Range of Glissandos
+Most Common Vertical Interval
+Average Interval Spanned by Melodic Arcs
+Shortest Rhythmic Value
+Vertical Minor Seconds
+Initial Time Signature
+Number of Relatively Strong Rhythmic Pulses - Tempo Standardized
+Second Strongest Rhythmic Pulse - Tempo Standardized
+Oblique Motion
+Dynamic Range
+Partial Chords
+Average Time Between Attacks for Each Voice
+Chord Type Histogram
+Note Density
+Vertical Dissonance Ratio
+Dominant Spread
+Distance Between Most Prevalent Melodic Intervals
+Amount of Staccato
+Combined Strength of Two Strongest Rhythmic Pulses - Tempo Standardized
+Compound Initial Meter
+Harmonicity of Two Strongest Rhythmic Pulses - Tempo Standardized
+Polyrhythms - Tempo Standardized
+Harmonicity of Two Strongest Rhythmic Pulses
+Most Common Melodic Interval
+Variability of Complete Rest Durations
+Number of Common Pitch Classes
+String Ensemble Prevalence
+Strength of Strongest Rhythmic Pulse
+Vibrato Prevalence
+Melodic Large Intervals
+Vertical Perfect Fourths
+Complete Rests Fraction
+Note Density Variability
+Variability of Number of Independent Voices
+Vertical Thirds
+Number of Common Rhythmic Values Present
+Variability of Note Durations
+Longest Complete Rest
+Prevalence of Most Common Vertical Interval
+Triple Initial Meter
+Mean Rhythmic Value
+Longest Rhythmic Value
+Vertical Sevenths
+Parallel Fifths
+Strong Tonal Centres
+Vertical Unisons
+Strength Ratio of Two Strongest Rhythmic Pulses
+Vertical Interval Histogram
+Average Number of Simultaneous Pitch Classes
+Prevalence of Dotted Notes
+Chromatic Motion
+Variability Across Voices of Combined Rests
+Parallel Octaves
+Mean Complete Rest Duration
+Vertical Perfect Fifths
+Variability of Partial Rest Durations
+Relative Range of Loudest Voice
+Variation of Dynamics In Each Voice
+Melodic Perfect Fourths
+Interval Between Most Prevalent Pitch Classes
+Combined Strength of Two Strongest Rhythmic Pulses
+Relative Prevalence of Most Common Rhythmic Values
+Average Rest Fraction Across Voices
+Number of Moderate Rhythmic Pulses - Tempo Standardized
+Median Rhythmic Value Run Length
+Voice Equality - Number of Notes
+Median Complete Rest Duration
+Rhythmic Looseness - Tempo Standardized
+Pitch Skewness
+Basic Pitch Histogram
+Metrical Diversity
+Electric Instrument Prevalence
+Relative Prevalence of Most Common Melodic Intervals
+Average Length of Melodic Arcs
+Diminished and Augmented Triads
+Average Variability of Time Between Attacks for Each Voice
+Prevalence of Second Most Common Vertical Interval
+Strength of Strongest Rhythmic Pulse - Tempo Standardized
+Maximum Number of Independent Voices
+Variability of Rhythmic Value Offsets
+Prevalence of Medium Rhythmic Values
+Relative Prevalence of Top Pitches
+Duration in Seconds
+Strength of Second Strongest Rhythmic Pulse
+Relative Note Density of Highest Line
+Importance of Loudest Voice
+Prevalence of Very Long Rhythmic Values
+Pitch Class Skewness
+Voice Overlap
+Average Note Duration
+Prevalence of Most Common Pitch Class
+Number of Pitch Classes
+Note Prevalence of Unpitched Instruments
+Vertical Major Third Prevalence
+Pitch Variability
+Perfect Vertical Intervals
+Rhythmic Variability
+Relative Range of Highest Line
+Prevalence Ratio of Two Most Common Vertical Intervals
+Most Common Pitch
+Standard Triads
+Mean Pitch Class
+Time Prevalence of Pitched Instruments
+Voice Equality - Note Duration
+Strength Ratio of Two Strongest Rhythmic Pulses - Tempo Standardized
+Relative Note Durations of Lowest Line
+Prevalence of Very Short Rhythmic Values
+Number of Pitched Instruments
+Glissando Prevalence
+Vertical Octaves
+Variability of Time Between Attacks
+Mean Tempo
+Variability of Voice Separation
+Pitch Kurtosis
+Importance of High Register
+Median Rhythmic Value Offset
+Similar Motion
 <input_files>
 data/bin/bitmidi/A-Midsummer-Night-Dream-(Ouverture)_bitmidi.mid
 data/bin/bitmidi/A-Thousand-Hours_bitmidi.mid

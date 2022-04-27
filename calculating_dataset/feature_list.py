@@ -1,4 +1,5 @@
-ALL_MIDI_FEATURES_LIST = [
+
+ALL_MIDI_FEATURES_SET = {
     'Basic Pitch Histogram',
     'Pitch Class Histogram',
     'Folded Fifths Pitch Class Histogram',
@@ -243,4 +244,4 @@ ALL_MIDI_FEATURES_LIST = [
     'Variation of Dynamics',
     'Variation of Dynamics In Each Voice',
     'Average Note to Note Change in Dynamics'
-]
+}

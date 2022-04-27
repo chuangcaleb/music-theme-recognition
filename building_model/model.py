@@ -30,7 +30,7 @@ raw_label_df = data.data_label_df
 # * Feature Selection
 
 # Manual selection
-manual_feature_df = raw_feature_df[load_feature_set.preselected_feature_list]
+manual_feature_df = raw_feature_df[load_feature_set.preselected_feature_set]
 
 # Automatic selection
 selected_features_df, feature_list = filter_var_thresh(
