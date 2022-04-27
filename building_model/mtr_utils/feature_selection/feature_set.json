@@ -3,16 +3,13 @@
 		"category_enabled": true,
 		"features": {
 			"Basic_Pitch_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 128
+				"feature_enabled": false
 			},
 			"Pitch_Class_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 12
+				"feature_enabled": false
 			},
 			"Folded_Fifths_Pitch_Class_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 12
+				"feature_enabled": false
 			},
 			"Number_of_Pitches": {
 				"feature_enabled": false
@@ -134,8 +131,7 @@
 		"category_enabled": true,
 		"features": {
 			"Melodic_Interval_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 128
+				"feature_enabled": false
 			},
 			"Most_Common_Melodic_Interval": {
 				"feature_enabled": true
@@ -215,16 +211,13 @@
 		"category_enabled": true,
 		"features": {
 			"Vertical_Interval_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 128
+				"feature_enabled": false
 			},
 			"Wrapped_Vertical_Interval_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 12
+				"feature_enabled": false
 			},
 			"Chord_Type_Histogram": {
-				"feature_enabled": true,
-				"bin_size": 11
+				"feature_enabled": true
 			},
 			"Average_Number_of_Simultaneous_Pitch_Classes": {
 				"feature_enabled": true
@@ -327,10 +320,7 @@
 	"Rhythm": {
 		"category_enabled": true,
 		"features": {
-			"Initial_Time_Signature_0": {
-				"feature_enabled": true
-			},
-			"Initial_Time_Signature_1": {
+			"Initial_Time_Signature": {
 				"feature_enabled": true
 			},
 			"Simple_Initial_Meter": {
@@ -367,8 +357,7 @@
 				"feature_enabled": true
 			},
 			"Rhythmic_Value_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 12
+				"feature_enabled": false
 			},
 			"Range_of_Rhythmic_Values": {
 				"feature_enabled": true
@@ -428,8 +417,7 @@
 				"feature_enabled": true
 			},
 			"Rhythmic_Value_Median_Run_Lengths_Histogram": {
-				"feature_enabled": true,
-				"bin_size": 12
+				"feature_enabled": true
 			},
 			"Mean_Rhythmic_Value_Run_Length": {
 				"feature_enabled": true
@@ -441,8 +429,7 @@
 				"feature_enabled": true
 			},
 			"Rhythmic_Value_Variability_in_Run_Lengths_Histogram": {
-				"feature_enabled": true,
-				"bin_size": 12
+				"feature_enabled": true
 			},
 			"Mean_Rhythmic_Value_Offset": {
 				"feature_enabled": true
@@ -490,8 +477,7 @@
 				"feature_enabled": true
 			},
 			"Beat_Histogram_Tempo_Standardized": {
-				"feature_enabled": false,
-				"bin_size": 161
+				"feature_enabled": false
 			},
 			"Number_of_Strong_Rhythmic_Pulses_-_Tempo_Standardized": {
 				"feature_enabled": false
@@ -583,8 +569,7 @@
 				"feature_enabled": true
 			},
 			"Beat_Histogram": {
-				"feature_enabled": false,
-				"bin_size": 161
+				"feature_enabled": false
 			},
 			"Number_of_Strong_Rhythmic_Pulses": {
 				"feature_enabled": false
@@ -631,24 +616,19 @@
 		"category_enabled": true,
 		"features": {
 			"Pitched_Instruments_Present": {
-				"feature_enabled": false,
-				"bin_size": 128
+				"feature_enabled": false
 			},
 			"Unpitched_Instruments_Present": {
-				"feature_enabled": false,
-				"bin_size": 47
+				"feature_enabled": false
 			},
 			"Note_Prevalence_of_Pitched_Instruments": {
-				"feature_enabled": false,
-				"bin_size": 128
+				"feature_enabled": false
 			},
 			"Note_Prevalence_of_Unpitched_Instruments": {
-				"feature_enabled": false,
-				"bin_size": 47
+				"feature_enabled": false
 			},
 			"Time_Prevalence_of_Pitched_Instruments": {
-				"feature_enabled": false,
-				"bin_size": 128
+				"feature_enabled": false
 			},
 			"Variability_of_Note_Prevalence_of_Pitched_Instruments": {
 				"feature_enabled": false
