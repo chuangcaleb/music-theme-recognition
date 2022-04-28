@@ -22,6 +22,9 @@ class DummyScaler():
     def fit(self, X, y=None):
         pass
 
+    def __repr__(self):
+        return "DummyScaler()"
+
 
 class scaler:
     nrml = MinMaxScaler()
