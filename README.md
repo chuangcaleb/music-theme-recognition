@@ -63,7 +63,7 @@ Different scripts download MIDI files from various sources into [a bin directory
 ### 2. [calculating_dataset](calculating_dataset/)
 
 1. `generate_jsymbolic_config.py` builds a configuration script based on the MIDI files found in the bin directory.
-2. Run `jSymbolic` with [themeConfigFile.txt](calculating_dataset/themeConfigFile.txt) as the configuration script.
+2. Run `jSymbolic` with [theme_jsymb_config.txt](data/features/theme_jsymb_config.txt) as the configuration script.
 3. Finally, run `clean_db.py` to clean up the database for use. 'definition_dump/py` dumps the definition data from xml to csv.
 
 These three steps can (and should) be automatically executed.
