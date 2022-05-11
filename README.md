@@ -73,7 +73,7 @@ Here is a script file that I've used — modify it to point to your jSybolic2.ja
 ```sh
 python3 calculating_dataset/generate_jsymbolic_config.py
 
-java -Xmx3072m -jar [PATH_TO_YOUR_JSYMBOLIC]/jSymbolic2.jar -configrun calculating_dataset/themeConfigFile.txt
+java -Xmx3072m -jar [PATH_TO_YOUR_JSYMBOLIC]/jSymbolic2.jar -configrun data/features/theme_jsymb_config.txt
 
 python3 calculating_dataset/clean_db.py
 python3 calculating_dataset/definition_dump.py
