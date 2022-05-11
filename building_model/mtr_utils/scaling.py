@@ -1,16 +1,16 @@
-from mtr_utils import config as cfg
+# from mtr_utils import config as cfg
 from sklearn.preprocessing import MinMaxScaler, RobustScaler, StandardScaler
 
 
-def scale_data(x_train, x_test):
+# def scale_data(x_train, x_test):
 
-    scaler = cfg.SCALER
+#     scaler = cfg.SCALER
 
-    scaler.fit(x_train)
-    x_train_scl = scaler.transform(x_train)
-    x_test_scl = scaler.transform(x_test)
+#     scaler.fit(x_train)
+#     x_train_scl = scaler.transform(x_train)
+#     x_test_scl = scaler.transform(x_test)
 
-    return scaler, x_train_scl, x_test_scl
+#     return scaler, x_train_scl, x_test_scl
 
 
 class DummyScaler():
@@ -23,11 +23,12 @@ class DummyScaler():
         pass
 
     def __repr__(self):
-        return "DummyScaler()"
+        return "DummyScaler()"  # TODO: return type(self).__name__ lol
 
 
-class scaler:
-    nrml = MinMaxScaler()
-    stnd = StandardScaler()
-    rbst = RobustScaler()
-    none = DummyScaler()
+SCALERS = {
+    "nrml": MinMaxScaler(),
+    "stnd": StandardScaler(),
+    "rbst": RobustScaler(),
+    # "none": DummyScaler()
+}

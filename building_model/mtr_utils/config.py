@@ -10,10 +10,10 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
-
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-from mtr_utils.scaling import scaler
+
+from mtr_utils.scaling import SCALERS
 
 # * PATH -----------------------------------------------------------------------
 
@@ -78,7 +78,7 @@ none = DummyScaler()
 
 Refer to building_model/mtr_utils/scaling.py
 """
-SCALER = scaler.stnd
+SCALER = SCALERS["stnd"]
 
 
 # * Train-Test Split
@@ -172,9 +172,9 @@ _RF_PARAMETERS = {
 # * Neural Network
 
 _NN_PARAMETERS = {
-    # 'solver': ['lbfgs', 'sgd'],
-    'solver': ['lbfgs', 'sgd', 'adam'],
-    'max_iter': [1500, 1750, 2000],
+    # 'solver': ['lbfgs', 'sgd', 'adam'],
+    'solver': ['sgd', 'adam'],
+    'max_iter': [200, 400],
     'activation': ['identity', 'logistic', 'tanh', 'relu'],
     'alpha': 10.0 ** -np.arange(1, 10),
     'hidden_layer_sizes': np.arange(10, 15),
@@ -189,47 +189,56 @@ defaultClassifiers = {
     # Since we oversample and balance the training data, both classes will be equal. However, DummyClassifier still picks class '0' over class '1', even when they are equal. This is good, because '0' is our majority class.
     'zeroRate': {
         'name': 'ZeroRate',
+        'code': 'zr',
         # 'model': DummyClassifier(strategy='constant', constant=0),
         'model': DummyClassifier(strategy='most_frequent'),
         'param': {}
     },
     'randomRate': {
         'name': 'RandomRate',
+        'code': 'rr',
         'model': DummyClassifier(strategy='stratified'),
         'param': {}
     },
     'logisRegrs': {
         'name': 'LogisRegrs',
+        'code': 'lr',
         'model': LogisticRegression(),
         'param': _LR_PARAMETERS
     },
     'naiveBayes': {
         'name': 'GaussianNB',
+        'code': 'nb',
         'model':  GaussianNB(),
         'param': _NB_PARAMETERS
     },
     'knn': {
         'name': 'kNN',
+        'code': 'kn',
         'model': KNeighborsClassifier(),
         'param': _KNN_PARAMETERS
     },
     'decnTree': {
         'name': 'DecnTree',
+        'code': 'dt',
         'model': DecisionTreeClassifier(),
         'param': _DT_PARAMETERS
     },
     'svm': {
         'name': 'SVM',
+        'code': 'sv',
         'model': SVC(),
         'param': _SV_PARAMETERS
     },
     'randForest': {
         'name': 'RandForest',
+        'code': 'rf',
         'model': RandomForestClassifier(),
         'param': _RF_PARAMETERS
     },
     'neuralNet': {
         'name': 'NeuralNet',
+        'code': 'nn',
         'model': MLPClassifier(),
         'param': _NN_PARAMETERS
     }
@@ -238,7 +247,7 @@ defaultClassifiers = {
 
 # Comment out individual classifiers that you want to skip
 CLASSIFIERS = [
-    defaultClassifiers['zeroRate'],
+    # defaultClassifiers['zeroRate'],
     # defaultClassifiers['randomRate'],
     defaultClassifiers['logisRegrs'],
     defaultClassifiers['naiveBayes'],
@@ -258,3 +267,14 @@ ACTUAL_CLASSIFIERS = [
     clf['name'] for clf in CLASSIFIERS
     if type(clf['model']) is not DummyClassifier
 ]
+
+# PIPELINE_MODEL_LIST = {
+#     clf['code']: clf['model']
+#     for clf in CLASSIFIERS
+# }
+
+# PIPELINE_PARAM_GRID = {
+#     f"{clf['code']}__{k}": v
+#     for clf in CLASSIFIERS
+#     for k, v in clf['param'].items()
+# }
