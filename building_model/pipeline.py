@@ -2,6 +2,9 @@
 from sklearn.metrics import classification_report
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV, train_test_split
+from mtr_utils.export_results import json_dump
+from mtr_utils.export_results import pickle_dump
+from mtr_utils.scoring import get_scoring
 from mtr_utils.config import CLASSIFIERS
 from mtr_utils.sampling import smote
 
@@ -14,7 +17,6 @@ from mtr_utils import import_dataset as data
 feature_np = data.feature_np
 # label_np = data.label_np
 label_np = data.label_np[:, 13]
-
 
 (
     x_train, x_test, y_train, y_test
@@ -38,7 +40,7 @@ pipelines = {
             ('scaler', None),
             (clf['code'], clf['model'])
         ],
-        verbose=True
+        # verbose=True
     )
 
     for clf in CLASSIFIERS
@@ -70,11 +72,23 @@ for clf in CLASSIFIERS:
 
     gscv_list[pipe] = GridSearchCV(pipe, grid, cv=cfg.CV,
                                    verbose=True, scoring=cfg.BEST_CV_SCORING)
-    gscv_list[pipe].fit(x_train_smp, y_train_smp)
+    gscv = gscv_list[pipe]
+
+    gscv.fit(x_train_smp, y_train_smp)
 
     print()
     print(model_name)
-    print(f'Best F1-score: {gscv_list[pipe].best_score_:.3f}\n')
-    print(f'Best parameter set: {gscv_list[pipe].best_params_}\n')
-    # print(
-    #     f'Scores: {classification_report(y_test, gscv_list[pipe].predict(x_test))}')
+    print(f'Best F1-score: {gscv.best_score_:.3f}\n')
+    print(f'Best parameter set: {gscv.best_params_}\n')
+
+    scores = get_scoring(gscv, x_test, y_test)
+    print(scores)
+
+
+pickle_dump(gscv_list, 'gscv')
+
+
+json_dump(data.feature_list, 'final_feature_list')
+
+# print(
+#     f'Scores: {classification_report(y_test, gscv.predict(x_test))}')

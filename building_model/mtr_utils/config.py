@@ -152,7 +152,7 @@ _SV_PARAMETERS = {'C': [0.1, 1, 10, 100],
 # * Decision Tree
 
 _DT_PARAMETERS = {
-    'max_leaf_nodes': range(3, 15),
+    'max_leaf_nodes': range(3, 10),
     'criterion': ["gini", "entropy"],
     'splitter': ["best", "random"],
     'min_samples_split': range(2, 11, 3),
@@ -249,12 +249,12 @@ defaultClassifiers = {
 CLASSIFIERS = [
     # defaultClassifiers['zeroRate'],
     # defaultClassifiers['randomRate'],
-    defaultClassifiers['logisRegrs'],
-    defaultClassifiers['naiveBayes'],
-    defaultClassifiers['knn'],
-    defaultClassifiers['svm'],
+    # defaultClassifiers['logisRegrs'],
+    # defaultClassifiers['naiveBayes'],
+    # defaultClassifiers['knn'],
+    # defaultClassifiers['svm'],
     defaultClassifiers['decnTree'],
-    defaultClassifiers['randForest'],
+    # defaultClassifiers['randForest'],
     # defaultClassifiers['neuralNet'],
 ]
 
